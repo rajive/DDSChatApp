@@ -1,0 +1,10 @@
+module My {
+	const long MSG_LEN=256;
+
+	struct ChatObject {
+		string<MSG_LEN> user; //@key
+		string<MSG_LEN> msg;
+	};
+	
+	const string CHAT_TOPIC_NAME = "Chat";
+};

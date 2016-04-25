@@ -26,3 +26,18 @@
 *.exe
 *.out
 *.app
+
+# Generated
+objs/
+Chat.xml
+Chat.h
+Chat.cxx
+ChatPlugin.h
+ChatPlugin.cxx
+ChatSupport.h
+ChatSupport.cxx
+makefile_Chat_*
+
+# OSX
+.DS_Store
+
