@@ -14,12 +14,14 @@ publish messages on behalf of multiple users.
 An app can subscribe to all the users, or a subset of users of interest using
 a content filtered topic (CFT).
 
-The endpoints DDS DataWriters and DataReaders used by an App can be specified via an XML AppConfig file. This defines a pure **data-oriented interface**,
-decoupled from any component implementation.
+The endpoints DDS DataWriters and DataReaders used by an App can be 
+specified via an XML AppConfig file. This defines a pure 
+**data-oriented interface**, decoupled from any component implementation.
 
 ## Subscribing to selected conversations using a *content filtered topic*
 
 Components that show the use of partitions include:
+
  - `impl_cpp_cft`
  - `impl_cpp_instance`
  - `impl_cpp_partitions`
@@ -30,15 +32,16 @@ Components that show the use of partitions include:
 ## Accessing a subset of updates from the DataReader view
 
 Components that show the use of partitions include:
+
  - `impl_cpp_instance`
  - `impl_cpp_partitions`
  - `impl_xml_cpp`
 
 
-## Tagging conversations using PARTITION QoS Policy
+## Tagging conversations using `PARTITION` QoS Policy
 
 In this version, we add the concept of tagging conversations. Each tag
-is modeled via a PARTITION QoSPolicy.
+is modeled via a `PARTITION` QoSPolicy.
 
 A tag could be:
 
@@ -48,15 +51,17 @@ A tag could be:
 - etc.
 
 An XML AppConfig file can be used to specify the initial configuration of the
-regions (PARTITION QoSPolicy) for an app at startup.
+regions (`PARTITION` QoSPolicy) for an app at startup.
 
-An app can add or remove tags, simply by changing the PARTITION QoS Policy.
+An app can add or remove tags, simply by changing the `PARTITION` QoS Policy.
 
-An app can publish or subscribe to additional tags i.e. PARTITIONS
+An app can publish or subscribe to additional tags i.e. `PARTITION`s
 (for example after discovering them), and can stop being  a publisher or
-subscriber for the regions (i.e. partitions) specified in the XMLAppConfig file.
+subscriber for the regions (i.e. partitions) specified in the XML AppConfig 
+file.
 
 Components that show the use of partitions include:
+
  - `impl_cpp_partitions`
  - `impl_xml_cpp`
  - `impl_xml_lua`

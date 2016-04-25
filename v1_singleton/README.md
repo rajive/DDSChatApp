@@ -25,7 +25,6 @@ Building a peer-to-peer Chat application using [DDS](http://portals.omg.org/dds)
 - Modify the Publisher program to produce something interesting
 
 		/* Modify the data to be sent here */
-
 		snprintf(instance->msg, My::MSG_LEN, "Hello from Rajive %d", count);
 
 
@@ -33,12 +32,11 @@ Building a peer-to-peer Chat application using [DDS](http://portals.omg.org/dds)
 
   - Do not attach the listener to the DataReader
 
-		/* To customize the data reader QoS, use
-	    the configuration file USER_QOS_PROFILES.xml */
-
-	    reader = subscriber->create_datareader(
-	        topic, DATAREADER_QOS_DEFAULT, NULL /* listener */,
-	        STATUS_MASK_NONE);
+            /* To customize the data reader QoS, use
+               the configuration file USER_QOS_PROFILES.xml */
+	        reader = subscriber->create_datareader(
+	                   topic, DATAREADER_QOS_DEFAULT, NULL /* listener */,
+	                   STATUS_MASK_NONE);
 
   - Poll the reader in the main loop
 
