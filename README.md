@@ -31,9 +31,12 @@ structure.
   - in the instructions below, `impl_xyz` is a placeholder for one of these
 
 There can be multiple components of the same interface. Components are
-launched from if/ as the working directory. This ensures that the
+launched from `if/` as the working directory. This ensures that the
 implementation variants use the same interface settings.
 
+## Prerequisites
+
+- [RTI Connext DDS 5.2](http://www.rti.com/downloads/index.html)
 
 ## Generated Examples as Baseline
 
@@ -58,24 +61,25 @@ modifications are applied.
 
 - C++ Datatypes: Run RTI Connext Launcher > Utilities > Code Generator
 
-      Input file: if/Chat.idl
-	  Output directory: impl_xyz/
-	  Language: Traditional C++ (namespaces)
-	  Example files: <disable>
-	  Type files: update
-	  Makefiles: update
+           Input file: if/Chat.idl
+           Output directory: impl_xyz/
+           Language: Traditional C++ (namespaces)
+           Example files: <disable>
+           Type files: update
+           Makefiles: update
 
   **Run**
 
-  OR (non-Windows), simply use the makefile, once a target specific makefile has been generated (as above):
+  OR (non-Windows), simply use the makefile, once a target specific makefile 
+  has been generated (as above):
 
-      cd impl_xyz/
-      make
+          cd impl_xyz/
+          make
 
 - XML Datatypes: Run RTI Connext Launcher > Utilities > Type Convert
 
-      Input file: if/Chat.idl
-	  Output directory: impl_xyz/
+            Input file: if/Chat.idl
+            Output directory: impl_xyz/
 
  **Run**
 
@@ -88,11 +92,9 @@ modifications are applied.
 
 - Open Terminal
 
-      RTI Connext Launcher > Utilities
-                           > Code Generator
-                           > Open Terminal
+        RTI Connext Launcher > Utilities > Code Generator > Open Terminal
 
-  Do the following steps in that terminal window.
+- Do the following steps in that terminal window.
 
 - Switch to the component directory:
 
@@ -102,11 +104,11 @@ modifications are applied.
 
   - Linux
 
-		make
+            make
 
   - Windows
 
-        Open Visual Studio Solution
+            Open Visual Studio Solution
 
 
 ## Running the C++ components
@@ -120,10 +122,10 @@ modifications are applied.
 
 			set KIND=userGenerated
 
-- Switch the working directory to the if/ directory, so that the
-    USER_QOS_PROFILES.xml file is automatically loaded.
+- Switch the working directory to the `if/` directory, so that the
+    `USER_QOS_PROFILES.xml` file is automatically loaded.
 
-			cd if/
+		cd if/
 
 - Run Publisher Example:
 
@@ -132,9 +134,9 @@ modifications are applied.
    (replace `x64Darwin14clang6.0` with your target)
 
 
- - Run Subscriber Example:
+- Run Subscriber Example:
 
-		../impl_xyz/objs/x64Darwin14clang6.0/Chat_subscriber
+        ../impl_xyz/objs/x64Darwin14clang6.0/Chat_subscriber
 
    (replace `x64Darwin14clang6.0` with your target)
 
@@ -154,15 +156,13 @@ modifications are applied.
 - Switch the working directory to the if/ directory, so that the
     USER_QOS_PROFILES.xml file is automatically loaded.
 
-			cd if/
+		cd if/
 
 - Run Publisher Example:
 
-      rtiddsprototyper -cfgName MyParticipantLibrary::MyPublicationParticipant \
-		               -luaFile ../impl_xyz/Chat_publisher.lua
+        rtiddsprototyper -cfgName MyParticipantLibrary::MyPublicationParticipant -luaFile ../impl_xyz/Chat_publisher.lua
 
 
 - Run Subscriber Example:
 
-	   rtiddsprototyper -cfgName MyParticipantLibrary::MySubscriptionParticipant \
-		               -luaFile ../impl_xyz/Chat_subscriber.lua
+        rtiddsprototyper -cfgName MyParticipantLibrary::MySubscriptionParticipant -luaFile ../impl_xyz/Chat_subscriber.lua
