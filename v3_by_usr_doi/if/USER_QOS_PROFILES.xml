@@ -68,7 +68,7 @@ For more information about XML QoS Profiles see Chapter 15 in the
 RTI Connext user manual.
 -->
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.2.1/resource/schema/rti_dds_qos_profiles.xsd"
+     xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.2.1/resource/schema/rti_dds_profiles.xsd"
      version="5.2.1.1">
     <!-- QoS Library containing the QoS profile used in the generated example.
 
@@ -116,4 +116,93 @@ RTI Connext user manual.
         </qos_profile>
 
     </qos_library>
+    
+    
+    <!-- types -->
+    <types>
+        <include file="Chat.xml"/>
+    </types>
+    
+    
+    <!-- Domain Library -->
+    <domain_library name="MyDomainLibrary" >
+
+        <domain name="ChatDomain" domain_id="0">
+
+            <!-- NOTE: The KIND environment variable is used to specify 
+            	how the datatype is configured. Set the environment variable 
+            	as follows, to select between the two available choices.
+            	
+                 1. User Generated datatypes - used for compiled code
+            			KIND=userGenerated
+            	 
+           		 2. Dynamic Data datatypes - used for scripting or compiled code
+            			KIND=dynamicData
+            			
+            	Generally, we prefer to use "userGenerated" datatypes in 
+            	compiled code, due to the ease of use in working with 
+            	generated datatypes.
+            -->
+            <register_type kind="$(KIND)"
+                		   name="My::ChatObject" 
+                		   type_ref="My::ChatObject"/>                    
+                		   
+            <topic name="Chat" register_type_ref="My::ChatObject"/>
+           
+        </domain>                	
+    </domain_library>
+
+    <!-- Participant library -->
+    <participant_library name="MyParticipantLibrary">
+
+		<domain_participant name="MyPublicationParticipant"
+							domain_ref="MyDomainLibrary::ChatDomain">
+           
+			<participant_qos base_name="Chat_Library::Chat_Profile">
+			</participant_qos>
+		 	
+		 	<publisher name="MyPublisher">
+		 	    <publisher_qos>
+		 	        <partition>
+		 	            <name>
+		 	                <element></element>
+		 	                <element>starwars</element>
+		 	                <element>startrek</element>
+		 	                <element>funny</element>
+		 	            </name>
+		 	        </partition>
+		 	    </publisher_qos>
+		 		<data_writer name="ChatObjectWriter" topic_ref="Chat">
+		 	  		<datawriter_qos base_name="Chat_Library::Chat_Profile">		 	  		    
+		 	  		</datawriter_qos>
+		 		</data_writer> 
+		 	</publisher>
+            
+		</domain_participant>
+		        
+        
+        <domain_participant name="MySubscriptionParticipant" 
+		                    domain_ref="MyDomainLibrary::ChatDomain">
+		
+			<participant_qos base_name="Chat_Library::Chat_Profile">
+			</participant_qos>
+			
+            <subscriber name="MySubscriber">
+                <data_reader name="ChatObjectReader" topic_ref="Chat">
+                     <filter name="Chat" kind="builtin.sql">
+                        <expression>
+                            user = %0 OR user = %1 OR user = %2
+                        </expression>
+                        <parameter_list>
+                            <param>'Rajive'</param>
+                            <param>'Preeti_1'</param>
+                            <param>'DHRUV'</param>
+                        </parameter_list>
+                    </filter>        
+                    <datareader_qos base_name="Chat_Library::Chat_Profile"/> 
+                </data_reader>
+            </subscriber>
+        </domain_participant>
+
+    </participant_library>
 </dds>

@@ -14,9 +14,6 @@ publish messages on behalf of multiple users.
 An app can subscribe to all the users, or a subset of users of interest using
 a content filtered topic (CFT).
 
-The endpoints DDS DataWriters and DataReaders used by an App can be 
-specified via an XML AppConfig file. This defines a pure 
-**data-oriented interface**, decoupled from any component implementation.
 
 ## Subscribing to selected conversations using a *content filtered topic*
 
@@ -25,17 +22,14 @@ Components that show the use of content-filters include:
  - `impl_cpp_cft`
  - `impl_cpp_instance`
  - `impl_cpp_partitions`
- - `impl_xml_cpp`
- - `impl_xml_lua`
 
 
 ## Accessing a subset of updates from the DataReader view
 
-Components that show the use of partitions include:
+Components that show how to access a specific instance include:
 
  - `impl_cpp_instance`
  - `impl_cpp_partitions`
- - `impl_xml_cpp`
 
 
 ## Tagging conversations using `PARTITION` QoS Policy
@@ -63,5 +57,4 @@ file.
 Components that show the use of partitions include:
 
  - `impl_cpp_partitions`
- - `impl_xml_cpp`
- - `impl_xml_lua`
+
