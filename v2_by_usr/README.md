@@ -20,7 +20,7 @@ specified via an XML AppConfig file. This defines a pure
 
 ## Subscribing to selected conversations using a *content filtered topic*
 
-Components that show the use of partitions include:
+Components that show the use of content-filters include:
 
  - `impl_cpp_cft`
  - `impl_cpp_instance`

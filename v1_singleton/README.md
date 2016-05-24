@@ -50,3 +50,48 @@ Building a peer-to-peer Chat application using [DDS](http://portals.omg.org/dds)
 
 
 - `impl_cpp_waitset/`: Modify the Subscriber program to use **waitsets**
+
+   - Setup StatusCondition trigger
+   
+	        /* Setup StatusCondition */
+	        StatusCondition* status_condition = reader->get_statuscondition();
+	        if (status_condition == NULL) {
+	            printf("get_statuscondition error\n");
+	            subscriber_shutdown(participant);
+	            return -1;
+	        }
+	        retcode = status_condition->set_enabled_statuses(DDS_DATA_AVAILABLE_STATUS);
+	        if (retcode != DDS_RETCODE_OK) {
+	            printf("set_enabled_statuses error\n");
+	            subscriber_shutdown(participant);
+	            return -1;
+	        }
+
+   - Setup WaitSet
+   
+	        /* Setup WaitSet */
+	        WaitSet* waitset = new WaitSet();
+	        retcode = waitset->attach_condition(status_condition);
+	        if (retcode != DDS_RETCODE_OK) {
+	            // ... error
+	            delete waitset;
+	            subscriber_shutdown(participant);
+	            return -1;
+	        }
+
+	- Wait for condition to trigger
+	
+	        ConditionSeq active_conditions; // holder for active conditions
+	        /* Main loop */
+			for (count=0; (sample_count == 0) || (count < sample_count); ++count) {
+                /* Wait for condition to trigger */
+                retcode = waitset->wait(active_conditions, receive_period);
+	        	if (retcode == DDS_RETCODE_OK) {
+	            	reader_listener->on_data_available(reader);
+	            }
+				// :
+			}
+			
+	- Cleanup
+	
+        	delete waitset;

@@ -36,7 +36,7 @@ implementation variants use the same interface settings.
 
 ## Prerequisites
 
-- [RTI Connext DDS 5.2](http://www.rti.com/downloads/index.html)
+- [RTI Connext DDS 5.2 +](http://www.rti.com/downloads/index.html)
 
 ## Generated Examples as Baseline
 
