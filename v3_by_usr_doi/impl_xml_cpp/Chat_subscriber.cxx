@@ -57,7 +57,6 @@ namespace My {
     class ChatObjectListener : public DataReaderListener {
 
       public:
-
         virtual void on_requested_deadline_missed(
             DataReader* /*reader*/,
             const RequestedDeadlineMissedStatus& /*status*/) {}

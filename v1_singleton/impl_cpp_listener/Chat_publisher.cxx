@@ -184,7 +184,12 @@ extern "C" int publisher_main(int domainId, int sample_count)
 
         /* Modify the data to be sent here */
         /* >>> */
+        // Unix
         snprintf(instance->msg, My::MSG_LEN, "Hello from Rajive %d", count);
+
+        // Windows
+        //sprintf_s(instance->msg, My::MSG_LEN, "Hello from Rajive %d", count)
+
         /* <<< */
 
         retcode = ChatObject_writer->write(*instance, instance_handle);

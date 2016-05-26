@@ -102,7 +102,7 @@ modifications are applied.
 
 - Build the C++ code
 
-  - Linux
+  - Linux | MacOS
 
             make
 
@@ -114,7 +114,7 @@ modifications are applied.
 ## Running the C++ components
 
 - Set the the environment variable KIND
-    - Linux
+    - Linux | MacOS
 
 			export KIND=userGenerated
 
@@ -145,7 +145,7 @@ modifications are applied.
 
 - Set the the environment variable KIND
 
-  - Linux
+  - Linux | MacOS
 
 			export KIND=dynamicData
 

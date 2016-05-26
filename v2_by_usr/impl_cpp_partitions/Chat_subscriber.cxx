@@ -253,7 +253,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
 
 
  	/* >>> Create ContentFiltered Topic */
-    const char* cft_params[] = { "'Rajive'", "'Preeti_1'", "'DHRUV'" };
+    const char* cft_params[] = { "'Rajive'", "'Nisha'", "'Ravi'" };
     StringSeq cft_parameters(3);
     cft_parameters.from_array(cft_params, sizeof(cft_params)/sizeof(char*));
     ContentFilteredTopic *contentfiltered_topic =
