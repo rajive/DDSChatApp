@@ -82,13 +82,19 @@ RTI Connext user manual.
              A QoS profile groups a set of related QoS.
         -->
         <qos_profile name="Chat_Profile" 
-            		 base_name="BuiltinQosLibExp::Generic.StrictReliable" 
+            		 base_name="BuiltinQosLibExp::Pattern.Status" 
             		 is_default_qos="true">
             <!-- QoS used to configure the data writer created in the example code -->                
             <datawriter_qos>
                 <publication_name>
                     <name>ChatDataWriter</name>
                 </publication_name>
+                <ownership>
+                    <kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
+                </ownership>
+                <ownership_strength>
+                    <value>10</value>
+                </ownership_strength>
             </datawriter_qos>
             
             <!-- QoS used to configure the data reader created in the example code -->                
@@ -96,9 +102,14 @@ RTI Connext user manual.
                 <subscription_name>
                     <name>ChatDataReader</name>
                 </subscription_name>
-                <history>
-                    <depth>5</depth>
-                </history>
+				<ownership>
+				    <kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
+				</ownership>
+				<history>
+				    <depth>
+				        3
+				    </depth>
+				</history>
             </datareader_qos>
             
             <participant_qos>

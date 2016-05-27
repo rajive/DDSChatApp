@@ -292,8 +292,8 @@ extern "C" int subscriber_main(int domainId, int sample_count)
 
             // change selected QoS Policy(ies): PARTITION QoS
             const char* partitions_list[][2] = {
-    			{ "spaceships", "cars" },
-            	{ "starwars", "startrek" }
+                { "starwars", "startrek" },
+    			{ "spaceships", "cars" }
             };
             const char** partitions = partitions_list[(count / 10) % 2];
 			subscriber_qos.partition.name.from_array(partitions, 2);
