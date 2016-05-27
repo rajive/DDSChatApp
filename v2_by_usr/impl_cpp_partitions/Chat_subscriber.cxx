@@ -95,6 +95,9 @@ namespace My {
     /* >>> */
     ChatObjectListener::ChatObjectListener(): instance(0) {
     	instance = ChatObjectTypeSupport::create_data();
+
+    	/* the instance to look for in a reader's queue */
+    	strncpy(instance->user, "Rajive", My::MSG_LEN);
     }
 
     ChatObjectListener::~ChatObjectListener() {
@@ -123,11 +126,19 @@ namespace My {
 
         /* >>> */
         /* Get instance handle for instance of interest */
-        strncpy(instance->user, "Rajive", My::MSG_LEN);
-        InstanceHandle_t instance_handle =
-        						ChatObject_reader->lookup_instance(*instance);
+        InstanceHandle_t instance_handle = DDS_HANDLE_NIL;
+        instance_handle = ChatObject_reader->lookup_instance(*instance);
+
+        /* Skip if instance is not yet in the reader's queue */
         if (DDS_InstanceHandle_is_nil(&instance_handle)) {
-            printf("NIL instance handle %d\n", retcode);
+            printf("Skipping...until instance '%s' arrives\n", instance->user);
+
+            /* clear the DDS_DATA_AVAILABLE_STATUS flag */
+            retcode = ChatObject_reader->take(
+                        data_seq, info_seq, 0 /* NOTE: ZERO length! */,
+                        ANY_SAMPLE_STATE, ANY_VIEW_STATE, ANY_INSTANCE_STATE);
+            retcode = ChatObject_reader->return_loan(data_seq, info_seq);
+
             return;
         }
         /* <<< */
