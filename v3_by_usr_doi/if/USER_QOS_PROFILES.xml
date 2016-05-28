@@ -138,7 +138,7 @@ RTI Connext user manual.
     <!-- Domain Library -->
     <domain_library name="MyDomainLibrary" >
 
-        <domain name="ChatDomain" domain_id="0">
+        <domain name="MyDomain" domain_id="0">
 
             <!-- NOTE: The KIND environment variable is used to specify 
             	how the datatype is configured. Set the environment variable 
@@ -167,7 +167,7 @@ RTI Connext user manual.
     <participant_library name="MyParticipantLibrary">
 
 		<domain_participant name="MyPublicationParticipant"
-							domain_ref="MyDomainLibrary::ChatDomain">
+							domain_ref="MyDomainLibrary::MyDomain">
            
 			<participant_qos base_name="Chat_Library::Chat_Profile">
 			</participant_qos>
@@ -194,7 +194,7 @@ RTI Connext user manual.
 		        
         
         <domain_participant name="MySubscriptionParticipant" 
-		                    domain_ref="MyDomainLibrary::ChatDomain">
+		                    domain_ref="MyDomainLibrary::MyDomain">
 		
 			<participant_qos base_name="Chat_Library::Chat_Profile">
 			</participant_qos>

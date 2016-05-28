@@ -82,6 +82,7 @@ namespace My {
             const SubscriptionMatchedStatus& /*status*/) {}
 
         virtual void on_data_available(DataReader* reader);
+
         /* >>> */
 		ChatObjectListener();
 		virtual ~ChatObjectListener();
@@ -94,6 +95,9 @@ namespace My {
     /* >>> */
     ChatObjectListener::ChatObjectListener(): instance(0) {
     	instance = ChatObjectTypeSupport::create_data();
+
+    	/* the instance to look for in a reader's queue */
+    	strncpy(instance->user, "Rajive", My::MSG_LEN);
     }
 
     ChatObjectListener::~ChatObjectListener() {
@@ -122,11 +126,19 @@ namespace My {
 
         /* >>> */
         /* Get instance handle for instance of interest */
-        strncpy(instance->user, "Rajive", My::MSG_LEN);
-        InstanceHandle_t instance_handle =
-        						ChatObject_reader->lookup_instance(*instance);
+        InstanceHandle_t instance_handle = DDS_HANDLE_NIL;
+        instance_handle = ChatObject_reader->lookup_instance(*instance);
+
+        /* Skip if instance is not yet in the reader's queue */
         if (DDS_InstanceHandle_is_nil(&instance_handle)) {
-            printf("NIL instance handle %d\n", retcode);
+            printf("Skipping...until instance '%s' arrives\n", instance->user);
+
+            /* clear the DDS_DATA_AVAILABLE_STATUS flag */
+            retcode = ChatObject_reader->take(
+                        data_seq, info_seq, 0 /* NOTE: ZERO length! */,
+                        ANY_SAMPLE_STATE, ANY_VIEW_STATE, ANY_INSTANCE_STATE);
+            retcode = ChatObject_reader->return_loan(data_seq, info_seq);
+
             return;
         }
         /* <<< */
@@ -155,6 +167,7 @@ namespace My {
         }
     }
 }
+
 
 /* Delete all entities */
 static int subscriber_shutdown(
@@ -214,10 +227,11 @@ extern "C" int subscriber_main(int domainId, int sample_count)
         return -1;
     }
 
+
     /* To customize the subscriber QoS, use 
     the configuration file USER_QOS_PROFILES.xml */
     subscriber = participant->create_subscriber(
-        SUBSCRIBER_QOS_DEFAULT, NULL /* listener */, STATUS_MASK_NONE);
+    		SUBSCRIBER_QOS_DEFAULT, NULL /* listener */, STATUS_MASK_NONE);
     if (subscriber == NULL) {
         printf("create_subscriber error\n");
         subscriber_shutdown(participant);
@@ -278,6 +292,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
         delete reader_listener;
         return -1;
     }
+
 
     /* >>> Setup StatusCondition */
     StatusCondition* status_condition = reader->get_statuscondition();
