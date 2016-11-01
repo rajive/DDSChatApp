@@ -68,7 +68,7 @@ For more information about XML QoS Profiles see Chapter 15 in the
 RTI Connext user manual.
 -->
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.2.1/resource/schema/rti_dds_qos_profiles.xsd"
+     xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_qos_profiles.xsd"
      version="5.2.1.1">
     <!-- QoS Library containing the QoS profile used in the generated example.
 
@@ -87,24 +87,27 @@ RTI Connext user manual.
             <!-- QoS used to configure the data writer created in the example code -->                
             <datawriter_qos>
                 <publication_name>
-                    <name>ChatDataWriter</name>
+                    <name>Rajive's ChatDataWriter</name>
                 </publication_name>
+
                 <ownership>
                     <kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
                 </ownership>
                 <ownership_strength>
                     <value>10</value>
                 </ownership_strength>
+                
             </datawriter_qos>
             
             <!-- QoS used to configure the data reader created in the example code -->                
             <datareader_qos>
                 <subscription_name>
-                    <name>ChatDataReader</name>
+                    <name>Rajive's ChatDataReader</name>
                 </subscription_name>
 				<ownership>
 				    <kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
 				</ownership>
+				
 				<history>
 				    <depth>
 				        3
@@ -119,8 +122,8 @@ RTI Connext user manual.
                 application from another when you're debugging.
                 -->
                 <participant_name>
-                    <name>Rajive</name>
-                    <role_name>ChatParticipantRole</role_name>
+                    <name>Rajive's ChatParticipant</name>
+                    <role_name>ChatParticipant</role_name>
                 </participant_name>
 
             </participant_qos>

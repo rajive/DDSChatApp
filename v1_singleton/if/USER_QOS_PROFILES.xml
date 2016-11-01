@@ -85,14 +85,14 @@ RTI Connext user manual.
             <!-- QoS used to configure the data writer created in the example code -->                
             <datawriter_qos>
                 <publication_name>
-                    <name>ChatDataWriter</name>
+                    <name>Rajive's ChatDataWriter</name>
                 </publication_name>
             </datawriter_qos>
 
             <!-- QoS used to configure the data reader created in the example code -->                
             <datareader_qos>
                 <subscription_name>
-                    <name>ChatDataReader</name>
+                    <name>Rajive's ChatDataReader</name>
                 </subscription_name>
             </datareader_qos>
             <participant_qos>
@@ -102,8 +102,8 @@ RTI Connext user manual.
                 application from another when you're debugging.
                 -->
                 <participant_name>
-                    <name>Rajive</name>
-                    <role_name>ChatParticipantRole</role_name>
+                    <name>Rajive's ChatParticipant</name>
+                    <role_name>ChatParticipant</role_name>
                 </participant_name>
 
             </participant_qos>
