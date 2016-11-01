@@ -173,7 +173,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     and register the keyed instance prior to writing */
     /* >>> */
     strncpy(instance->user, "Rajive", My::MSG_LEN);
-    instance_handle = ChatObject_writer->register_instance(*instance);
+    //instance_handle = ChatObject_writer->register_instance(*instance);
     /* <<< */
 
 
