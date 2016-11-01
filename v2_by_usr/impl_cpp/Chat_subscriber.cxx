@@ -99,7 +99,7 @@ namespace My {
             return;
         }
 
-        retcode = ChatObject_reader->take(
+        retcode = ChatObject_reader->read(  /*>>><<<*/
             data_seq, info_seq, LENGTH_UNLIMITED,
             ANY_SAMPLE_STATE, ANY_VIEW_STATE, ANY_INSTANCE_STATE);
 
@@ -169,7 +169,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     ReturnCode_t retcode;
     const char *type_name = NULL;
     int count = 0;
-    Duration_t receive_period = {4,0};
+    Duration_t receive_period = {8,0}; /*>>><<<*/
     int status = 0;
 
     /* To customize the participant QoS, use 
