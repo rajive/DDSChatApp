@@ -1,10 +1,25 @@
+// This is a single lineIDL comment
+/* This is a multi-line IDL comment */
+
+//@copy        // This gets copied verbatim in all languages	
+//@copy-c      // This gets copied verbatim in C and C++ only
+//@copy-cppcli // This gets copied verbatim in .NET C++/CLI
+//@copy-java   // This gets copied verbatim in Java only
+
 module My {
+	
 	const long MSG_LEN=256;
 
+
 	struct ChatObject {
+
+		//@copy // identity of the chat object
 		string<MSG_LEN> user; //@key
+		
+		//@copy // chat message from the user	
 		string<MSG_LEN> msg;
-	};
+
+	}; //@top-level true
 	
 	const string CHAT_TOPIC_NAME = "Chat";
 };
