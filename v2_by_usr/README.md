@@ -19,15 +19,20 @@ a content filtered topic (CFT).
 
 Components that show the use of content-filters include:
 
+C++
  - `impl_cpp_cft`
  - `impl_cpp_instance`
  - `impl_cpp_partitions`
 
+C#
+ - `impl_cs_cft`
+ 
 
 ## Accessing a subset of updates from the DataReader view
 
 Components that show how to access a specific instance include:
 
+C++
  - `impl_cpp_instance`
  - `impl_cpp_partitions`
 
@@ -56,5 +61,6 @@ file.
 
 Components that show the use of partitions include:
 
+C++
  - `impl_cpp_partitions`
 

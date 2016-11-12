@@ -27,7 +27,7 @@ structure.
 
 - `impl_*/`
   - a component implementation in the programming language of choice
-    (e.g. C++, Lua, ...)
+    (e.g. C++, C#, Lua, ...)
   - in the instructions below, `impl_xyz` is a placeholder for one of these
 
 There can be multiple components of the same interface. Components are
@@ -59,7 +59,7 @@ modifications are applied.
 
 ## Generating the datatype handling code
 
-- C++ Datatypes: Run RTI Connext Launcher > Utilities > Code Generator
+- e.g. C++ Datatypes: Run RTI Connext Launcher > Utilities > Code Generator
 
            Input file: if/Chat.idl
            Output directory: impl_xyz/

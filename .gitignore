@@ -32,11 +32,25 @@ objs/
 Chat.xml
 Chat.h
 Chat.cxx
+Chat.cpp
 ChatPlugin.h
 ChatPlugin.cxx
+ChatPlugin.cpp
 ChatSupport.h
 ChatSupport.cxx
+ChatSUpport.cpp
 makefile_Chat_*
+
+# Visual Studio
+x86
+Debug-*
+Release-*
+*.suo
+*.vcxproj*
+*.csproj*
+*.sln
+
+
 
 # OSX
 .DS_Store

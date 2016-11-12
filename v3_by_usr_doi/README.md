@@ -24,6 +24,9 @@ checking code, allowing us to focus on the application specific logic.
 ## XMLAppCreation - C++
 - [impl\_xml\_cpp/](./impl_xml_cpp)
 
+## XMLAppCreation - C`#`
+
+- [impl\_xml\_cs/](./impl_xml_cs)
 
 ## XMLAppCreation - Lua (Scripting)
 
