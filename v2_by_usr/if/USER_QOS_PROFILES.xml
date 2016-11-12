@@ -69,7 +69,7 @@ RTI Connext user manual.
 -->
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_qos_profiles.xsd"
-     version="5.2.1.1">
+     version="5.2.3">
     <!-- QoS Library containing the QoS profile used in the generated example.
 
         A QoS library is a named set of QoS profiles.
@@ -93,6 +93,7 @@ RTI Connext user manual.
                 <ownership>
                     <kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
                 </ownership>
+                
                 <ownership_strength>
                     <value>10</value>
                 </ownership_strength>
@@ -104,6 +105,7 @@ RTI Connext user manual.
                 <subscription_name>
                     <name>Rajive's ChatDataReader</name>
                 </subscription_name>
+                
 				<ownership>
 				    <kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
 				</ownership>

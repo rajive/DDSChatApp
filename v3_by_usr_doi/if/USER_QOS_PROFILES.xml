@@ -166,55 +166,54 @@ RTI Connext user manual.
     <!-- Participant library -->
     <participant_library name="MyParticipantLibrary">
 
-		<domain_participant name="MyPublicationParticipant"
-							domain_ref="MyDomainLibrary::MyDomain">
+		  <domain_participant name="MyPublicationParticipant"
+							  domain_ref="MyDomainLibrary::MyDomain">
            
-			<participant_qos base_name="Chat_Library::Chat_Profile">
-			</participant_qos>
+			  <participant_qos base_name="Chat_Library::Chat_Profile">
+			  </participant_qos>
 		 	
-		 	<publisher name="MyPublisher">
-		 		<publisher_qos>
-		 	        <partition>
-		 	            <name>
-		 	                <element></element>
-		 	                <element>starwars</element>
-		 	                <element>startrek</element>
-		 	                <element>funny</element>
-		 	                <element>*</element>
-		 	            </name>
-		 	        </partition>
-		 	    </publisher_qos>
-		 		<data_writer name="ChatObjectWriter" topic_ref="Chat">
-		 	  		<datawriter_qos base_name="Chat_Library::Chat_Profile">		 	  		    
-		 	  		</datawriter_qos>
-		 		</data_writer> 
-		 	</publisher>
-            
-		</domain_participant>
+		 	  <publisher name="MyPublisher">
+		          <publisher_qos>
+		            <partition>
+			            <name>
+			              <element></element>
+			              <element>starwars</element>
+			              <element>startrek</element>
+			              <element>funny</element>
+			              <element>*</element>
+			            </name>
+		            </partition>
+		          </publisher_qos>
+		               
+		 		  <data_writer name="ChatObjectWriter" topic_ref="Chat">
+		 	  		  <datawriter_qos base_name="Chat_Library::Chat_Profile">		 	  		    
+		 	  		  </datawriter_qos>
+		 		  </data_writer>
+		 	  </publisher>
+		  </domain_participant>
 		        
-        
-        <domain_participant name="MySubscriptionParticipant" 
-		                    domain_ref="MyDomainLibrary::MyDomain">
+      <domain_participant name="MySubscriptionParticipant"
+		                  domain_ref="MyDomainLibrary::MyDomain">
 		
-			<participant_qos base_name="Chat_Library::Chat_Profile">
-			</participant_qos>
+			  <participant_qos base_name="Chat_Library::Chat_Profile">
+			  </participant_qos>
 			
-            <subscriber name="MySubscriber">
-                <data_reader name="ChatObjectReader" topic_ref="Chat">
-                     <filter name="Chat" kind="builtin.sql">
-                        <expression>
-                            user = %0 OR user = %1 OR user = %2
-                        </expression>
-                        <parameter_list>
-                            <param>'Rajive'</param>
-                            <param>'Nisha'</param>
-                            <param>'Ravi'</param>
-                        </parameter_list>
-                    </filter>        
-                    <datareader_qos base_name="Chat_Library::Chat_Profile"/> 
-                </data_reader>
-            </subscriber>
-        </domain_participant>
+          <subscriber name="MySubscriber">
+              <data_reader name="ChatObjectReader" topic_ref="Chat">
+                    <filter name="Chat" kind="builtin.sql">
+                      <expression>
+                          user = %0 OR user = %1 OR user = %2
+                      </expression>
+                      <parameter_list>
+                          <param>'Rajive'</param>
+                          <param>'Shannon'</param>
+                          <param>'Jaromy'</param>
+                      </parameter_list>
+                  </filter>
+                  <datareader_qos base_name="Chat_Library::Chat_Profile"/>
+              </data_reader>
+          </subscriber>
+      </domain_participant>
 
     </participant_library>
 </dds>
