@@ -106,7 +106,7 @@ namespace My {
         if (retcode == RETCODE_NO_DATA) {
             return;
         } else if (retcode != RETCODE_OK) {
-            printf("take error %d\n", retcode);
+            printf("take/read error %d\n", retcode); /*>>><<<*/
             return;
         }
 
