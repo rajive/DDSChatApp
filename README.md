@@ -131,7 +131,27 @@ modifications are applied.
 
    (replace `x64Darwin14clang6.0` with your target)
 
+## Running the C# components
 
+- Switch the working directory to the `if/` directory, so that the
+    `USER_QOS_PROFILES.xml` file is automatically loaded.
+
+		cd if/
+
+- Run Publisher Example:
+
+		../impl_xyz/bin/Debug-VS2010/Chat_publisher.exe
+
+   (replace `Debug-VS2010` with your target)
+
+
+- Run Subscriber Example:
+
+		../impl_xyz/bin/Debug-VS2010/Chat_publisher.exe
+
+   (replace `Debug-VS2010` with your target)
+   
+  
 ## Running the Lua components
 
 
@@ -148,3 +168,4 @@ modifications are applied.
 - Run Subscriber Example:
 
         rtiddsprototyper -cfgName MyParticipantLibrary::MySubscriptionParticipant -luaFile ../impl_xyz/Chat_subscriber.lua
+

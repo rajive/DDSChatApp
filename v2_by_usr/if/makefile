@@ -8,7 +8,7 @@
 
 # If undefined in the environment default NDDSHOME to install dir
 ifndef NDDSHOME
-NDDSHOME := "/Applications/rti_connext_dds-5.2.1"
+NDDSHOME := "/Applications/rti_connext_dds-5.2.3"
 endif
 
 

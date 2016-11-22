@@ -17,18 +17,19 @@ test code could be scripted in Lua.
 - Fewer lines of code: It gets rid of the boilerplate code and error 
 checking code, allowing us to focus on the application specific logic.
 
-## XMLAppCreation - Data-Oriented Interfaces
+## Data-Oriented Interfaces
 - [if/](./if)
 
 
-## XMLAppCreation - C++
+## C++ Implementation
+
 - [impl\_xml\_cpp/](./impl_xml_cpp)
 
-## XMLAppCreation - C`#`
+## C# Implementation  
 
 - [impl\_xml\_cs/](./impl_xml_cs)
 
-## XMLAppCreation - Lua (Scripting)
+## Lua (Scripting) Implementation 
 
 - [impl\_xml\_lua/](./impl_xml_lua)
 
