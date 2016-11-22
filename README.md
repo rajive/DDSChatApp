@@ -113,15 +113,6 @@ modifications are applied.
 
 ## Running the C++ components
 
-- Set the the environment variable KIND
-    - Linux | MacOS
-
-			export KIND=userGenerated
-
-    - Windows
-
-			set KIND=userGenerated
-
 - Switch the working directory to the `if/` directory, so that the
     `USER_QOS_PROFILES.xml` file is automatically loaded.
 
@@ -143,15 +134,6 @@ modifications are applied.
 
 ## Running the Lua components
 
-- Set the the environment variable KIND
-
-  - Linux | MacOS
-
-			export KIND=dynamicData
-
-  - Windows
-
-			set KIND=dynamicData
 
 - Switch the working directory to the if/ directory, so that the
     USER_QOS_PROFILES.xml file is automatically loaded.

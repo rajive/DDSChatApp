@@ -139,24 +139,22 @@ RTI Connext user manual.
     <domain_library name="MyDomainLibrary">
 
         <domain name="MyDomain">
-
-            <!-- NOTE: The KIND environment variable is used to specify 
-            	how the datatype is configured. Set the environment variable 
-            	as follows, to select between the two available choices.
-            	
-                 1. User Generated datatypes - used for compiled code
-            		    KIND=userGenerated
-            	 
-           		 2. Dynamic Data datatypes - used for scripting or compiled code
-            			KIND=dynamicData
-            			
-            	Generally, we prefer to use "userGenerated" datatypes in 
-            	compiled code, due to the ease of use in working with 
-            	generated datatypes.
-            -->
-            <register_type kind="$(KIND)"
-                		   name="My::ChatObject" 
-                		   type_ref="My::ChatObject"/>                    
+            
+            <!-- NOTE: kind="userGenerated" (when registered) takes precedence 
+            		   over kind="dynamicData"
+               
+              A "userGenerated" TypeSupport can be registered with the 
+              DomainParticipantFactory, using the method:
+                register_type_support(FooTypeSupport::register_type, type_name) 
+                
+              If such a "userGenerated" (kind) FooTypeSupport has been 
+              registered with the DomainParticipantFactory, that definition 
+              takes precedence over the description of the type loaded from
+              the XML file (included above).
+             -->
+            <register_type name="My::ChatObject" 
+            			   type_ref="My::ChatObject"
+						   kind="dynamicData"/>                    
                 		   
             <topic name="Chat" register_type_ref="My::ChatObject"/>
            
