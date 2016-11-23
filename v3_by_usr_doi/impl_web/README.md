@@ -13,7 +13,7 @@ called `WebGateway`.
 - Switch the working directory to the `if/` directory, so that the
     `USER_QOS_PROFILES.xml` file is automatically loaded.
 
-		cd if/
+		cd ../if/
 
 - Start the web integration service
 		
