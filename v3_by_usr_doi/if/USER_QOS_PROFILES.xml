@@ -171,6 +171,11 @@ RTI Connext user manual.
 			  </participant_qos>
 		 	
 		 	  <publisher name="MyPublisher">
+				  <data_writer name="ChatObjectWriter" topic_ref="Chat">
+					<datawriter_qos base_name="Chat_Library::Chat_Profile">
+					</datawriter_qos>
+				  </data_writer>
+		 		  
 		          <publisher_qos>
 		            <partition>
 			            <name>
@@ -183,10 +188,7 @@ RTI Connext user manual.
 		            </partition>
 		          </publisher_qos>
 		               
-		 		  <data_writer name="ChatObjectWriter" topic_ref="Chat">
-		 	  		  <datawriter_qos base_name="Chat_Library::Chat_Profile">		 	  		    
-		 	  		  </datawriter_qos>
-		 		  </data_writer>
+
 		 	  </publisher>
 		  </domain_participant>
 		        

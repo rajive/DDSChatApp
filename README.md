@@ -169,3 +169,6 @@ modifications are applied.
 
         rtiddsprototyper -cfgName MyParticipantLibrary::MySubscriptionParticipant -luaFile ../impl_xyz/Chat_subscriber.lua
 
+## Running the Web Integration Service components
+
+- [v3_by_usr_doi/impl_web/README.md](./v3_by_usr_doi/impl_web/README.md)
