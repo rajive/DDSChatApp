@@ -17,14 +17,14 @@ called `WebGateway`.
 
 - Start the web integration service
 		
-	rtiwebintegrationservice -cfgName WebGateway -cfgFile ../impl_web/CUSTOM_WEB_INTEGRATION_SERVICE.xml
+      rtiwebintegrationservice -cfgName WebGateway -cfgFile ../impl_web/CUSTOM_WEB_INTEGRATION_SERVICE.xml
 
 
 - Check that the web integration service is running
 
-    open http://localhost:8080
+      open http://localhost:8080
 
-- Open AdminConsole to see the Web Integration service endpoints
+- Open AdminConsole to see the Web Integration Service DDS endpoints
 
 
 ## List the datatypes via RESTful (http) web client
@@ -46,7 +46,7 @@ called `WebGateway`.
 
 ## Subscribe to data via RESTful (http) web client
 
-(piping through `xmllint --format -` to pretty print the XML)
+*Note: piping through `xmllint --format -` to pretty print the XML*
  
 **take**:
 
