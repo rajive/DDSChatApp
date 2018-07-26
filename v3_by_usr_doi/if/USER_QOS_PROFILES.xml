@@ -114,7 +114,7 @@ RTI Connext user manual.
                 application from another when you're debugging.
                 -->
                 <participant_name>
-                    <name>Rajive's ChatParticipant</name>
+                    <name>Rajive</name>
                     <role_name>ChatParticipant</role_name>
                 </participant_name>
             </participant_qos>
