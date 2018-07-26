@@ -229,7 +229,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     /* Create Participant from XML Config */
     participant = TheParticipantFactory->
             create_participant_from_config(
-            		"MyParticipantLibrary::MySubscriptionParticipant");
+            		"MyParticipant_Library::MySubscriptionParticipant");
     if (participant == NULL) {
         printf("create_participant_from_config error\n");
         subscriber_shutdown(participant);

@@ -158,7 +158,7 @@ namespace My{
             DDS.DomainParticipant participant = 
                 DDS.DomainParticipantFactory.get_instance().
                         create_participant_from_config(
-                              "MyParticipantLibrary::MySubscriptionParticipant");
+                              "MyParticipant_Library::MySubscriptionParticipant");
             if (participant == null) {
                 shutdown(participant);
                 throw new ApplicationException("create_participant error");

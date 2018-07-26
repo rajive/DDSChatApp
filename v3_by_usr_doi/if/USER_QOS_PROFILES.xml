@@ -69,26 +69,24 @@ RTI Connext user manual.
 -->
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_profiles.xsd"
-     version="5.2.3">
+     version="5.3.1">
     <!-- QoS Library containing the QoS profile used in the generated example.
 
         A QoS library is a named set of QoS profiles.
     -->
-    <qos_library name="Chat_Library">
+    <qos_library name="ChatQosLib">
 
         <!-- QoS profile used to configure reliable communication between the DataWriter 
              and DataReader created in the example code.
 
              A QoS profile groups a set of related QoS.
         -->
-        <qos_profile name="Chat_Profile" 
-            		 base_name="BuiltinQosLibExp::Pattern.Status" 
+        <qos_profile name="User.Service.Chat" 
+            		 base_name="BuiltinQosLibExp::Generic.StrictReliable" 
             		 is_default_qos="true">
-            <!-- QoS used to configure the data writer created in the example code -->                
-            <datawriter_qos>
-                <publication_name>
-                    <name>Rajive's ChatDataWriter</name>
-                </publication_name>
+            		 
+            <!-- QoS used to configure the Chat topic data writers -->                
+            <datawriter_qos topic_filter="Chat*" base_name="BuiltinQosLibExp::Pattern.Status">
                 <ownership>
                     <kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
                 </ownership>
@@ -97,11 +95,8 @@ RTI Connext user manual.
                 </ownership_strength>
             </datawriter_qos>
             
-            <!-- QoS used to configure the data reader created in the example code -->                
-            <datareader_qos>
-                <subscription_name>
-                    <name>Rajive's ChatDataReader</name>
-                </subscription_name>
+            <!-- QoS used to configure the Chat topic data readers -->                
+            <datareader_qos topic_filter="Chat*" base_name="BuiltinQosLibExp::Pattern.Status">
 				<ownership>
 				    <kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
 				</ownership>
@@ -122,7 +117,6 @@ RTI Connext user manual.
                     <name>Rajive's ChatParticipant</name>
                     <role_name>ChatParticipant</role_name>
                 </participant_name>
-
             </participant_qos>
         </qos_profile>
 
@@ -140,21 +134,7 @@ RTI Connext user manual.
 
         <domain name="MyDomain">
             
-            <!-- NOTE: kind="userGenerated" (when registered) takes precedence 
-            		   over kind="dynamicData"
-               
-              A "userGenerated" TypeSupport can be registered with the 
-              DomainParticipantFactory, using the method:
-                register_type_support(FooTypeSupport::register_type, type_name) 
-                
-              If such a "userGenerated" (kind) FooTypeSupport has been 
-              registered with the DomainParticipantFactory, that definition 
-              takes precedence over the description of the type loaded from
-              the XML file (included above).
-             -->
-            <register_type name="My::ChatObject" 
-            			   type_ref="My::ChatObject"
-						   kind="dynamicData"/>                    
+            <register_type name="My::ChatObject" type_ref="My::ChatObject"/>                    
                 		   
             <topic name="Chat" register_type_ref="My::ChatObject"/>
            
@@ -162,17 +142,17 @@ RTI Connext user manual.
     </domain_library>
 
     <!-- Participant library -->
-    <participant_library name="MyParticipantLibrary">
+    <domain_participant_library name="MyParticipant_Library">
 
 		  <domain_participant name="MyPublicationParticipant"
 							  domain_ref="MyDomainLibrary::MyDomain">
            
-			  <participant_qos base_name="Chat_Library::Chat_Profile">
+			  <participant_qos base_name="ChatQosLib::User.Service.Chat">
 			  </participant_qos>
 		 	
 		 	  <publisher name="MyPublisher">
 				  <data_writer name="ChatObjectWriter" topic_ref="Chat">
-					<datawriter_qos base_name="Chat_Library::Chat_Profile">
+					<datawriter_qos base_name="ChatQosLib::User.Service.Chat">
 					</datawriter_qos>
 				  </data_writer>
 		 		  
@@ -195,7 +175,7 @@ RTI Connext user manual.
       <domain_participant name="MySubscriptionParticipant"
 		                  domain_ref="MyDomainLibrary::MyDomain">
 		
-			  <participant_qos base_name="Chat_Library::Chat_Profile">
+			  <participant_qos base_name="ChatQosLib::User.Service.Chat">
 			  </participant_qos>
 			
           <subscriber name="MySubscriber">
@@ -210,10 +190,10 @@ RTI Connext user manual.
                           <param>'Jaromy'</param>
                       </parameter_list>
                   </filter>
-                  <datareader_qos base_name="Chat_Library::Chat_Profile"/>
+                  <datareader_qos base_name="ChatQosLib::User.Service.Chat"/>
               </data_reader>
           </subscriber>
       </domain_participant>
 
-    </participant_library>
+    </domain_participant_library>
 </dds>

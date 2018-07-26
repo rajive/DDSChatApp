@@ -267,7 +267,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     cft_parameters.from_array(cft_params, sizeof(cft_params)/sizeof(char*));
     ContentFilteredTopic *contentfiltered_topic =
     				participant->create_contentfilteredtopic(
-								"FilteredTopic", topic,
+								"Chat/filtered", topic,
 								"(user = %0 OR user = %1 OR user = %2)",
 								cft_parameters);
 	if (contentfiltered_topic == NULL) {

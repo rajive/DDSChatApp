@@ -111,7 +111,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     /* Create Participant from XML Config */
     participant = TheParticipantFactory->
             create_participant_from_config(
-            		"MyParticipantLibrary::MyPublicationParticipant");
+            		"MyParticipant_Library::MyPublicationParticipant");
     if (participant == NULL) {
         printf("create_participant_from_config error\n");
         publisher_shutdown(participant);

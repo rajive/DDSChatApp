@@ -190,12 +190,12 @@ Alternatively, the steps can be implemented one at a time as follows.
 
 - Run Publisher Example:
 
-        rtiddsprototyper -cfgName MyParticipantLibrary::MyPublicationParticipant -luaFile ../impl_xyz/Chat_publisher.lua
+        rtiddsprototyper -cfgName MyParticipant_Library::MyPublicationParticipant -luaFile ../impl_xyz/Chat_publisher.lua
 
 
 - Run Subscriber Example:
 
-        rtiddsprototyper -cfgName MyParticipantLibrary::MySubscriptionParticipant -luaFile ../impl_xyz/Chat_subscriber.lua
+        rtiddsprototyper -cfgName MyParticipant_Library::MySubscriptionParticipant -luaFile ../impl_xyz/Chat_subscriber.lua
 
 ## Running the Web Integration Service components
 

@@ -205,7 +205,7 @@ namespace My{
             DDS.StringSeq cft_parameters = new DDS.StringSeq(3);
             cft_parameters.from_array(cft_param_list);
             
-            DDS.ContentFilteredTopic cft = participant.create_contentfilteredtopic("ContentFilteredTopic",
+            DDS.ContentFilteredTopic cft = participant.create_contentfilteredtopic("Chat/filtered",
                                                     topic, "(user = %0 OR user = %1 OR user = %2)", 
                                                     cft_parameters);
 

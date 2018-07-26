@@ -89,7 +89,7 @@ namespace My{
             DDS.DomainParticipant participant =
                 DDS.DomainParticipantFactory.get_instance().
                         create_participant_from_config(
-                              "MyParticipantLibrary::MyPublicationParticipant");
+                              "MyParticipant_Library::MyPublicationParticipant");
             if (participant == null)
             {
                 shutdown(participant);
