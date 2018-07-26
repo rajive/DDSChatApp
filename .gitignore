@@ -30,10 +30,10 @@
 # Generated
 objs/
 Chat.xml
-Chat.h
+Chat.h*
 Chat.cxx
 Chat.cpp
-ChatPlugin.h
+ChatPlugin.h*
 ChatPlugin.cxx
 ChatPlugin.cpp
 ChatSupport.h

@@ -11,11 +11,17 @@ DIRS = \
 v1_singleton/impl_cpp_listener \
 v1_singleton/impl_cpp_polling \
 v1_singleton/impl_cpp_waitset \
+\
 v2_by_usr/impl_cpp \
 v2_by_usr/impl_cpp_cft \
 v2_by_usr/impl_cpp_instance \
 v2_by_usr/impl_cpp_partitions \
+v2_by_usr/impl_c++11 \
+v2_by_usr/impl_c++11_cft \
+\
 v3_by_usr_doi/impl_xml_cpp
+v3_by_usr_doi/impl_xml_c++11 \
+v3_by_usr_doi/impl_xml_c++11_partitions
 
 
 ## Build 
