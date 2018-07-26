@@ -17,3 +17,7 @@ endif
 Chat.xml : \
 Chat.idl
 	$(NDDSHOME)/bin/rtiddsgen Chat.idl -ppDisable -convertToXml -d .
+
+clean:
+	rm -rf Chat.xml
+	

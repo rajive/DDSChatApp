@@ -38,7 +38,7 @@ ChatPlugin.cxx
 ChatPlugin.cpp
 ChatSupport.h
 ChatSupport.cxx
-ChatSUpport.cpp
+ChatSupport.cpp
 makefile_Chat_*
 
 # Visual Studio
@@ -50,7 +50,10 @@ Release-*
 *.csproj*
 *.sln
 
-
+# Eclipse
+.project
+.cproject
+.settings/
 
 # OSX
 .DS_Store

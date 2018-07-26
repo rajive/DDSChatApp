@@ -14,11 +14,11 @@ module My {
 	struct ChatObject {
 
 		//@copy // identity of the chat object
-		string<MSG_LEN> user; //@key
+		@key string<MSG_LEN> user;
 		
 		//@copy // chat message from the user	
 		string<MSG_LEN> msg;
-
+    
 	}; //@top-level true
 	
 	const string CHAT_TOPIC_NAME = "Chat";
