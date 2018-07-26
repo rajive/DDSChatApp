@@ -56,10 +56,50 @@ Changes to an item within a single line are marked as follows.
 The generated example code serves as the baseline to which the above
 modifications are applied.
 
+## Building for a new platform
 
-## Generating the datatype handling code
+The top-level makefile can be used to recursively build the components 
+in the repository as follows.
 
-- e.g. C++ Datatypes: Run RTI Connext Launcher > Utilities > Code Generator
+- Generate the makefile or solutions for the platform, e.g.
+
+        make makefile/x64Darwin17clang9.0
+        
+ - Clean old artifacts
+    
+        make clean
+        
+ - [Re]Build the artifacts
+ 
+        make
+        
+ 
+Alternatively, the steps can be implemented one at a time as follows.
+ 
+
+### Generating the XML representation of the datatypes from IDL 
+
+- Run RTI Connext Launcher > Utilities > Type Convert
+
+            Input file: if/Chat.idl
+            Output directory: if/
+
+- OR (non-Windows), simply use the makefile in the `if/` directory:
+ 
+            cd if/
+            make
+
+
+### Generating the makefiles or visual studio solution
+
+          cd impl_xyz/
+          rtiddsgen ../if/Chat.idl -d . -update makefiles -platform x64Darwin17clang9.0
+          make
+
+            
+### Generating the datatype handling code for a target language
+
+- Run RTI Connext Launcher > Utilities > Code Generator
 
            Input file: if/Chat.idl
            Output directory: impl_xyz/
@@ -68,27 +108,15 @@ modifications are applied.
            Type files: update
            Makefiles: update
 
-  **Run**
-
-  OR (non-Windows), simply use the makefile, once a target specific makefile 
-  has been generated (as above):
+-  OR (non-Windows), simply use the makefile, once a target specific makefile 
+   has been generated (as above):
 
           cd impl_xyz/
           make
 
-- XML Datatypes: Run RTI Connext Launcher > Utilities > Type Convert
 
-            Input file: if/Chat.idl
-            Output directory: impl_xyz/
 
- **Run**
-
-  OR, simply use the makefile:
-
-        cd if/
-        make
-
-## Building the components
+### Building the components
 
 - Open Terminal
 
