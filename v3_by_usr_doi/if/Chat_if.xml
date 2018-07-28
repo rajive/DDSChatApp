@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!-- 
+Description
+Data-Oriented Interface for Chat Service
+-->
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_profiles.xsd"
+     version="5.3.1">
+
+    <!-- types -->
+    <types>
+        <include file="Chat.xml"/>
+    </types>
+    
+    
+    <!-- Domain Library -->
+    <domain_library name="MyDomainLibrary">
+
+        <domain name="MyDomain">
+            
+            <register_type name="My::ChatObject" type_ref="My::ChatObject"/>                    
+                		   
+            <topic name="Chat" register_type_ref="My::ChatObject"/>
+           
+        </domain>                	
+    </domain_library>
+
+    <!-- Participant library -->
+    <domain_participant_library name="MyParticipant_Library">
+
+		  <domain_participant name="MyPublicationParticipant"
+							  domain_ref="MyDomainLibrary::MyDomain">
+           
+			  <participant_qos base_name="ChatQosLib::User.Service.Chat">
+			  </participant_qos>
+		 	
+		 	  <publisher name="MyPublisher">
+				  <data_writer name="ChatObjectWriter" topic_ref="Chat">
+					<datawriter_qos base_name="ChatQosLib::User.Service.Chat">
+					</datawriter_qos>
+				  </data_writer>
+		 		  
+		          <publisher_qos>
+		            <partition>
+			            <name>
+			              <element></element>
+			              <element>starwars</element>
+			              <element>startrek</element>
+			              <element>funny</element>
+			              <element>*</element>
+			            </name>
+		            </partition>
+		          </publisher_qos>
+		               
+
+		 	  </publisher>
+		  </domain_participant>
+		        
+      <domain_participant name="MySubscriptionParticipant"
+		                  domain_ref="MyDomainLibrary::MyDomain">
+		
+			  <participant_qos base_name="ChatQosLib::User.Service.Chat">
+			  </participant_qos>
+			
+          <subscriber name="MySubscriber">
+              <data_reader name="ChatObjectReader" topic_ref="Chat">
+                    <filter name="Chat" kind="builtin.sql">
+                      <expression>
+                          user = %0 OR user = %1 OR user = %2
+                      </expression>
+                      <parameter_list>
+                          <param>'Rajive'</param>
+                          <param>'Ryan'</param>
+                          <param>'Jack'</param>
+                      </parameter_list>
+                  </filter>
+                  <datareader_qos base_name="ChatQosLib::User.Service.Chat"/>
+              </data_reader>
+          </subscriber>
+      </domain_participant>
+
+    </domain_participant_library>
+</dds>
