@@ -68,9 +68,14 @@ in the repository as follows.
  - Clean old artifacts
     
         make clean
+ 
+ - Ensure that the NDDSHOME is set to the *RTI Connext DDS* install directory, 
+   e.g.
+
+        export NDDSHOME=/opt/rti/NDDSHOME
         
  - [Re]Build the artifacts
- 
+
         make
         
  
