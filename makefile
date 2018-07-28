@@ -19,7 +19,7 @@ v2_by_usr/impl_cpp_partitions \
 v2_by_usr/impl_c++11 \
 v2_by_usr/impl_c++11_cft \
 \
-v3_by_usr_doi/impl_xml_cpp
+v3_by_usr_doi/impl_xml_cpp \
 v3_by_usr_doi/impl_xml_c++11 \
 v3_by_usr_doi/impl_xml_c++11_partitions
 
