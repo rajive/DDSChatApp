@@ -18,6 +18,10 @@ test code could be scripted in Lua.
 - Fewer lines of code: It gets rid of the boilerplate code and error 
 checking code, allowing us to focus on the application specific logic.
 
+## Ensure that DDS-XML files are loaded in the correct order
+
+    export NDDS_QOS_PROFILES="if/USER_QOS_PROFILES.xml;if/Chat_if.xml"
+ 
 ## Data-Oriented Interfaces
 - [if/](./if)
 

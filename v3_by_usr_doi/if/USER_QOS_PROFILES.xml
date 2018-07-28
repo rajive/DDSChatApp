@@ -84,7 +84,7 @@ RTI Connext user manual.
         <qos_profile name="User.Service.Chat" 
                      base_name="BuiltinQosLibExp::Generic.StrictReliable" 
                      is_default_qos="true">
-                     
+                                          
             <!-- QoS used to configure the Chat topic data writers -->                
             <datawriter_qos topic_filter="Chat*" base_name="BuiltinQosLibExp::Pattern.Status">
                 <ownership>

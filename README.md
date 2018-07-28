@@ -188,20 +188,18 @@ Alternatively, the steps can be implemented one at a time as follows.
 ## Running the Lua components
 
 
-- Switch the working directory to the if/ directory, so that the
-    USER_QOS_PROFILES.xml file is automatically loaded.
+- Switch the working directory to the v3_*/ directory:
 
-		cd if/
-
+        export NDDS_QOS_PROFILES="if/USER_QOS_PROFILES.xml;if/Chat_if.xml"
+          
 - Run Publisher Example:
 
-        rtiddsprototyper -cfgName MyParticipant_Library::MyPublicationParticipant -luaFile ../impl_xyz/Chat_publisher.lua
-
+        rtiddsprototyper -cfgName Chat_Library::Chat_Sub -luaFile impl_xml_lua/Chat_subscriber.lua
 
 - Run Subscriber Example:
 
-        rtiddsprototyper -cfgName MyParticipant_Library::MySubscriptionParticipant -luaFile ../impl_xyz/Chat_subscriber.lua
-
+        rtiddsprototyper -cfgName Chat_Library::Chat_Pub -luaFile impl_xml_lua/Chat_publisher.lua
+         
 ## Running the Web Integration Service components
 
 - [v3_by_usr_doi/impl_web/README.md](./v3_by_usr_doi/impl_web/README.md)
