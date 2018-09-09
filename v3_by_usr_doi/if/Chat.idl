@@ -2,7 +2,7 @@ module My {
 	const long MSG_LEN=256;
 
 	struct ChatObject {
-		string<MSG_LEN> user; //@key
+		@key string<MSG_LEN> user; 
 		string<MSG_LEN> msg;
 	};
 	
