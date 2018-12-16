@@ -6,46 +6,50 @@
 # linker should be on the PATH.)
 ######################################################################
 
-# Recursively build all the directories
-DIRS = \
-v1_singleton/impl_cpp_listener \
-v1_singleton/impl_cpp_polling \
-v1_singleton/impl_cpp_waitset \
+# List the resource directories containing types
+RES_DIRS = \
+res/types/v1 \
+res/types/v2
+
+# List the source code directories that need to be compiled
+SRC_DIRS = \
+src/c++11/v1/waitset \
 \
-v2_by_usr/impl_cpp \
-v2_by_usr/impl_cpp_cft \
-v2_by_usr/impl_cpp_instance \
-v2_by_usr/impl_cpp_partitions \
-v2_by_usr/impl_c++11 \
-v2_by_usr/impl_c++11_cft \
+src/cpp/v1/listener \
+src/cpp/v1/polling \
+src/cpp/v1/waitset \
 \
-v3_by_usr_doi/impl_xml_cpp \
-v3_by_usr_doi/impl_xml_c++11 \
-v3_by_usr_doi/impl_xml_c++11_partitions
+src/c++11/v2/waitset \
+src/c++11/v2/cft \
+src/c++11/v2/cft_xml \
+src/c++11/v2/partitions_xml \
+\
+src/cpp/v2/waitset \
+src/cpp/v2/cft \
+src/cpp/v2/instance \
+src/cpp/v2/partitions \
+src/cpp/v2/partitions_xml
 
 
 ## Build 
 all:
-	for dir in $(DIRS); do \
+	for dir in $(RES_DIRS) $(SRC_DIRS); do \
 		echo; echo $$dir; \
-		make -C $$dir/../if ; \
 		make -C $$dir ; \
 	done
 
 # Clean
 clean:
-	for dir in $(DIRS); do \
+	for dir in $(RES_DIRS) $(SRC_DIRS); do \
 		echo; echo $$dir; \
-		make -C $$dir/../if clean ; \
-		make -C $$dir clean ; \
+		make -C $$dir clean; \
 	done
 
 	
 # Generate makefiles or Visual Studio solutions, e.g.:
 # 		 make makefile/x64Darwin17clang9.0
 makefile/%:
-	for dir in $(DIRS); do \
+	for dir in $(SRC_DIRS); do \
 		echo; echo $$dir; \
-		rm $$dir/makefile_Chat_* ;\
-		rtiddsgen $$dir/../if/Chat.idl -d $$dir -update makefiles -platform $* ;\
+		make -C $$dir makefile/$* ; \
 	done

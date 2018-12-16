@@ -4,44 +4,44 @@ Building a peer-to-peer Chat application using
 [DDS](http://portals.omg.org/dds), the data connectivity framework for
 Internet of Things (IoT).
 
-Each sub-directory represents a step in the evolution of ChatApp. The
-versions illustrate the progression from a basic app with a single conversation
-that uses DDS simply as *messaging* transport; to a fully featured app
-that uses the capabilities of DDS as a **data-centric connectivity framework**.
+The examples show evolution of interface versions as well as multiple 
+component implementations for a given interface version.
 
-Each sub-directory has a README.md with more specific instructions. Below, the
-common aspects are described.
+The common aspects are described below.
 
 
 ## Organization
 
-Each version of the component is organized according to the following directory
+Each version is organized according to the following directory
 structure.
 
-- `if/`
-  - the component interface, comprising of
-     - the datatype definitions (IDL files)
-     - the data-oriented interface (XML files)
-	 - use this as the **working directory to launch programs** so that the
-	   `USER_QOS_PROFILES.xml` from the working directory gets loaded
+- `doc/<ver>/`
+   - a `README.md` for the version `<ver>` 
 
-- `impl_*/`
+- `if/<ver>/`
+  - the component interfaces: data-oriented interfaces (DDS-XML files)
+     
+- `res/types/<ver>/`
+   - the datatype definitions (IDL files)
+    
+- `res/qos/<ver>/`
+   - the qos profiles (DDS-XML files)
+
+- `src/<lang>/<ver>/<variant>/`
   - a component implementation in the programming language of choice
     (e.g. C++, C#, Lua, ...)
   - in the instructions below, `impl_xyz` is a placeholder for one of these
 
-There can be multiple components of the same interface. Components are
-launched from `if/` as the working directory. This ensures that the
-implementation variants use the same interface settings.
 
 ## Prerequisites
 
-- [RTI Connext DDS 5.2 +](http://www.rti.com/downloads/index.html)
+- [RTI Connext DDS 5.3.x or higher](http://www.rti.com/downloads/index.html)
+
 
 ## Generated Examples as Baseline
 
 The starting point for the examples is the generated example code from the IDL
-file(s) in the if/ directory.
+file(s) in the [res/](./res/) directory.
 
 Modifications to the generated code are marked with for code blocks as follows.
 
@@ -56,14 +56,22 @@ Changes to an item within a single line are marked as follows.
 The generated example code serves as the baseline to which the above
 modifications are applied.
 
-## Building for a new platform
+## Building the components
 
 The top-level makefile can be used to recursively build the components 
 in the repository as follows.
 
+- Determine your platform
+   
+  For, example on Mac OSX:
+  
+        export PLATFORM=x64Darwin17clang9.0 
+             
 - Generate the makefile or solutions for the platform, e.g.
 
-        make makefile/x64Darwin17clang9.0
+        make makefile/$PLATFORM
+        
+   For windows platform, a visual studio solution is generated.
         
  - Clean old artifacts
     
@@ -86,38 +94,33 @@ Alternatively, the steps can be implemented one at a time as follows.
 
 - Run RTI Connext Launcher > Utilities > Type Convert
 
-            Input file: if/Chat.idl
-            Output directory: if/
+            Input file: res/types/<ver>/Chat.idl
+            Output directory: src/<lang>/<ver>/<variant>/
 
-- OR (non-Windows), simply use the makefile in the `if/` directory:
+- OR (non-Windows), simply use the makefile in the `res/types/<ver>/` directory:
  
-            cd if/
+            cd res/types/<ver>/Chat.idl
             make
-
-
-### Generating the makefiles or visual studio solution
-
-          cd impl_xyz/
-          rtiddsgen ../if/Chat.idl -d . -update makefiles -platform x64Darwin17clang9.0
-          make
 
             
 ### Generating the datatype handling code for a target language
 
 - Run RTI Connext Launcher > Utilities > Code Generator
 
-           Input file: if/Chat.idl
-           Output directory: impl_xyz/
-           Language: Traditional C++ (namespaces)
+           Input file: res/types/<ver>/Chat.idl
+           Output directory: src/<lang>/<ver>/<variant>/
+           
+           Language: Traditional C++ (namespaces)   
+             -language C++ -unboundedSupport  -namespace -useStdString    
+                           
            Example files: <disable>
            Type files: update
            Makefiles: update
 
--  OR (non-Windows), simply use the makefile, once a target specific makefile 
-   has been generated (as above):
+-  OR, simply use the makefile:
 
-          cd impl_xyz/
-          make
+          cd src/<lang>/<ver>/<variant>/
+          make Chat.h
 
 
 
@@ -131,7 +134,7 @@ Alternatively, the steps can be implemented one at a time as follows.
 
 - Switch to the component directory:
 
-		cd impl_xyz/
+		cd src/<lang>/<ver>/<variant>/
 
 - Build the C++ code
 
@@ -143,63 +146,62 @@ Alternatively, the steps can be implemented one at a time as follows.
 
             Open Visual Studio Solution
 
-
-## Running the C++ components
-
-- Switch the working directory to the `if/` directory, so that the
-    `USER_QOS_PROFILES.xml` file is automatically loaded.
-
-		cd if/
-
-- Run Publisher Example:
-
-		../impl_xyz/objs/x64Darwin14clang6.0/Chat_publisher
-
-   (replace `x64Darwin14clang6.0` with your target)
+## Running the components (any language)
 
 
-- Run Subscriber Example:
+- Switch to the top-level working directory
 
-        ../impl_xyz/objs/x64Darwin14clang6.0/Chat_subscriber
+    cd <root-of-this-repository>
+     
+- Define the list of DDS-XML files to be loaded via the `NDDS_QOS_PROFILES` 
+  environment variable   
+  
+  - For v1:
+        
+        export NDDS_QOS_PROFILES="res/qos/v1/Chat_qos.xml"
 
-   (replace `x64Darwin14clang6.0` with your target)
+  - For v2:
+        
+        export NDDS_QOS_PROFILES="res/qos/v2/Chat_qos.xml;if/Chat_if.xml"
+   
 
-## Running the C# components
-
-- Switch the working directory to the `if/` directory, so that the
-    `USER_QOS_PROFILES.xml` file is automatically loaded.
-
-		cd if/
-
-- Run Publisher Example:
-
-		../impl_xyz/bin/Debug-VS2010/Chat_publisher.exe
-
-   (replace `Debug-VS2010` with your target)
-
+### Running the C++ components
 
 - Run Subscriber Example:
 
-		../impl_xyz/bin/Debug-VS2010/Chat_publisher.exe
+    ./src/<lang>/<ver>/<variant>/objs/$PLATFORM/Chat_subscriber
+    
+- Run Publisher Example:
+  
+    ./src/<lang>/<ver>/<variant>/objs/$PLATFORM/Chat_publisher
 
-   (replace `Debug-VS2010` with your target)
+
+### Running the C# components
+
+Replace `Debug-VS2010` with your target
+   
+- Run Subscriber Example:
+
+        ./src/<lang>/<ver>/<variant>/bin/Debug-VS2010/Chat_subscriber.exe
+
+   
+- Run Publisher Example:
+
+		./src/<lang>/<ver>/<variant>/bin/Debug-VS2010/Chat_publisher.exe
+
    
   
-## Running the Lua components
-
-
-- Switch the working directory to the v3_*/ directory:
-
-        export NDDS_QOS_PROFILES="if/USER_QOS_PROFILES.xml;if/Chat_if.xml"
-          
-- Run Publisher Example:
-
-        rtiddsprototyper -cfgName Chat_Library::Chat_Sub -luaFile impl_xml_lua/Chat_subscriber.lua
+### Running the Lua components
 
 - Run Subscriber Example:
 
-        rtiddsprototyper -cfgName Chat_Library::Chat_Pub -luaFile impl_xml_lua/Chat_publisher.lua
-         
-## Running the Web Integration Service components
+        rtiddsprototyper -cfgName Chat_Library::Chat_Sub -luaFile src/lua/v2/Chat_subscriber.lua
+ 
+- Run Publisher Example:
 
-- [v3_by_usr_doi/impl_web/README.md](./v3_by_usr_doi/impl_web/README.md)
+        rtiddsprototyper -cfgName Chat_Library::Chat_Pub -luaFile src/lua/v2/Chat_publisher.lua
+
+        
+### Running the Web Integration Service components
+
+- [doc/web/README.md](./doc/web/README.md)
