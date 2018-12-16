@@ -4,8 +4,8 @@ Building a peer-to-peer Chat application using
 [DDS](http://portals.omg.org/dds), the data connectivity framework for
 Internet of Things (IoT).
 
-The examples show evolution of interface versions as well as multiple 
-component implementations for a given interface version.
+The examples show evolution of datatypes versions as well as multiple 
+component implementations for a given interface.
 
 The common aspects are described below.
 
@@ -169,11 +169,11 @@ Alternatively, the steps can be implemented one at a time as follows.
 
 - Run Subscriber Example:
 
-    ./src/<lang>/<ver>/<variant>/objs/$PLATFORM/Chat_subscriber
+        ./src/<lang>/<ver>/<variant>/objs/$PLATFORM/Chat_subscriber
     
 - Run Publisher Example:
   
-    ./src/<lang>/<ver>/<variant>/objs/$PLATFORM/Chat_publisher
+        ./src/<lang>/<ver>/<variant>/objs/$PLATFORM/Chat_publisher
 
 
 ### Running the C# components
@@ -204,4 +204,4 @@ Replace `Debug-VS2010` with your target
         
 ### Running the Web Integration Service components
 
-- [doc/web/README.md](./doc/web/README.md)
+- [svc/web/README.md](./svc/web/README.md)
