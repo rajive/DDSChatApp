@@ -19,7 +19,6 @@ src/cpp/v1/listener \
 src/cpp/v1/polling \
 src/cpp/v1/waitset \
 \
-src/c++11/v2/waitset \
 src/c++11/v2/cft \
 src/c++11/v2/cft_xml \
 src/c++11/v2/partitions_xml \
