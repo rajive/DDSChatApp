@@ -128,12 +128,11 @@ extern "C" int publisher_main(int domainId, int sample_count)
         return -1;
     }
 
-
     /* Create data sample for writing */
-    instance = My::ChatObjectTypeSupport::create_data();
+    instance = new My::ChatObject();
     if (instance == NULL) {
-        printf("My::ChatObjectTypeSupport::create_data error\n");
-        publisher_shutdown(participant);
+        printf("new My::ChatObject() error\n");
+       	publisher_shutdown(participant);
         return -1;
     }
 
@@ -141,7 +140,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     written multiple times, initialize the key here
     and register the keyed instance prior to writing */
     /* >>> */
-    strncpy(instance->user, "Rajive", My::MSG_LEN);
+    instance->user = "Rajive";
     instance_handle = ChatObject_writer->register_instance(*instance);
     /* <<< */
 
@@ -153,7 +152,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
 
         /* Modify the data to be sent here */
         /* >>> */
-        snprintf(instance->msg, My::MSG_LEN, "Hello from Rajive %d", count);
+        instance->msg = "Hello from Rajive " + std::to_string(count);
         /* <<< */
 
         retcode = ChatObject_writer->write(*instance, instance_handle);
@@ -171,10 +170,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     }
 
     /* Delete data sample */
-    retcode = My::ChatObjectTypeSupport::delete_data(instance);
-    if (retcode != RETCODE_OK) {
-        printf("My::ChatObjectTypeSupport::delete_data error %d\n", retcode);
-    }
+  	delete instance;
 
     /* Delete all entities */
     return publisher_shutdown(participant);

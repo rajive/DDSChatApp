@@ -18,7 +18,7 @@ ifndef TYPES_DIR
 TYPES_DIR=../../../../res/types/v2
 endif
 
-CODEGEN_OPTIONS=-language C++ -unboundedSupport -namespace #-useStdString
+CODEGEN_OPTIONS=-language C++ -unboundedSupport -namespace -useStdString
 
 # Generate C++ type handling code from IDL datatypes:
 ChatSupport.cxx ChatPlugin.cxx Chat.cxx \

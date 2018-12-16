@@ -94,18 +94,15 @@ namespace My {
 
     /* >>> */
     ChatObjectListener::ChatObjectListener(): instance(0) {
-    	instance = ChatObjectTypeSupport::create_data();
+    	instance = new My::ChatObject();
 
     	/* the instance to look for in a reader's queue */
-    	strncpy(instance->user, "Rajive", My::MSG_LEN);
+    	instance->user = "Rajive";
     }
 
     ChatObjectListener::~ChatObjectListener() {
         /* Delete data sample */
-    	ReturnCode_t retcode = ChatObjectTypeSupport::delete_data(instance);
-        if (retcode != RETCODE_OK) {
-            printf("My::ChatObjectTypeSupport::delete_data error %d\n", retcode);
-        }
+    	delete instance;
     	instance = 0;
     }
     /* <<< */
@@ -131,7 +128,8 @@ namespace My {
 
         /* Skip if instance is not yet in the reader's queue */
         if (DDS_InstanceHandle_is_nil(&instance_handle)) {
-            printf("Skipping...until instance '%s' arrives\n", instance->user);
+            printf("Skipping...until instance '%s' arrives\n",
+            		instance->user.c_str());
 
             /* clear the DDS_DATA_AVAILABLE_STATUS flag */
             retcode = ChatObject_reader->take(
@@ -301,7 +299,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
 
             // change selected QoS Policy(ies): PARTITION QoS
             const char* partitions_list[][2] = {
-                { "starwars", "startrek" },
+            	{ "starwars", "startrek" },
     			{ "spaceships", "cars" }
             };
             const char** partitions = partitions_list[(count / 10) % 2];
