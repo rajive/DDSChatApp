@@ -116,7 +116,18 @@ Alternatively, the steps can be implemented one at a time as follows.
            Example files: <disable>
            Type files: update
            Makefiles: update
-
+           
+		  Confirm command: Y
+		  Run
+            
+  - On the command line
+    - copy and paste the generated command line into a terminal window
+    - append any additional arguments, e.g. ** -useStdString **
+    - execute
+   
+           rtiddsgen -ppDisable -language C++ -unboundedSupport -namespace -useStdString -platform $PLATFORM -updatetypefiles -update makefiles -update examplefiles -d src/cpp res/types/Chat.idl 
+       
+       
 -  OR, simply use the makefile:
 
           cd src/<lang>/<ver>/<variant>/

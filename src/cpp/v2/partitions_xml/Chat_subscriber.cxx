@@ -206,7 +206,6 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     DomainParticipant *participant = NULL;
     My::ChatObjectDataReader * reader = NULL;
     Subscriber *subscriber = NULL;
-    Topic *topic = NULL;
     My::ChatObjectListener *reader_listener = NULL; 
     ReturnCode_t retcode;
     int count = 0;
