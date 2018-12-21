@@ -1,59 +1,9 @@
 module My {
-	const long MSG_LEN=256;
-	
-	struct ChatObject {
-			string<MSG_LEN> msg;
-	};
-		
-	const string CHAT_TOPIC_NAME = "Chat";
+    const long MSG_LEN=4096;
+    
+    struct ChatObject {
+            string<MSG_LEN> msg;
+    };
+        
+    const string CHAT_TOPIC_NAME = "Chat";
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-	module Chat {
-		struct Object {
-			string<MSG_LEN> msg;
-		};
-	
-		const string TOPIC_NAME = "Chat/v1";
-	};
-};
-*/
