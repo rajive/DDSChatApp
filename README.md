@@ -206,11 +206,11 @@ Replace `Debug-VS2010` with your target
 
 - Run Subscriber Example:
 
-        rtiddsprototyper -cfgName Chat_Library::Chat_Sub -luaFile src/lua/v2/Chat_subscriber.lua
+        rtiddsprototyper -cfgName Chat_Library::Chat_Sub -luaFile src/lua/Chat_subscriber.lua
  
 - Run Publisher Example:
 
-        rtiddsprototyper -cfgName Chat_Library::Chat_Pub -luaFile src/lua/v2/Chat_publisher.lua
+        rtiddsprototyper -cfgName Chat_Library::Chat_Pub -luaFile src/lua/Chat_publisher.lua
 
         
 ### Running the Web Integration Service components

@@ -94,7 +94,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     const char *type_name = NULL;
     int count = 0;  
     Duration_t send_period = {4,0};
-
+    InstanceHandle_t instance_handle = HANDLE_NIL;
 
     /* Register types */
     retcode = TheParticipantFactory->register_type_support(
@@ -131,7 +131,6 @@ extern "C" int publisher_main(int domainId, int sample_count)
     and register the keyed instance prior to writing */
     My::ChatObject instance;
     instance.user = "Rajive";
-    InstanceHandle_t instance_handle = HANDLE_NIL;
     /*
     instance_handle = ChatObject_writer->register_instance(*instance);
     */

@@ -1,7 +1,7 @@
 -- Get the reader
 local ChatObject_reader = CONTAINER.READER['Chat_Sub_subscriber::Chat_reader']
 
-ChatObject_reader:read()
+ChatObject_reader:take()
 
 for  i, chat_object in ipairs(ChatObject_reader.samples) do
 
@@ -12,5 +12,3 @@ for  i, chat_object in ipairs(ChatObject_reader.samples) do
   end
 
 end
-
-print("\n")

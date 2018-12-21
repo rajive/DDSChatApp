@@ -197,6 +197,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
         return -1;
     }
 
+
     /* Setup StatusCondition */
     StatusCondition* status_condition = reader->get_statuscondition();
     retcode = status_condition->set_enabled_statuses(DDS_DATA_AVAILABLE_STATUS);
@@ -231,7 +232,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     /* Main loop */
     for (count=0; (sample_count == 0) || (count < sample_count); ++count) {
 
-        printf("rti::example::ShapeType subscriber sleeping for %d sec...\n",
+        printf("rti::example::ShapeType subscriber waiting for %d sec...\n",
         receive_period.sec);
 
         /* Wait for condition to trigger */

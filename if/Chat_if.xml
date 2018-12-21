@@ -64,8 +64,8 @@ Data-Oriented Interface for Chat Service
                       </expression>
 						<parameter_list>
 							<param>'Rajive'</param>
-							<param>'Rajive Lua'</param>
-							<param>'Jack'</param>
+							<param>'ANKITA'</param>
+							<param>'NSS Int. Corp.'</param>
 						</parameter_list>
 					</filter>
                     <datareader_qos base_name="ChatQosLib::User.Service.Chat"/>					
