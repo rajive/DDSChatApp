@@ -130,7 +130,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     written multiple times, initialize the key here
     and register the keyed instance prior to writing */
     My::ChatObject instance;
-    instance.user = "Rajive";
+    instance.id = "Rajive";
     /*
     instance_handle = ChatObject_writer->register_instance(*instance);
     */
@@ -142,7 +142,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
 
         /* Modify the data to be sent here */
         /* >>> */
-        instance.msg = "Hello from Rajive " + std::to_string(count);
+        instance.content = "Hello from Rajive " + std::to_string(count);
         /* <<< */
 
         retcode = ChatObject_writer->write(instance, instance_handle);

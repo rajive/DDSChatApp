@@ -60,7 +60,7 @@ Data-Oriented Interface for Chat Service
 				<data_reader name="Chat_reader" topic_ref="Chat">
 					<filter name="Chat" kind="builtin.sql">
 						<expression>
-                          user = %0 OR user = %1 OR user = %2
+                          id = %0 OR id = %1 OR id = %2
                       </expression>
 						<parameter_list>
 							<param>'Rajive'</param>

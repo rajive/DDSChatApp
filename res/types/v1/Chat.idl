@@ -2,7 +2,7 @@ module My {
     const long MSG_LEN=4096;
     
     struct ChatObject {
-            string<MSG_LEN> msg;
+            string<MSG_LEN> content;
     };
         
     const string CHAT_TOPIC_NAME = "Chat";

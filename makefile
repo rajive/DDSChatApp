@@ -24,6 +24,7 @@ src/c++11/v2/cft_xml \
 src/c++11/v2/partitions_xml \
 \
 src/cpp/v2/waitset \
+src/cpp/v2/waitset_xml \
 src/cpp/v2/cft \
 src/cpp/v2/instance \
 src/cpp/v2/partitions \

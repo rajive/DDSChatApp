@@ -13,10 +13,10 @@ module My {
     struct ChatObject {
 
         //@copy // identity of the chat object
-        @key string<MSG_LEN> user;
+        @key string<MSG_LEN> id;
         
         //@copy // chat message from the user   
-        string<MSG_LEN> msg;
+        string<MSG_LEN> content;
     
     }; //@top-level true
     

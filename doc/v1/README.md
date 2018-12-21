@@ -33,7 +33,7 @@ Building a peer-to-peer Chat application using [DDS](http://portals.omg.org/dds)
 - `src/cpp/v1/listener/`: Modify the Publisher program to produce something interesting
 
 		/* Modify the data to be sent here */
-		snprintf(instance->msg, My::MSG_LEN, "Hello from Rajive %d", count);
+		snprintf(instance->content, My::MSG_LEN, "Hello from Rajive %d", count);
 
 
 - `src/cpp/v1/polling/`: Modify the Subscriber program to use **polling**

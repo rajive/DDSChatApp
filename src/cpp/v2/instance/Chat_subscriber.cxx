@@ -97,7 +97,7 @@ namespace My {
     	instance = new My::ChatObject();
 
     	/* the instance to look for in a reader's queue */
-    	instance->user = "Rajive";
+    	instance->id = "Rajive";
     }
 
     ChatObjectListener::~ChatObjectListener() {
@@ -129,7 +129,7 @@ namespace My {
         /* Skip if instance is not yet in the reader's queue */
         if (DDS_InstanceHandle_is_nil(&instance_handle)) {
             printf("Skipping...until instance '%s' arrives\n",
-            		instance->user.c_str());
+            		instance->id.c_str());
 
             /* clear the DDS_DATA_AVAILABLE_STATUS flag */
             retcode = ChatObject_reader->take(

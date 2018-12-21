@@ -68,7 +68,7 @@ void publisher_main(int domain_id, int sample_count)
 				participant, "Chat_Pub_publisher::Chat_writer");
 
     My::ChatObject sample;
-    sample.user("Rajive");
+    sample.id("Rajive");
     for (int count = 0; count < sample_count || sample_count == 0; count++) {
         // Modify the data to be written here
     	sample.msg("Hello from Rajive " + std::to_string(count));

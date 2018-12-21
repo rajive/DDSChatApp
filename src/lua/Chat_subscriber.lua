@@ -7,7 +7,7 @@ for  i, chat_object in ipairs(ChatObject_reader.samples) do
 
   if (ChatObject_reader.infos[i].valid_data) then
 
-    print(chat_object['user'], chat_object['msg'])
+    print(chat_object['id'], chat_object['content'])
 
   end
 
