@@ -8,17 +8,12 @@
 
 module My {
     
-    const long MSG_LEN=4096;
+    const long MAX_SIZE=4096;
 
     struct ChatObject {
+        @key string<MAX_SIZE> id; // identity of the chat object 
+        string<MAX_SIZE> content; // content of the chat object        
+    }; 
 
-        //@copy // identity of the chat object
-        @key string<MSG_LEN> id;
-        
-        //@copy // chat message from the user   
-        string<MSG_LEN> content;
-    
-    }; //@top-level true
-    
     const string CHAT_TOPIC_NAME = "Chat";
 };
