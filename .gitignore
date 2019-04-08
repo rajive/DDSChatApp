@@ -31,15 +31,15 @@
 objs/
 Chat.xml
 Chat.h*
-Chat.cxx
-Chat.cpp
+Chat.c*
 ChatPlugin.h*
-ChatPlugin.cxx
-ChatPlugin.cpp
-ChatSupport.h
-ChatSupport.cxx
-ChatSupport.cpp
+ChatPlugin.c*
+ChatSupport.h*
+ChatSupport.c*
 makefile_Chat_*
+
+# cmake
+build/
 
 # Visual Studio
 x86
