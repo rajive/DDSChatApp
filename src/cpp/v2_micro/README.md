@@ -29,13 +29,6 @@ The example files have are checked into this directory.
 The generated files have been modified (modifications are marked with the comment: /*>>><<<*/)
 
 
-## [Re]Generate type handling code
-
-The type handling code should be regenerated everytime the IDL changes, as follows:
-
-	$RTIMEHOME/rtiddsgen/scripts/rtiddsgen  -micro -language C++ -namespace -update typefiles -d . ../../../res/types/v2/Chat.idl
-
-
 ### Generate build system
 
 Release:
@@ -66,3 +59,17 @@ Release:
 Debug:
 	
 	cmake --build build/Debug/x64Darwin17clang9.0
+	
+
+## [Re]Generating type handling code
+
+The type handling code is located in a sub-directory: 
+
+	gen/
+
+The type handling code should regenerated every-time the IDL changes, as follows:
+
+	$RTIMEHOME/rtiddsgen/scripts/rtiddsgen  -micro -language C++ -namespace -update typefiles -d gen ../../../res/types/v2/Chat.idl
+
+The `cmake` generated build system automatically regenerates the type handling code every-time the IDL changes.
+

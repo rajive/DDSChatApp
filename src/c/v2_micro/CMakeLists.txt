@@ -1,19 +1,18 @@
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8.4)
 
+message("RTIMEHOME = $ENV{RTIMEHOME}") # >>><<<
+
 ADD_DEFINITIONS()
-
 LINK_DIRECTORIES()
-
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-
 PROJECT(Chat C)
 SET(SOURCE_EXTENSION c)
 
 SET(RTIDDSGEN $ENV{RTIMEHOME}/rtiddsgen/scripts/rtiddsgen)
 SET_PROPERTY(GLOBAL PROPERTY RULE_MESSAGES OFF)
 
-SET(IDL_SOURCE_C Chat.idl)
+SET(IDL_SOURCE_C ${CMAKE_CURRENT_SOURCE_DIR}/../../../res/types/v2/Chat.idl) # >>><<<
 
 SET(IDL_GEN_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/gen)
 
@@ -72,9 +71,9 @@ FOREACH(idl ${IDL_SOURCE_C})
                           
     ADD_CUSTOM_COMMAND(OUTPUT ${IDL_GEN_C} ${IDL_GEN_H} 
                        COMMAND ${RTIDDSGEN} -verbosity 1 -language C -micro 
-                               -replace 
-                               -d ${IDL_GEN_ROOT}/. ${CMAKE_CURRENT_SOURCE_DIR}/${idl}
-                       DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${idl}
+                               -update typefiles 
+                               -d ${IDL_GEN_ROOT} ${idl}
+                       DEPENDS ${idl}
                        COMMENT "Regeneration type support plugin from ${idl}"
     )    
     SET_SOURCE_FILES_PROPERTIES(${IDL_GEN_C} ${IDL_GEN_H} PROPERTIES GENERATED 1)

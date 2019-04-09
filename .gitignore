@@ -29,6 +29,7 @@
 
 # Generated
 objs/
+gen/
 Chat.xml
 Chat.h*
 Chat.c*
