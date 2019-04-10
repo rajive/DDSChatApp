@@ -51,11 +51,8 @@ Release-*
 *.csproj*
 *.sln
 
-# Eclipse
-.project
-.cproject
-.settings/
 
 # OSX
 .DS_Store
 
+/Default/
