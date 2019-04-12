@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_profiles.xsd">
+
+	<!-- Resolve the built-in profiles, since these are not (yet)_pre-defined 
+		for Connext Micro -->
+	<qos_library name="BuiltinQosLibExp">
+		<qos_profile name="Generic.StrictReliable">
+		</qos_profile>
+		<qos_profile name="Pattern.Status">
+		</qos_profile>
+	</qos_library>
+
+	<qos_library name="ChatQosLib">
+
+        <qos_profile name="Pattern.Status" base_name="BuiltinQosLibExp::Pattern.Status">
+        </qos_profile>
+        
+		<!-- QoS profile used to configure reliable communication between the DataWriter 
+			and DataReader created in the example code. A QoS profile groups a set of 
+			related QoS. -->
+		<qos_profile name="User.Service.Chat"
+			base_name="BuiltinQosLibExp::Generic.StrictReliable"
+			is_default_qos="true">
+
+			<!-- QoS used to configure the Chat topic data writers -->
+			<datawriter_qos topic_filter="Chat*"
+				base_name="Pattern.Status">
+			</datawriter_qos>
+
+			<datareader_qos topic_filter="Chat*"
+				base_name="Pattern.Status">
+			</datareader_qos>
+
+			<participant_qos>
+				<!-- The participant name, if it is set, will be displayed in the RTI 
+					tools, making it easier for you to tell one application from another when 
+					you're debugging. -->
+				<participant_name>
+					<name>Rajive</name>
+				</participant_name>
+			</participant_qos>
+		</qos_profile>
+
+	</qos_library>
+</dds>
