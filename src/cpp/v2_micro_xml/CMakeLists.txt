@@ -99,7 +99,7 @@ FOREACH(xml ${APP_CFG_IF}) # >>><<<
     LIST(JOIN APP_CFG_REF " -referencedFile " APP_GEN_XML)
 
     ADD_CUSTOM_COMMAND(OUTPUT ${APP_GEN_C} ${APP_GEN_H} 
-                       COMMAND ${RTIDDSMAG} -verbosity 1 -language C++ 
+                       COMMAND ${RTIDDSMAG} -verbosity 1 -language C++ -namespace
                                -replace  
                                -d ${APP_GEN_ROOT} ${xml} 
                                -idlFile ${APP_CFG_TYPES} 

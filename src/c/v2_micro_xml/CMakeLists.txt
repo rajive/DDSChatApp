@@ -90,11 +90,9 @@ ENDFOREACH()
 FOREACH(xml ${APP_CFG_IF}) # >>><<<
     GET_FILENAME_COMPONENT(filename ${xml} NAME)
     STRING(REGEX REPLACE "\\.xml" "" basename ${filename})
-    LIST(APPEND APP_GEN_C ${APP_GEN_ROOT}/${basename}Appgen.c
-                          ${APP_GEN_ROOT}/${basename}AppgenPlugin.${SOURCE_EXTENSION})  
+    LIST(APPEND APP_GEN_C ${APP_GEN_ROOT}/${basename}Appgen.c)  
                           
-    LIST(APPEND APP_GEN_H ${APP_GEN_ROOT}/${basename}Appgen.h
-                          ${APP_GEN_ROOT}/${basename}AppgenPlugin.h)  
+    LIST(APPEND APP_GEN_H ${APP_GEN_ROOT}/${basename}Appgen.h)  
     LIST(JOIN APP_CFG_REF " -referencedFile " APP_GEN_XML)
 
     ADD_CUSTOM_COMMAND(OUTPUT ${APP_GEN_C} ${APP_GEN_H} 

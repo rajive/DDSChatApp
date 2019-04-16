@@ -2,19 +2,7 @@
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_profiles.xsd">
 
-	<!-- Resolve the built-in profiles, since these are not (yet)_pre-defined 
-		for Connext Micro -->
-	<qos_library name="BuiltinQosLibExp">
-		<qos_profile name="Generic.StrictReliable">
-		</qos_profile>
-		<qos_profile name="Pattern.Status">
-		</qos_profile>
-	</qos_library>
-
 	<qos_library name="ChatQosLib">
-
-        <qos_profile name="Pattern.Status" base_name="BuiltinQosLibExp::Pattern.Status">
-        </qos_profile>
         
 		<!-- QoS profile used to configure reliable communication between the DataWriter 
 			and DataReader created in the example code. A QoS profile groups a set of 
@@ -25,11 +13,11 @@
 
 			<!-- QoS used to configure the Chat topic data writers -->
 			<datawriter_qos topic_filter="Chat*"
-				base_name="Pattern.Status">
+				base_name="BuiltinQosLibExp::Pattern.Status">
 			</datawriter_qos>
 
 			<datareader_qos topic_filter="Chat*"
-				base_name="Pattern.Status">
+				base_name="BuiltinQosLibExp::Pattern.Status">
 			</datareader_qos>
 
 			<participant_qos>
