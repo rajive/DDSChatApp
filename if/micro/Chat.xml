@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_profiles.xsd">
+
+    <!-- types -->
+    <types>
+        <include file="res/types/v2/Chat.xml" />
+    </types>
+
+    <!-- Domain Library -->
+    <domain_library name="ChatDataLib">
+        <domain name="Chat">
+            <register_type name="My::ChatObject" type_ref="My::ChatObject" />
+            <topic name="Chat" register_type_ref="My::ChatObject" />
+        </domain>
+    </domain_library>
+    
+    <!-- Participant library -->
+    <domain_participant_library name="ChatIfLib">         
+            
+        <!-- Pub -->
+        <domain_participant name="Chat_Pub" domain_ref="ChatDataLib::Chat">    
+            <publisher name="_pub">
+                <data_writer name="Chat_writer" topic_ref="Chat">
+                    <datawriter_qos base_name="ChatQosLib::Chat_Pub" />
+                </data_writer>
+                <publisher_qos base_name="ChatQosLib::Chat_Pub" />
+            </publisher>
+            <participant_qos base_name="ChatQosLib::Chat_Pub" />      
+        </domain_participant>
+        
+        <!-- Sub -->
+        <domain_participant name="Chat_Sub" domain_ref="ChatDataLib::Chat">
+            <subscriber name="_sub">
+                <data_reader name="Chat_reader" topic_ref="Chat">
+                    <filter name="Chat" kind="builtin.sql">
+                        <expression>
+                          id = %0 OR id = %1 OR id = %2
+                      </expression>
+                        <parameter_list>
+                            <param>'Rajive'</param>
+                            <param>'ABC'</param>
+                            <param>'XYZ'</param>
+                        </parameter_list>
+                    </filter>
+                    <datareader_qos base_name="ChatQosLib::Chat_Sub" />                 
+                </data_reader>
+                <subscriber_qos base_name="ChatQosLib::Chat_Sub"/>              
+            </subscriber>
+            <participant_qos base_name="ChatQosLib::Chat_Sub"/>
+        </domain_participant>       
+        
+    </domain_participant_library>
+</dds>

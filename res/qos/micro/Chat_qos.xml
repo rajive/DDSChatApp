@@ -1,15 +1,14 @@
 <?xml version="1.0"?>
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_profiles.xsd">
+	xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_qos_profiles.xsd">
 
 	<qos_library name="ChatQosLib">
         
 		<!-- QoS profile used to configure reliable communication between the DataWriter 
 			and DataReader created in the example code. A QoS profile groups a set of 
 			related QoS. -->
-		<qos_profile name="User.Service.Chat"
-			base_name="BuiltinQosLibExp::Generic.StrictReliable"
-			is_default_qos="true">
+		<qos_profile name="Chat_Root"
+			base_name="BuiltinQosLibExp::Generic.StrictReliable">
 
 			<!-- QoS used to configure the Chat topic data writers -->
 			<datawriter_qos topic_filter="Chat*"
@@ -29,6 +28,12 @@
 				</participant_name>
 			</participant_qos>
 		</qos_profile>
+		
+        <qos_profile name="Chat_Pub" base_name="Chat_Root">
+        </qos_profile>		
+        
+        <qos_profile name="Chat_Sub" base_name="Chat_Root">
+        </qos_profile>  
 
 	</qos_library>
 </dds>
