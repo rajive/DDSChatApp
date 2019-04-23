@@ -20,7 +20,7 @@ checking code, allowing us to focus on the application specific logic.
 
 ## Ensure that DDS-XML files are loaded in the correct order
 
-    export NDDS_QOS_PROFILES="res/qos/v2/Chat_qos.xml;if/Chat_if.xml"
+    export NDDS_QOS_PROFILES="res/qos/v2/Chat_qos.xml;if/Chat.xml"
    
 ## Data-Oriented Interfaces
 - [if/](./if)

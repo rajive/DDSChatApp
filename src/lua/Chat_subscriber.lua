@@ -1,5 +1,5 @@
 -- Get the reader
-local ChatObject_reader = CONTAINER.READER['Chat_Sub_subscriber::Chat_reader']
+local ChatObject_reader = CONTAINER.READER['_sub::Chat_reader']
 
 ChatObject_reader:take()
 

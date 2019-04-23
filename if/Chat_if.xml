@@ -27,11 +27,11 @@ Data-Oriented Interface for Chat Service
 
 	<!-- Participant library -->
 	<domain_participant_library
-		name="Chat_Library">
+		name="ChatIfLib">
 
 		<domain_participant name="Chat_Pub" domain_ref="Chat_DomainLibrary::Chat_domain">
 
-			<publisher name="Chat_Pub_publisher">
+			<publisher name="_pub">
 
 				<data_writer name="Chat_writer" topic_ref="Chat">
 					<datawriter_qos base_name="ChatQosLib::User.Service.Chat"/>
@@ -55,7 +55,7 @@ Data-Oriented Interface for Chat Service
 
 		<domain_participant name="Chat_Sub" domain_ref="Chat_DomainLibrary::Chat_domain">
 
-			<subscriber name="Chat_Sub_subscriber">
+			<subscriber name="_sub">
 
 				<data_reader name="Chat_reader" topic_ref="Chat">
 					<filter name="Chat" kind="builtin.sql">

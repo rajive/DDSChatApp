@@ -2,7 +2,7 @@
 if not count then count = 0 else count = count + 1  end  
 
 -- Get the writer
-local ChatObject_writer = CONTAINER.WRITER['Chat_Pub_publisher::Chat_writer']
+local ChatObject_writer = CONTAINER.WRITER['_pub::Chat_writer']
 
 ChatObject_writer.instance['id'] = "Rajive Lua" -- key field  
 

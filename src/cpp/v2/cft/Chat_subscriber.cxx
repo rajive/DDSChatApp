@@ -223,7 +223,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     ContentFilteredTopic *contentfiltered_topic =
     				participant->create_contentfilteredtopic(
 								"Chat/filtered", topic,
-								"(user = %0 OR user = %1 OR user = %2)",
+								"(id = %0 OR id = %1 OR id = %2)",
 								cft_parameters);
 	if (contentfiltered_topic == NULL) {
 		printf("cft error\n");

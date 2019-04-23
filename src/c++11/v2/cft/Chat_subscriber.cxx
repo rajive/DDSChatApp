@@ -61,7 +61,7 @@ int subscriber_main(int domain_id, int sample_count)
 
     // Create a Content Filtered Topic
     std::vector< std::string > params = {"'Rajive'", "'Sander'"};
-    dds::topic::Filter filter("(user = %0 OR user = %1)", params);
+    dds::topic::Filter filter("(id = %0 OR id = %1)", params);
     dds::topic::ContentFilteredTopic<My::ChatObject> cftopic(
     		topic, "Chat/filtered", filter);
 

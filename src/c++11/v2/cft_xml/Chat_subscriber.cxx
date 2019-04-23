@@ -60,13 +60,13 @@ int subscriber_main(int domain_id, int sample_count)
     // Create a DomainParticipant from the named configuration
 	dds::domain::DomainParticipant participant =
 	        dds::core::QosProvider::Default()->create_participant_from_config(
-	        		"Chat_Library::Chat_Sub");
+	        		"ChatIfLib::Chat_Sub");
 
     // Lookup Reader
     dds::sub::DataReader<My::ChatObject> reader =
 			rti::sub::find_datareader_by_name<
 			dds::sub::DataReader<My::ChatObject> >(
-				participant, "Chat_Sub_subscriber::Chat_reader");
+				participant, "_sub::Chat_reader");
 
 
     // Create a ReadCondition for any data on this reader and associate a handler

@@ -167,14 +167,14 @@ Alternatively, the steps can be implemented one at a time as follows.
 - Define the list of DDS-XML files to be loaded via the `NDDS_QOS_PROFILES` 
   environment variable   
   
-  - For v1:
+  - QoS profiles
+  
+        export NDDS_QOS_PROFILES="res/qos/micro/Chat_qos.xml"
         
-        export NDDS_QOS_PROFILES="res/qos/v1/Chat_qos.xml"
-
-  - For v2:
-        
-        export NDDS_QOS_PROFILES="res/qos/v2/Chat_qos.xml;if/Chat_if.xml"
-   
+  - XML App Creation
+  
+        export NDDS_QOS_PROFILES="res/qos/micro/Chat_qos.xml;if/micro/Chat.xml"
+                    
 
 ### Running the C++ components
 
@@ -206,11 +206,11 @@ Replace `Debug-VS2010` with your target
 
 - Run Subscriber Example:
 
-        rtiddsprototyper -cfgName Chat_Library::Chat_Sub -luaFile src/lua/Chat_subscriber.lua
+        rtiddsprototyper -cfgName ChatIfLib::Chat_Sub -luaFile src/lua/Chat_subscriber.lua
  
 - Run Publisher Example:
 
-        rtiddsprototyper -cfgName Chat_Library::Chat_Pub -luaFile src/lua/Chat_publisher.lua
+        rtiddsprototyper -cfgName ChatIfLib::Chat_Pub -luaFile src/lua/Chat_publisher.lua
 
         
 ### Running the Web Integration Service components

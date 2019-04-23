@@ -206,7 +206,7 @@ namespace My{
             cft_parameters.from_array(cft_param_list);
             
             DDS.ContentFilteredTopic cft = participant.create_contentfilteredtopic("Chat/filtered",
-                                                    topic, "(user = %0 OR user = %1 OR user = %2)", 
+                                                    topic, "(id = %0 OR id = %1 OR id = %2)", 
                                                     cft_parameters);
 
             if (cft == null) { 

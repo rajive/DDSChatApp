@@ -2,8 +2,8 @@
 
 ## Web Integration Service Configuration
 
-Extends the domain participants defined in the `Chat_Library` in 
-`if/Chat_if.xml` and groups them into a
+Extends the domain participants defined in the `ChatIfLib` in 
+`if/Chat.xml` and groups them into a
 web application called `ChatApp`, contained in the service configuration
 called `WebGateway`.
 
@@ -14,7 +14,7 @@ called `WebGateway`.
 - Define the list of DDS-XML files to be loaded via the `NDDS_QOS_PROFILES` 
   environment variable 
 
-		 export NDDS_QOS_PROFILES="res/qos/v2/Chat_qos.xml;if/Chat_if.xml"
+		 export NDDS_QOS_PROFILES="res/qos/v2/Chat_qos.xml;if/Chat.xml"
 
 - Start the web integration service
 		
