@@ -169,11 +169,11 @@ Alternatively, the steps can be implemented one at a time as follows.
   
   - QoS profiles
   
-        export NDDS_QOS_PROFILES="res/qos/micro/Chat_qos.xml"
+        export NDDS_QOS_PROFILES="res/qos/Chat_qos.xml"
         
   - XML App Creation
   
-        export NDDS_QOS_PROFILES="res/qos/micro/Chat_qos.xml;if/micro/Chat.xml"
+        export NDDS_QOS_PROFILES="res/qos/Chat_qos.xml;if/Chat.xml"
                     
 
 ### Running the C++ components
