@@ -19,7 +19,7 @@ SET(IDL_GEN_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/gen) # >>><<<
 # >>><<<
 SET(APP_CFG_IF  ${CMAKE_CURRENT_SOURCE_DIR}/../../../if/micro/Chat.xml) 
 SET(APP_CFG_REF ${CMAKE_CURRENT_SOURCE_DIR}/../../../res/qos/micro/Chat_qos.xml 
-                ${CMAKE_CURRENT_SOURCE_DIR}/../../../res/qos/micro/BuiltinQosLibExp.xml)
+                ${CMAKE_CURRENT_SOURCE_DIR}/../../../res/qos/micro/BuiltinProfiles_micro.xml)
 SET(APP_CFG_TYPES Chat.idl)
 SET(APP_GEN_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/gen)
 # >>><<<

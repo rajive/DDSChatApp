@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+
+<!-- Connext Micro Only!
+    
+     Resolve the built-in profiles, since these are not (yet) pre-defined for Connext Micro 
+     
+     NOTE: Connext DDS Professional pre-defines the builtin profiles, and those are documented in
+             NDDSHOME/resource/xml/BuiltinProfiles.documentationONLY.xml
+-->
+
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_qos_profiles.xsd">
+
+	<qos_library name="BuiltinQosLibExp">
+
+		<qos_profile name="Generic.BestEffort">
+			<datawriter_qos>
+				<reliability>
+					<kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+				</reliability>
+				<history>
+					<kind>KEEP_LAST_HISTORY_QOS</kind>
+					<depth>1</depth>
+				</history>
+			</datawriter_qos>
+	
+			<datareader_qos>
+				<reliability>
+					<kind>BEST_EFFORT_RELIABILITY_QOS</kind>
+				</reliability>
+				<history>
+					<kind>KEEP_LAST_HISTORY_QOS</kind>
+					<depth>1</depth>
+				</history>
+			</datareader_qos>
+		</qos_profile>
+
+        <qos_profile name="Generic.StrictReliable">
+            <datawriter_qos>
+                <reliability>
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                    <max_blocking_time>
+                        <sec>5</sec>
+                        <nanosec>0</nanosec>
+                    </max_blocking_time>
+                </reliability>
+                <history>
+                    <kind>KEEP_ALL_HISTORY_QOS</kind>
+                </history>
+            </datawriter_qos>
+        </qos_profile>
+
+        <qos_profile name="Generic.KeepLastReliable" base_name="Generic.StrictReliable">
+            <datawriter_qos>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>3</depth>
+                </history>
+            </datawriter_qos>
+            <datareader_qos>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>1</depth>
+                </history>
+            </datareader_qos>            
+        </qos_profile>
+
+        <qos_profile name="Generic.KeepLastReliable.TransientLocal" base_name="Generic.KeepLastReliable">
+            <datareader_qos>
+                <durability>
+                    <kind>TRANSIENT_LOCAL_DURABILITY_QOS</kind>
+                </durability>
+            </datareader_qos>
+    
+            <datawriter_qos>
+                <durability>
+                    <kind>TRANSIENT_LOCAL_DURABILITY_QOS</kind>
+                </durability>
+            </datawriter_qos>
+        </qos_profile>        
+
+        <qos_profile name="Pattern.PeriodicData" base_name="Generic.BestEffort" />
+                
+        <qos_profile name="Pattern.Streaming" base_name="Pattern.PeriodicData"/>
+
+        <qos_profile name="Pattern.ReiableStreaming" base_name="Generic.KeepLastReliable"/>
+        
+        <qos_profile name="Pattern.Event" base_name="Generic.StrictReliable">
+            <datawriter_qos>
+                <liveliness>
+                    <lease_duration>
+                        <sec>4</sec>
+                        <nanosec>0</nanosec>
+                    </lease_duration>
+                </liveliness>
+            </datawriter_qos>
+    
+            <datareader_qos>
+                <liveliness>
+                    <lease_duration>
+                        <sec>10</sec>
+                        <nanosec>0</nanosec>
+                    </lease_duration>
+                </liveliness>
+            </datareader_qos>
+        </qos_profile>        
+        
+       <qos_profile name="Pattern.Status" base_name="Generic.KeepLastReliable.TransientLocal"/>
+
+       <qos_profile name="Pattern.LastValueCache" base_name="Generic.KeepLastReliable.TransientLocal"/>
+    
+	</qos_library>
+
+</dds>
