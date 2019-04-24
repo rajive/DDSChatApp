@@ -16,5 +16,6 @@ module My {
     
     module name {
         const string CHAT_TOPIC     = "Chat";
+        const string CHAT_TYPE      = "My::ChatObject";
     };
 };

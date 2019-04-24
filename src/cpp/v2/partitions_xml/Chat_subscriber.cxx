@@ -216,7 +216,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     /* Register types */
     retcode = TheParticipantFactory->register_type_support(
                                 My::ChatObjectTypeSupport::register_type,
-								My::ChatObjectTypeSupport::get_type_name());
+								My::name::CHAT_TYPE.c_str());
     if (retcode != RETCODE_OK) {
         printf("register_type error %d\n", retcode);
         subscriber_shutdown(NULL);

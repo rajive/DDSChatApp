@@ -130,7 +130,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     }
 
     /* Register type before creating topic */
-    type_name = My::ChatObjectTypeSupport::get_type_name();
+    type_name = My::name::CHAT_TYPE.c_str();
     retcode = My::ChatObjectTypeSupport::register_type(
         participant, type_name);
     if (retcode != RETCODE_OK) {

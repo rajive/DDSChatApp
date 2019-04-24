@@ -54,8 +54,7 @@ objs\<arch>\Chat_subscriber <domain_id>
 int subscriber_main(int domain_id, int sample_count)
 {
 	// Register types
-	rti::domain::register_type<My::ChatObject>(
-			dds::topic::topic_type_name<My::ChatObject>::value());
+	rti::domain::register_type<My::ChatObject>(My::name::CHAT_TYPE);
 
     // Create a DomainParticipant from the named configuration
 	dds::domain::DomainParticipant participant =

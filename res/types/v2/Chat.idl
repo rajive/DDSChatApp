@@ -17,6 +17,7 @@ module My {
 
     module name {
         const string CHAT_TOPIC     = "Chat";
+        const string CHAT_TYPE      = "My::ChatObject";
 
         const string CHAT_PUB_IF    = "ChatIfLib::Chat_Pub";
         const string CHAT_SUB_IF    = "ChatIfLib::Chat_Sub";

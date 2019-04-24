@@ -55,7 +55,7 @@ void publisher_main(int domain_id, int sample_count)
     dds::domain::DomainParticipant participant (domain_id);
 
     // Create a Topic -- and automatically register the type
-    dds::topic::Topic<My::ChatObject> topic (participant, My::name::CHAT_TOPIC);
+    dds::topic::Topic<My::ChatObject> topic (participant, My::name::CHAT_TOPIC, My::name::CHAT_TYPE);
 
     // Create a DataWriter with default Qos (Publisher created in-line)
     dds::pub::DataWriter<My::ChatObject> writer(dds::pub::Publisher(participant), topic);
