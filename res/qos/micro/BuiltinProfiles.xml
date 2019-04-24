@@ -11,9 +11,14 @@
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_qos_profiles.xsd">
 
+	<qos_library name="BuiltinQosLib">
+		<qos_profile name="Generic.Common">
+		</qos_profile>
+	</qos_library>
+    
 	<qos_library name="BuiltinQosLibExp">
 
-		<qos_profile name="Generic.BestEffort">
+		<qos_profile name="Generic.BestEffort" base_name="BuiltinQosLib::Generic.Common">
 			<datawriter_qos>
 				<reliability>
 					<kind>BEST_EFFORT_RELIABILITY_QOS</kind>
@@ -35,7 +40,7 @@
 			</datareader_qos>
 		</qos_profile>
 
-		<qos_profile name="Generic.StrictReliable">
+		<qos_profile name="Generic.StrictReliable" base_name="BuiltinQosLib::Generic.Common">
 			<datawriter_qos>
 				<reliability>
 					<kind>RELIABLE_RELIABILITY_QOS</kind>
