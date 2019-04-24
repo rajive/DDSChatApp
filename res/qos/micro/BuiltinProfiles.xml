@@ -20,7 +20,7 @@
 				</reliability>
 				<history>
 					<kind>KEEP_LAST_HISTORY_QOS</kind>
-					<depth>1</depth>
+					<depth>100</depth>
 				</history>
 			</datawriter_qos>
 	
@@ -30,40 +30,78 @@
 				</reliability>
 				<history>
 					<kind>KEEP_LAST_HISTORY_QOS</kind>
-					<depth>1</depth>
+					<depth>100</depth>
 				</history>
 			</datareader_qos>
 		</qos_profile>
 
-        <qos_profile name="Generic.StrictReliable">
-            <datawriter_qos>
-                <reliability>
-                    <kind>RELIABLE_RELIABILITY_QOS</kind>
-                    <max_blocking_time>
-                        <sec>5</sec>
-                        <nanosec>0</nanosec>
-                    </max_blocking_time>
-                </reliability>
-                <history>
-                    <kind>KEEP_ALL_HISTORY_QOS</kind>
-                </history>
-            </datawriter_qos>
-        </qos_profile>
+		<qos_profile name="Generic.StrictReliable">
+			<datawriter_qos>
+				<reliability>
+					<kind>RELIABLE_RELIABILITY_QOS</kind>
+					<max_blocking_time>
+						<sec>5</sec>
+						<nanosec>0</nanosec>
+					</max_blocking_time>
+				</reliability>
+				<history>
+					<kind>KEEP_ALL_HISTORY_QOS</kind>
+				</history>
+				<protocol>
+					<rtps_reliable_writer>
+						<!-- All write() calls will block (for at most max_blocking_time) if 
+							there are 40 unacknowledged samples in the writer queue -->
+					    <!--  Increase resource limits before setting these:
+						<max_send_window_size>40</max_send_window_size>
+						<heartbeats_per_max_samples>10</heartbeats_per_max_samples>
+						-->
+						<heartbeat_period>
+							<sec>0</sec>
+							<nanosec>200000000</nanosec>
+						</heartbeat_period>
+						<max_heartbeat_retries>500</max_heartbeat_retries>
+					</rtps_reliable_writer>
+				</protocol>
+			</datawriter_qos>
+	
+			<datareader_qos>
+				<resource_limits>
+					<max_samples>256</max_samples>
+				</resource_limits>
+				<reliability>
+					<kind>RELIABLE_RELIABILITY_QOS</kind>
+				</reliability>
+				<history>
+					<kind>KEEP_ALL_HISTORY_QOS</kind>
+				</history>
+			</datareader_qos>
+		</qos_profile>
 
-        <qos_profile name="Generic.KeepLastReliable" base_name="Generic.StrictReliable">
-            <datawriter_qos>
-                <history>
-                    <kind>KEEP_LAST_HISTORY_QOS</kind>
-                    <depth>3</depth>
-                </history>
-            </datawriter_qos>
-            <datareader_qos>
-                <history>
-                    <kind>KEEP_LAST_HISTORY_QOS</kind>
-                    <depth>1</depth>
-                </history>
-            </datareader_qos>            
-        </qos_profile>
+		<qos_profile name="Generic.KeepLastReliable" base_name="Generic.StrictReliable">
+			<datawriter_qos>
+				<history>
+					<kind>KEEP_LAST_HISTORY_QOS</kind>
+				</history>
+                <protocol>
+                    <rtps_reliable_writer>
+                      <!-- Do not block because of the send_window 
+                        <max_send_window_size>LENGTH_UNLIMITED</max_send_window_size>
+                       -->
+                    </rtps_reliable_writer>
+                </protocol>				
+			</datawriter_qos>
+			
+			<datareader_qos>
+			    <!--  
+		        <resource_limits>
+		          <max_samples>LENGTH_UNLIMITED</max_samples>
+		        </resource_limits>	
+		        -->		
+				<history>
+					<kind>KEEP_LAST_HISTORY_QOS</kind>
+				</history>
+			</datareader_qos>
+		</qos_profile>
 
         <qos_profile name="Generic.KeepLastReliable.TransientLocal" base_name="Generic.KeepLastReliable">
             <datareader_qos>
@@ -77,14 +115,47 @@
                     <kind>TRANSIENT_LOCAL_DURABILITY_QOS</kind>
                 </durability>
             </datawriter_qos>
-        </qos_profile>        
+        </qos_profile>
 
-        <qos_profile name="Pattern.PeriodicData" base_name="Generic.BestEffort" />
+		<qos_profile name="Pattern.PeriodicData"
+			base_name="Generic.BestEffort">
+			<datawriter_qos>
+				<deadline>
+					<period>
+						<sec>4</sec>
+						<nanosec>0</nanosec>
+					</period>
+				</deadline>
+			</datawriter_qos>
+	
+			<datareader_qos>
+				<deadline>
+					<period>
+						<sec>10</sec>
+						<nanosec>0</nanosec>
+					</period>
+				</deadline>
+			</datareader_qos>
+		</qos_profile>
                 
         <qos_profile name="Pattern.Streaming" base_name="Pattern.PeriodicData"/>
 
-        <qos_profile name="Pattern.ReiableStreaming" base_name="Generic.KeepLastReliable"/>
-        
+
+		<qos_profile name="Pattern.ReliableStreaming" base_name="Generic.KeepLastReliable">
+			<datawriter_qos>
+				<history>
+					<depth>100</depth>
+				</history>
+			</datawriter_qos>
+	
+			<datareader_qos>
+				<history>
+					<depth>100</depth>
+				</history>
+			</datareader_qos>
+		</qos_profile>
+    
+    
         <qos_profile name="Pattern.Event" base_name="Generic.StrictReliable">
             <datawriter_qos>
                 <liveliness>
@@ -104,8 +175,16 @@
                 </liveliness>
             </datareader_qos>
         </qos_profile>        
+
+       
+       <qos_profile name="Pattern.AlarmEvent" base_name="Pattern.Event"/>
+
         
        <qos_profile name="Pattern.Status" base_name="Generic.KeepLastReliable.TransientLocal"/>
+
+
+       <qos_profile name="Pattern.AlarmStatus" base_name="Pattern.Status"/>
+
 
        <qos_profile name="Pattern.LastValueCache" base_name="Generic.KeepLastReliable.TransientLocal"/>
     

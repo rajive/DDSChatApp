@@ -43,30 +43,49 @@
 		<qos_profile name="Chat_Root"
 				     base_name="BuiltinQosLibExp::Generic.StrictReliable">
 	
-			<datawriter_qos topic_filter="Chat*"
-				            base_name="BuiltinQosLibExp::Pattern.Status">
+			<datawriter_qos topic_filter="Chat*" 
+			                base_name="BuiltinQosLibExp::Pattern.Status">
 				<base_name>
 					<element>UnboundedSupport</element>
 				</base_name>
 			</datawriter_qos>
 
-			<datareader_qos topic_filter="Chat*"
-				            base_name="BuiltinQosLibExp::Pattern.Status">   	              
+			<datareader_qos topic_filter="Chat*" 
+			                base_name="BuiltinQosLibExp::Pattern.Status">   	              
                 <base_name>
                     <element>UnboundedSupport</element>
                 </base_name>	
                 <history>
-                    <depth>3</depth>
-                </history>                		
+                    <depth>1<!-- 3 --></depth>
+                </history>              		
 			</datareader_qos>
 			
-			<participant_qos>
-				<!-- The participant name, if it is set, will be displayed in the RTI 
-					tools, making it easier for you to tell one application from another -->
-				<participant_name>
-					<name>Rajive</name>
-				</participant_name>
-			</participant_qos>
+            <participant_qos>
+                <!-- The participant name, if it is set, will be displayed in the RTI 
+                    tools, making it easier for you to tell one application from another -->
+                <participant_name>
+                    <name>Rajive</name>
+                </participant_name>
+
+                <transport_builtin>
+                    <mask>INTRA|UDPv4</mask>
+                </transport_builtin>        
+                          
+                <discovery_config>
+                    <builtin_discovery_plugins>SDP</builtin_discovery_plugins>
+                </discovery_config>
+                
+                <discovery>
+                    <initial_peers>
+                        <element>127.0.0.1</element>
+                        <element>239.255.0.1</element>
+                    </initial_peers>
+                    <multicast_receive_addresses>
+                        <element>udpv4://127.0.0.1</element>
+                        <element>udpv4://239.255.0.1</element>
+                    </multicast_receive_addresses>
+                </discovery>    
+            </participant_qos>
 			
 		</qos_profile>
 		

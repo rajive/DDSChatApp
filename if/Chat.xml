@@ -35,9 +35,10 @@
             <subscriber name="_sub">
                 <data_reader name="Chat_reader" topic_ref="Chat">
                     <filter name="Chat" kind="builtin.sql">
+                        <!-- Not supported in Connext Micro: Ignored -->
                         <expression>
                           id = %0 OR id = %1 OR id = %2
-                      </expression>
+                        </expression>
                         <parameter_list>
                             <param>'Rajive'</param>
                             <param>'ABC'</param>
