@@ -14,5 +14,7 @@ module My {
         string<MAX_SIZE> content; // content of the chat object
     };
     
-    const string CHAT_TOPIC_NAME = "Chat";
+    module name {
+        const string CHAT_TOPIC     = "Chat";
+    };
 };

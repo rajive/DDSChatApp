@@ -24,7 +24,7 @@ Building a peer-to-peer Chat application using [DDS](http://portals.omg.org/dds)
 
 - Modify the generated example code as follows.
 
-- Use `My::CHAT_TOPIC_NAME`
+- Use `My::name::CHAT_TOPIC`
 
    - Update `Chat_publisher.cxx`
    - Update `Chat_subscriber.cxx`

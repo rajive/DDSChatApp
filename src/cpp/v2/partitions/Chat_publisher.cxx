@@ -142,7 +142,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     /* To customize topic QoS, use 
     the configuration file USER_QOS_PROFILES.xml */
     topic = participant->create_topic(
-        My::CHAT_TOPIC_NAME.c_str(), /*>>><<<*/
+        My::name::CHAT_TOPIC.c_str(), /*>>><<<*/
         type_name, TOPIC_QOS_DEFAULT, NULL /* listener */,
         STATUS_MASK_NONE);
     if (topic == NULL) {

@@ -15,5 +15,13 @@ module My {
         string<MAX_SIZE> content; // content of the chat object        
     }; 
 
-    const string CHAT_TOPIC_NAME = "Chat";
+    module name {
+        const string CHAT_TOPIC     = "Chat";
+
+        const string CHAT_PUB_IF    = "ChatIfLib::Chat_Pub";
+        const string CHAT_SUB_IF    = "ChatIfLib::Chat_Sub";
+
+        const string CHAT_WRITER    = "_pub::Chat_writer";
+        const string CHAT_READER    = "_sub::Chat_reader";
+    };
 };

@@ -215,7 +215,7 @@ Long count)
         goto done;
     }
 
-    strcpy(this->topic_name, My::CHAT_TOPIC_NAME); /*>>><<<*/
+    strcpy(this->topic_name, My::name::CHAT_TOPIC); /*>>><<<*/
     this->topic = this->participant->create_topic(
         this->topic_name,
         this->type_name,
