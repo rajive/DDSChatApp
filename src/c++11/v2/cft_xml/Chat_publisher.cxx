@@ -58,13 +58,13 @@ void publisher_main(int domain_id, int sample_count)
     // Create a DomainParticipant from the named configuration
 	dds::domain::DomainParticipant participant =
 	        dds::core::QosProvider::Default()->create_participant_from_config(
-	        		"ChatIfLib::Chat_Pub");
+	        		My::name::CHAT_PUB_IF);
 
     // Lookup DataWriter
     dds::pub::DataWriter<My::ChatObject> writer =
 			rti::pub::find_datawriter_by_name<
-			dds::pub::DataWriter<My::ChatObject> >(
-				participant, "_pub::Chat_writer");
+				dds::pub::DataWriter<My::ChatObject> >(participant,
+						My::name::CHAT_WRITER);
 
 
     My::ChatObject sample;

@@ -109,7 +109,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     /* Create Participant from XML Config */
     participant = TheParticipantFactory->
             create_participant_from_config(
-            		"ChatIfLib::Chat_Pub");
+            		My::name::CHAT_PUB_IF.c_str());
     if (participant == NULL) {
         printf("create_participant_from_config error\n");
         publisher_shutdown(participant);
@@ -119,7 +119,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     /* Lookup the DataWriter */
     ChatObject_writer = My::ChatObjectDataWriter::narrow(
     		participant->lookup_datawriter_by_name(
-    							"_pub::Chat_writer"));
+    							My::name::CHAT_WRITER.c_str()));
     if (ChatObject_writer == NULL) {
         printf("DataWriter narrow error\n");
         publisher_shutdown(participant);

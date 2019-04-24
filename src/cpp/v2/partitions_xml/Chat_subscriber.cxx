@@ -226,7 +226,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     /* Create Participant from XML Config */
     participant = TheParticipantFactory->
             create_participant_from_config(
-            		"ChatIfLib::Chat_Sub");
+            		My::name::CHAT_SUB_IF.c_str());
     if (participant == NULL) {
         printf("create_participant_from_config error\n");
         subscriber_shutdown(participant);
@@ -236,7 +236,7 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     /* Lookup the DataReader */
     reader = My::ChatObjectDataReader::narrow(
     		participant->lookup_datareader_by_name(
-    						"_sub::Chat_reader"));
+    						My::name::CHAT_READER.c_str()));
     if (reader == NULL) {
         printf("DataReader narrow error\n");
         subscriber_shutdown(participant);
