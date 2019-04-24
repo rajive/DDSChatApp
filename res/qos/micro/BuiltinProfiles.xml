@@ -12,8 +12,30 @@
 	xsi:noNamespaceSchemaLocation="/opt/rti/NDDSHOME/resource/schema/rti_dds_qos_profiles.xsd">
 
 	<qos_library name="BuiltinQosLib">
+	
 		<qos_profile name="Generic.Common">
+            <participant_qos>
+                <transport_builtin>
+                    <mask>INTRA|UDPv4</mask>
+                </transport_builtin>        
+                          
+                <discovery_config>
+                    <builtin_discovery_plugins>SDP</builtin_discovery_plugins>
+                </discovery_config>
+                
+                <discovery>
+                    <initial_peers>
+                        <element>127.0.0.1</element>
+                        <element>239.255.0.1</element>
+                    </initial_peers>
+                    <multicast_receive_addresses>
+                        <element>udpv4://127.0.0.1</element>
+                        <element>udpv4://239.255.0.1</element>
+                    </multicast_receive_addresses>
+                </discovery>    
+            </participant_qos>		
 		</qos_profile>
+		
 	</qos_library>
     
 	<qos_library name="BuiltinQosLibExp">
