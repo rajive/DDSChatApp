@@ -56,7 +56,7 @@
                     <element>UnboundedSupport</element>
                 </base_name>	
                 <history>
-                    <depth>1<!-- 3 --></depth>
+                    <depth>3</depth>
                 </history>              		
 			</datareader_qos>
 			

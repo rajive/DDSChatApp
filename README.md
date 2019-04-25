@@ -35,7 +35,7 @@ structure.
 
 ## Prerequisites
 
-- [RTI Connext DDS 5.3.x or higher](http://www.rti.com/downloads/index.html)
+- [RTI Connext DDS 6.0.0+](http://www.rti.com/downloads/index.html)
 
 
 ## Generated Examples as Baseline
