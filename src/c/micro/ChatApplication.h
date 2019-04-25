@@ -5,12 +5,13 @@
 #include "rti_me_c.h"
 
 /*e \dref_Example_Config_UseReliableQos
-* Define USE_RELIABLE_QOS to use reliable
-* reliability on the DataReader; otherwise, use
-* best-effort reliability by default.
+* Define USE_NON_VOLATILE_QOS to use reliable
+* and transient local policies on the DataReader;
+* otherwise, use best-effort reliability
+* by default.
 */
 
-#define USE_RELIABLE_QOS
+#define USE_NON_VOLATILE_QOS
 
 /*e \dref_Example_Config_UseSampleFilter
 * Define USE_SAMPLE_FILTER to filter samples

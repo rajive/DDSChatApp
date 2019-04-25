@@ -67,9 +67,9 @@
 					<remote_reader_allocation>
 						<max_count>40<!-- 16 + 24 AdminConsole --></max_count>
 					</remote_reader_allocation>
-					<matching_reader_writer_pair_allocation>
+					<matching_writer_reader_pair_allocation>
 					   <max_count>304<!-- 256 + 48 AdminConsole --></max_count>
-					</matching_reader_writer_pair_allocation>
+					</matching_writer_reader_pair_allocation>
 					<max_receive_ports>32</max_receive_ports>
 					<max_destination_ports>32</max_destination_ports>
 				</resource_limits>  

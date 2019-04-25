@@ -203,14 +203,14 @@ DDS_Long sleep_time, DDS_Long count)
     dp_qos.resource_limits.local_type_allocation = 1;
     dp_qos.resource_limits.local_reader_allocation = 1;
     dp_qos.resource_limits.local_writer_allocation = 1;
-    dp_qos.resource_limits.remote_participant_allocation = 8;
-    dp_qos.resource_limits.remote_reader_allocation = 8;
-    dp_qos.resource_limits.remote_writer_allocation = 8;
-
+    dp_qos.resource_limits.remote_participant_allocation = 8 + 2 /* Admin Console */;
+    dp_qos.resource_limits.remote_reader_allocation = 8 + 24 /* Admin Console */;
+    dp_qos.resource_limits.remote_writer_allocation = 8 + 24 /* Admin Console */;
+    dp_qos.resource_limits.matching_writer_reader_pair_allocation = 16 + 48 /* Admin Console */;
 
     /* >>> Set Participant Name <<< */
     snprintf(dp_qos.participant_name.name, DDS_ENTITYNAME_QOS_NAME_MAX,
-    		"Rajive : %s (micro)", local_participant_name);
+    		"Rajive : %s (micro C)", local_participant_name);
 
     application->participant =
     DDS_DomainParticipantFactory_create_participant(factory, domain_id,
@@ -233,7 +233,7 @@ DDS_Long sleep_time, DDS_Long count)
         goto done;
     }
 
-    sprintf(application->topic_name, My_CHAT_TOPIC_NAME);
+    sprintf(application->topic_name, My_name_CHAT_TOPIC);
     application->topic =
     DDS_DomainParticipant_create_topic(application->participant,
     application->topic_name,

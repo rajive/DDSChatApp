@@ -283,9 +283,10 @@ DDS_Long sleep_time, DDS_Long count)
     dr_qos.reader_resource_limits.max_remote_writers_per_instance = 10;
     dr_qos.history.depth = 32;
 
-    /* Reliability QoS */
-    #ifdef USE_RELIABLE_QOS
+    /* Non Volatile QoS */
+    #ifdef USE_NON_VOLATILE_QOS
     dr_qos.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+    dr_qos.durability.kind  = DDS_TRANSIENT_LOCAL_DURABILITY_QOS; /*>>><<<*/
     #else
     dr_qos.reliability.kind = DDS_BEST_EFFORT_RELIABILITY_QOS;
     #endif

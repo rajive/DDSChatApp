@@ -68,8 +68,9 @@ DDS_Long sleep_time, DDS_Long count)
         goto done;
     }
 
-    #ifdef USE_RELIABLE_QOS
+    #ifdef USE_NON_VOLATILE_QOS
     dw_qos.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+    dw_qos.durability.kind  = DDS_TRANSIENT_LOCAL_DURABILITY_QOS; /*>>><<<*/
     #else
     dw_qos.reliability.kind = DDS_BEST_EFFORT_RELIABILITY_QOS;
     #endif
@@ -114,12 +115,12 @@ DDS_Long sleep_time, DDS_Long count)
 
     hw_datawriter = My_ChatObjectDataWriter_narrow(datawriter);
 
-    strncpy(sample->id, "Rajive", My_MAX_SIZE);
+    strncpy(sample->id, "Rajive (micro C)", My_MAX_SIZE);
     for (i = 0; (application->count > 0 && i < application->count) ||
     (application->count == 0); ++i)
     {
         /* TODO set sample attributes here */
-    	snprintf(sample->content, My_MAX_SIZE, "Hello (micro) %d", i);
+    	snprintf(sample->content, My_MAX_SIZE, "Micro C Hello World %d", i);
 
         retcode = My_ChatObjectDataWriter_write(hw_datawriter, sample, &DDS_HANDLE_NIL);
         if (retcode != DDS_RETCODE_OK)

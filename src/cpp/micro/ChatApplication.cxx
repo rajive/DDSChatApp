@@ -189,9 +189,14 @@ Long count)
     dp_qos.resource_limits.local_type_allocation = 1;
     dp_qos.resource_limits.local_reader_allocation = 1;
     dp_qos.resource_limits.local_writer_allocation = 1;
-    dp_qos.resource_limits.remote_participant_allocation = 8;
-    dp_qos.resource_limits.remote_reader_allocation = 8;
-    dp_qos.resource_limits.remote_writer_allocation = 8;
+    dp_qos.resource_limits.remote_participant_allocation = 8 + 2 /* Admin Console */;
+    dp_qos.resource_limits.remote_reader_allocation = 8 + 24 /* Admin Console */;
+    dp_qos.resource_limits.remote_writer_allocation = 8 + 24 /* Admin Console */;
+    dp_qos.resource_limits.matching_writer_reader_pair_allocation = 16 + 48 /* Admin Console */;
+
+    /* >>> Set Participant Name <<< */
+    snprintf(dp_qos.participant_name.name, DDS_ENTITYNAME_QOS_NAME_MAX,
+    		"Rajive : %s (micro C++)", local_participant_name);
 
     this->participant = TheParticipantFactory->create_participant(
         (DomainId_t)domain_id,

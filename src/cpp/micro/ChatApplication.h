@@ -8,10 +8,14 @@
 
 using namespace DDS;
 
-/* Define USE_RELIABLE_QOS to use reliable
-* reliability; otherwise, best-effort is used
+/*e \dref_Example_Config_UseReliableQos
+* Define USE_NON_VOLATILE_QOS to use reliable
+* and transient local policies on the DataReader;
+* otherwise, use best-effort reliability
+* by default.
 */
-#define USE_RELIABLE_QOS
+
+#define USE_NON_VOLATILE_QOS
 
 class Application
 {

@@ -82,11 +82,11 @@ publisher_main_w_args(DDS_Long sleep_time, DDS_Long count)
 
     hw_datawriter = My_ChatObjectDataWriter_narrow(datawriter);
 
+    strncpy(sample->id, "Rajive (xml micro C)", My_MAX_SIZE);
     for (i = 0; (application->count > 0 && i < application->count) ||
          (application->count == 0); ++i)
     {
-        sprintf(sample->id, "Rajive");
-        sprintf(sample->content, "Hello World! %d", i);
+    	snprintf(sample->content, My_MAX_SIZE, "XML Micro C Hello World %d", i);
         printf("%s %s\n", sample->id, sample->content);
 
         retcode = My_ChatObjectDataWriter_write(hw_datawriter, sample, &DDS_HANDLE_NIL);

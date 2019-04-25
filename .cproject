@@ -5,6 +5,7 @@
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.toolchain.gnu.macosx.base.1610674785" moduleId="org.eclipse.cdt.core.settings" name="Default">
 				<macros>
 					<stringMacro name="NDDSHOME" type="VALUE_TEXT" value="/opt/rti/NDDSHOME"/>
+					<stringMacro name="RTIMEHOME" type="VALUE_TEXT" value="/opt/rti/RTIMEHOME"/>
 				</macros>
 				<externalSettings/>
 				<extensions>
@@ -34,6 +35,7 @@
 									<listOptionValue builtIn="false" value="&quot;${NDDSHOME}/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${NDDSHOME}/include/ndds&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${NDDSHOME}/include/ndds/hpp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${RTIMEHOME}/include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.2022906581" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -43,6 +45,7 @@
 									<listOptionValue builtIn="false" value="&quot;${NDDSHOME}/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${NDDSHOME}/include/ndds&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${NDDSHOME}/include/ndds/hpp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${RTIMEHOME}/include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1770029577" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -51,6 +54,7 @@
 									<listOptionValue builtIn="false" value="&quot;${NDDSHOME}/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${NDDSHOME}/include/ndds&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${NDDSHOME}/include/ndds/hpp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${RTIMEHOME}/include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1629789259" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -61,6 +65,8 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 			<storageModule buildDir="build/${ConfigName}" moduleId="de.marw.cdt.cmake.core.settings">
 				<options/>
+				<defs/>
+				<undefs/>
 			</storageModule>
 		</cconfiguration>
 	</storageModule>

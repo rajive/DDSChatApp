@@ -70,9 +70,10 @@ Long sleep_time, Long count)
         goto done;
     }
 
-    #ifdef USE_RELIABLE_QOS
-    dw_qos.reliability.kind = RELIABLE_RELIABILITY_QOS;
-    #else
+	#ifdef USE_NON_VOLATILE_QOS
+	dw_qos.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
+	dw_qos.durability.kind  = DDS_TRANSIENT_LOCAL_DURABILITY_QOS; /*>>><<<*/
+	#else
     dw_qos.reliability.kind = BEST_EFFORT_RELIABILITY_QOS;
     #endif
     dw_qos.resource_limits.max_samples = 32;
@@ -109,14 +110,15 @@ Long sleep_time, Long count)
         return -1;
     }
 
-	sprintf(sample->id, "Rajive"); /*>>><<<*/
+	sprintf(sample->id, "Rajive (micro C++)"); /*>>><<<*/
     for (i = 0;
     (application->count > 0 && i < application->count) ||
     (application->count == 0);
     ++i)
     {
         /* TODO set sample attributes here */
-    	sprintf(sample->content, "Hello %d", i); /*>>><<<*/
+    	sprintf(sample->content, "Micro C++ Hello %d", i); /*>>><<<*/
+        printf("%s %s\n", sample->id, sample->content);
 
         retcode = hw_writer->write(*sample, HANDLE_NIL);
         if (retcode != RETCODE_OK)
