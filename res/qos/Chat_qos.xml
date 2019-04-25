@@ -40,8 +40,7 @@
                                        
         
         <!-- Chat Service QoS policies -->     
-		<qos_profile name="Chat_Root"
-				     base_name="BuiltinQosLibExp::Generic.StrictReliable">
+		<qos_profile name="Chat_Root">
 	
 			<datawriter_qos topic_filter="Chat*" 
 			                base_name="BuiltinQosLibExp::Pattern.Status">
@@ -60,7 +59,7 @@
                 </history>              		
 			</datareader_qos>
 			
-            <participant_qos>
+            <participant_qos base_name="BuiltinQosLib::Generic.Common">
                 <!-- The participant name, if it is set, will be displayed in the RTI 
                     tools, making it easier for you to tell one application from another -->
                 <participant_name>
