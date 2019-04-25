@@ -60,8 +60,7 @@ SET(MICRO_C_LIBS rti_me_appgen${LIBSUFFIX}
                  rti_me_whsm${RTI_LIB_SUFFIX} 
                  rti_me_discdpse${RTI_LIB_SUFFIX} 
                  rti_me_discdpde${RTI_LIB_SUFFIX} 
-                 rti_me${RTI_LIB_SUFFIX}
-                                                   )
+                 rti_me${RTI_LIB_SUFFIX})
 
 MESSAGE("RTIME_TARGET_NAME = ${RTIME_TARGET_NAME}")
 INCLUDE_DIRECTORIES(gen/ $ENV{RTIMEHOME}/include $ENV{RTIMEHOME}/include/rti_me)
