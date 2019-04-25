@@ -58,7 +58,7 @@ publisher_main_w_args(DDS_Long sleep_time, DDS_Long count)
 					 My_name_CHAT_WRITER);
     if (datawriter == NULL)
     {
-        printf("datawriter == NULL\n");
+        printf("datawriter not found: %s\n", My_name_CHAT_WRITER);
         goto done;
     }
 

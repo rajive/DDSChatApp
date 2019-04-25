@@ -70,8 +70,7 @@ Application_create(const char *participant_name,
     }
 
     application->participant =
-        DDS_DomainParticipantFactory_create_participant_from_config(factory,
-                                                             participant_name);
+        DDS_DomainParticipantFactory_create_participant_from_config(factory,participant_name);
 
     if (application->participant == NULL)
     {

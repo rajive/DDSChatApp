@@ -226,7 +226,7 @@ subscriber_main_w_args(DDS_Long sleep_time, DDS_Long count)
 					 My_name_CHAT_READER);
     if (datareader == NULL)
     {
-        printf("datareader == NULL\n");
+        printf("datareader not found %s\n", My_name_CHAT_READER);
         goto done;
     }
 
