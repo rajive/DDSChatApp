@@ -6,7 +6,7 @@ message("RTIMEHOME = $ENV{RTIMEHOME}") # >>><<<
 ADD_DEFINITIONS()
 LINK_DIRECTORIES()
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-PROJECT(Chat C)
+PROJECT(Chat)
 SET(SOURCE_EXTENSION c)
 
 SET(RTIDDSGEN $ENV{RTIMEHOME}/rtiddsgen/scripts/rtiddsgen)
@@ -60,7 +60,8 @@ SET(MICRO_C_LIBS rti_me_appgen${LIBSUFFIX}
                  rti_me_whsm${RTI_LIB_SUFFIX} 
                  rti_me_discdpse${RTI_LIB_SUFFIX} 
                  rti_me_discdpde${RTI_LIB_SUFFIX} 
-                 rti_me${RTI_LIB_SUFFIX})
+                 rti_me${RTI_LIB_SUFFIX}
+)
 
 MESSAGE("RTIME_TARGET_NAME = ${RTIME_TARGET_NAME}")
 INCLUDE_DIRECTORIES(gen/ $ENV{RTIMEHOME}/include $ENV{RTIMEHOME}/include/rti_me)
@@ -83,9 +84,9 @@ FOREACH(idl ${IDL_SOURCE_C})
                                -d ${IDL_GEN_ROOT} ${idl}
                        DEPENDS ${idl}
                        COMMENT "Regeneration type support plugin from ${idl}"
-   	)          
-   	SET_SOURCE_FILES_PROPERTIES(${IDL_GEN_C} ${IDL_GEN_H} PROPERTIES GENERATED 1)                
+   	)                        
 ENDFOREACH()
+SET_SOURCE_FILES_PROPERTIES(${IDL_GEN_C} ${IDL_GEN_H} PROPERTIES GENERATED 1)  
 
 FOREACH(xml ${APP_CFG_IF}) # >>><<<
     GET_FILENAME_COMPONENT(filename ${xml} NAME)
@@ -103,9 +104,10 @@ FOREACH(xml ${APP_CFG_IF}) # >>><<<
                                -referencedFile ${APP_GEN_XML}
                        DEPENDS ${xml} ${APP_CFG_REF}
                        COMMENT "Regeneration of application support from ${xml}"
-   	)          
-   	SET_SOURCE_FILES_PROPERTIES(${APP_GEN_C} ${APP_GEN_H} PROPERTIES GENERATED 1)                
+   	)             	              
 ENDFOREACH()
+SET_SOURCE_FILES_PROPERTIES(${APP_GEN_C} ${APP_GEN_H} PROPERTIES GENERATED 1)    
+
 
 ADD_EXECUTABLE(Chat_publisher
                ${CMAKE_CURRENT_SOURCE_DIR}/Chat_publisher.${SOURCE_EXTENSION}

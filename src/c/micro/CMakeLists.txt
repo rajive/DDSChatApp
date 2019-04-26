@@ -6,7 +6,7 @@ message("RTIMEHOME = $ENV{RTIMEHOME}") # >>><<<
 ADD_DEFINITIONS()
 LINK_DIRECTORIES()
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-PROJECT(Chat C)
+PROJECT(Chat)
 SET(SOURCE_EXTENSION c)
 
 SET(RTIDDSGEN $ENV{RTIMEHOME}/rtiddsgen/scripts/rtiddsgen)
@@ -76,8 +76,9 @@ FOREACH(idl ${IDL_SOURCE_C})
                        DEPENDS ${idl}
                        COMMENT "Regeneration type support plugin from ${idl}"
     )    
-    SET_SOURCE_FILES_PROPERTIES(${IDL_GEN_C} ${IDL_GEN_H} PROPERTIES GENERATED 1)
 ENDFOREACH()
+SET_SOURCE_FILES_PROPERTIES(${IDL_GEN_C} ${IDL_GEN_H} PROPERTIES GENERATED 1)
+
 
 ADD_EXECUTABLE(Chat_publisher
                ${CMAKE_CURRENT_SOURCE_DIR}/Chat_publisher.${SOURCE_EXTENSION}

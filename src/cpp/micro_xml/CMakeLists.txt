@@ -1,5 +1,5 @@
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.12)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
 
 message("RTIMEHOME = $ENV{RTIMEHOME}") # >>><<<
 
@@ -55,15 +55,18 @@ ELSE()
     ENDIF()
 ENDIF()
 
-SET(MICRO_C_LIBS rti_me_appgen${LIBSUFFIX}
+SET(MICRO_C_LIBS rti_me_appgen${RTI_LIB_SUFFIX}
                  rti_me_cpp${RTI_LIB_SUFFIX} 
                  rti_me_rhsm${RTI_LIB_SUFFIX} 
                  rti_me_whsm${RTI_LIB_SUFFIX} 
                  rti_me_discdpse${RTI_LIB_SUFFIX} 
                  rti_me_discdpde${RTI_LIB_SUFFIX} 
-                 rti_me${RTI_LIB_SUFFIX})
+                 rti_me${RTI_LIB_SUFFIX}
+)
 
 MESSAGE("RTIME_TARGET_NAME = ${RTIME_TARGET_NAME}")
+MESSAGE("MICRO_C_LIBS = ${MICRO_C_LIBS}")
+
 INCLUDE_DIRECTORIES(gen/ $ENV{RTIMEHOME}/include $ENV{RTIMEHOME}/include/rti_me)
 LINK_DIRECTORIES($ENV{RTIMEHOME}/lib/${RTIME_TARGET_NAME})
 
@@ -106,8 +109,7 @@ FOREACH(xml ${APP_CFG_IF}) # >>><<<
                                -referencedFile ${APP_GEN_XML}
                        DEPENDS ${xml} ${APP_CFG_REF}
                        COMMENT "Regeneration of application support from ${xml}"
-   	)          
-   	               
+   	)             	               
 ENDFOREACH()
 SET_SOURCE_FILES_PROPERTIES(${APP_GEN_C} ${APP_GEN_H} PROPERTIES GENERATED 1)
 
