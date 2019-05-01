@@ -22,7 +22,7 @@ void
 ChatSubscriber_on_data_available(void *listener_data,
                                        DDS_DataReader * reader)
 {
-    My_ChatObjectDataReader *hw_reader = My_ChatObjectDataReader_narrow(reader);
+    My_ChatObjectDataReader *ChatObject_reader = My_ChatObjectDataReader_narrow(reader);
     DDS_ReturnCode_t retcode;
     struct DDS_SampleInfo *sample_info = NULL;
     My_ChatObject *sample = NULL;
@@ -35,7 +35,7 @@ ChatSubscriber_on_data_available(void *listener_data,
     const DDS_Long TAKE_MAX_SAMPLES = 32;
     DDS_Long i;
 
-    retcode = My_ChatObjectDataReader_take(hw_reader,
+    retcode = My_ChatObjectDataReader_take(ChatObject_reader,
        &sample_seq, &info_seq, TAKE_MAX_SAMPLES,
        DDS_ANY_SAMPLE_STATE, DDS_ANY_VIEW_STATE, DDS_ANY_INSTANCE_STATE);
 
@@ -53,16 +53,16 @@ ChatSubscriber_on_data_available(void *listener_data,
         if (sample_info->valid_data)
         {
             sample = My_ChatObjectSeq_get_reference(&sample_seq, i);
-            printf("\nSample received\n\tid: %s\n\tcontent: %s\n",
+            printf("\nSample received (xml micro C)\n\tid: %s\n\tcontent: %s\n",
                    sample->id, sample->content);
         }
         else
         {
-            printf("\nSample received\n\tINVALID DATA\n");
+            printf("\nSample received (xml micro C)\n\tINVALID DATA\n");
         }
     }
 
-    My_ChatObjectDataReader_return_loan(hw_reader, &sample_seq, &info_seq);
+    My_ChatObjectDataReader_return_loan(ChatObject_reader, &sample_seq, &info_seq);
 
 done:
     My_ChatObjectSeq_finalize(&sample_seq);
@@ -190,14 +190,14 @@ ChatSubscriber_on_before_sample_commit(
         const struct DDS_SampleInfo *const sample_info,
         DDS_Boolean *dropped)
 {
-    My_ChatObject *hw_sample = (My_ChatObject *)sample;
+    My_ChatObject *ChatObject_sample = (My_ChatObject *)sample;
 
-    ChatSubscriber_filter_sample(hw_sample, dropped);
+    ChatSubscriber_filter_sample(ChatObject_sample, dropped);
 
     if (*dropped)
     {
         printf("\nSample filtered, before commit...\n\tDROPPED - id: %s, content %s\n",
-               hw_sample->id, hw_sample->content);
+               ChatObject_sample->id, ChatObject_sample->content);
     }
 
     return DDS_BOOLEAN_TRUE;

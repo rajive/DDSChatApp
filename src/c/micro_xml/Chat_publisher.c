@@ -30,7 +30,7 @@ int
 publisher_main_w_args(DDS_Long sleep_time, DDS_Long count)
 {
     DDS_DataWriter *datawriter;
-    My_ChatObjectDataWriter *hw_datawriter;
+    My_ChatObjectDataWriter *ChatObject_writer;
     DDS_ReturnCode_t retcode;
     My_ChatObject *sample = NULL;
     struct Application *application = NULL;
@@ -80,7 +80,7 @@ publisher_main_w_args(DDS_Long sleep_time, DDS_Long count)
         goto done;
     }
 
-    hw_datawriter = My_ChatObjectDataWriter_narrow(datawriter);
+    ChatObject_writer = My_ChatObjectDataWriter_narrow(datawriter);
 
     strncpy(sample->id, "Rajive (xml micro C)", My_MAX_SIZE);
     for (i = 0; (application->count > 0 && i < application->count) ||
@@ -89,7 +89,7 @@ publisher_main_w_args(DDS_Long sleep_time, DDS_Long count)
     	snprintf(sample->content, My_MAX_SIZE, "XML Micro C Hello World %d", i);
         printf("%s %s\n", sample->id, sample->content);
 
-        retcode = My_ChatObjectDataWriter_write(hw_datawriter, sample, &DDS_HANDLE_NIL);
+        retcode = My_ChatObjectDataWriter_write(ChatObject_writer, sample, &DDS_HANDLE_NIL);
         if (retcode != DDS_RETCODE_OK)
         {
             printf("Failed to write to sample\n");

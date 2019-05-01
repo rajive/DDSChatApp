@@ -12,7 +12,7 @@ public:
     DDS_Long sleep_time;
     DDS_Long count;
 
-    static void help(char *appname);
+    static void help(const char *appname);
 
     DDS_ReturnCode_t initialize(const char *participant_name,
                                 DDS_Long sleep_time,

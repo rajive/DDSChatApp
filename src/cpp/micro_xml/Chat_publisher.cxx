@@ -14,9 +14,20 @@ class ChatObjectDataWriterListener : public DDSDataWriterListener
 {
 public:
     ChatObjectDataWriterListener() : DDSDataWriterListener() { }
-    ~ChatObjectDataWriterListener() { }
-};
+    virtual ~ChatObjectDataWriterListener() { }
 
+    void on_publication_matched	(DDSDataWriter *writer,
+    							 const DDS_PublicationMatchedStatus& status) {
+    	if (status.current_count_change > 0)
+    	{
+    		printf("Matched a subscriber\n");
+    	}
+    	else if (status.current_count_change < 0)
+    	{
+    		printf("Unmatched a subscriber\n");
+    	}
+    }
+};
 
 int
 publisher_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
@@ -25,7 +36,7 @@ publisher_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
     Application *application = NULL;
 
     DDSDataWriter *datawriter = NULL;
-    My::ChatObjectDataWriter *hw_writer = NULL;
+    My::ChatObjectDataWriter *ChatObject_writer = NULL;
     DDS_ReturnCode_t retcode;
     My::ChatObject *sample = NULL;
     DDS_Long i;
@@ -67,8 +78,8 @@ publisher_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
         goto done;
     }
 
-    hw_writer = My::ChatObjectDataWriter::narrow(datawriter);
-    if (hw_writer == NULL)
+    ChatObject_writer = My::ChatObjectDataWriter::narrow(datawriter);
+    if (ChatObject_writer == NULL)
     {
         printf("failed datawriter narrow\n");
         goto done;
@@ -90,7 +101,7 @@ publisher_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
     	snprintf(sample->content, My::MAX_SIZE, "XML Micro C++ Hello World %d", i);
         printf("%s %s\n", sample->id, sample->content);
 
-        retcode = hw_writer->write(*sample, DDS_HANDLE_NIL);
+        retcode = ChatObject_writer->write(*sample, DDS_HANDLE_NIL);
         if (retcode != DDS_RETCODE_OK)
         {
             printf("Failed to write to sample\n");

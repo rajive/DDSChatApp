@@ -15,7 +15,7 @@
 #include "ChatAppgen.h"
 
 void
-Application::help(char *appname)
+Application::help(const char *appname)
 {
     printf("%s [options]\n", appname);
     printf("options:\n");

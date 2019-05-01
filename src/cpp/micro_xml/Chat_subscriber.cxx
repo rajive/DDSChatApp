@@ -11,53 +11,64 @@
 #include "ChatPlugin.h"
 #include "ChatApplication.h"
 
-class ChatObjectReaderListener : public DDSDataReaderListener
+class ChatObjectDataReaderListener : public DDSDataReaderListener
 {
+public:
+    ChatObjectDataReaderListener() : DDSDataReaderListener() { }
+    virtual ~ChatObjectDataReaderListener() { }
 
-  public:
+	virtual void on_subscription_matched(DDSDataReader *reader,
+										 const DDS_SubscriptionMatchedStatus& status);
 
     virtual void on_data_available(DDSDataReader *reader);
 };
 
-
-template <typename T>
-void take_and_print(typename T::DataReader* reader)
+void
+ChatObjectDataReaderListener::on_subscription_matched(DDSDataReader *reader,
+		 	 	 	 	 	 	 	 	 const DDS_SubscriptionMatchedStatus& status)
 {
-    ReturnCode_t retcode;
-    SampleInfo sample_info;
-    T *sample = NULL;
-
-    sample = T::TypeSupport::create_data();
-    if (sample == NULL)
+    if (status.current_count_change > 0)
     {
-        printf("Failed sample initialize\n");
-        return;
+        printf("Matched a publisher\n");
     }
-
-    retcode = reader->take_next_sample(*sample, sample_info);
-    while (retcode == RETCODE_OK)
+    else if (status.current_count_change < 0)
     {
-        if (sample_info.valid_data)
-        {
-            printf("\nValid sample received\n");
-            /* TODO read sample attributes here */
-            printf("id = %s,   content=%s\n", sample->id, sample->content); /*>>><<<*/
-        }
-        else
-        {
-            printf("\nSample received\n\tINVALID DATA\n");
-        }
-        retcode = reader->take_next_sample(*sample, sample_info);
+        printf("Unmatched a publisher\n");
     }
-
-    T::TypeSupport::delete_data(sample);
 }
 
 void
-ChatObjectReaderListener::on_data_available(DataReader * reader)
+ChatObjectDataReaderListener::on_data_available(DataReader * reader)
 {
-    My::ChatObjectDataReader *hw_reader = My::ChatObjectDataReader::narrow(reader);
-    take_and_print<My::ChatObject>(hw_reader);
+    My::ChatObjectDataReader *ChatObject_reader = My::ChatObjectDataReader::narrow(reader);
+    My::ChatObjectSeq sample_seq;
+    SampleInfoSeq info_seq;
+    ReturnCode_t retcode;
+
+    retcode = ChatObject_reader->take(sample_seq, info_seq, LENGTH_UNLIMITED,
+    								ANY_SAMPLE_STATE, ANY_VIEW_STATE, ANY_INSTANCE_STATE);
+    if (retcode == RETCODE_NO_DATA) {
+        printf("no data (xml micro C++) %d\n", retcode);
+        return;
+    } else if (retcode != RETCODE_OK) {
+        printf("take error (xml micro C++) %d\n", retcode);
+        return;
+    }
+
+    for (int i = 0; i < sample_seq.length(); ++i) {
+        if (info_seq[i].valid_data) {
+            printf("\nSample received (xml micro C++)\n\tid: %s\n\tcontent: %s\n",
+            		sample_seq[i].id, sample_seq[i].content);
+        }
+        else {
+            printf("\nSample received (xml micro C++)\n\tINVALID DATA\n");
+        }
+    }
+
+    retcode = ChatObject_reader->return_loan(sample_seq, info_seq);
+    if (retcode != RETCODE_OK) {
+        printf("return loan error (xml micro C++) %d\n", retcode);
+    }
 }
 
 int
@@ -65,7 +76,7 @@ subscriber_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
                        DDS_Long sleep_time, DDS_Long count)
 {
     DDSDataReader *datareader = NULL;
-    ChatObjectReaderListener *listener = new ChatObjectReaderListener();
+    ChatObjectDataReaderListener *listener = new ChatObjectDataReaderListener();
     DDS_ReturnCode_t retcode;
     Application *application = NULL;
     RT_Registry_T *registry = NULL;
