@@ -55,7 +55,7 @@ ELSE()
     ENDIF()
 ENDIF()
 
-SET(MICRO_C_LIBS rti_me_appgen${LIBSUFFIX}
+SET(MICRO_C_LIBS rti_me_appgen${RTI_LIB_SUFFIX}
                  rti_me_rhsm${RTI_LIB_SUFFIX} 
                  rti_me_whsm${RTI_LIB_SUFFIX} 
                  rti_me_discdpse${RTI_LIB_SUFFIX} 
