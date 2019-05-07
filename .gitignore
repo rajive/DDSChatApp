@@ -30,6 +30,7 @@
 # Generated
 objs/
 gen/
+*_idl.xml
 Chat.xml
 Chat.h*
 Chat.c*
