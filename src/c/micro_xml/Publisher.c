@@ -14,7 +14,7 @@ struct OutputContext {
     My_Type_Chat_ObjDataWriter *Chat_Obj_writer;
 };
 
-void output_data(void* context, long count) {
+void My_Topic_Chat_output(void* context, long count) {
 
     struct OutputContext *output_context = (struct OutputContext*)context;
     DDS_ReturnCode_t retcode = DDS_RETCODE_OK;
@@ -31,7 +31,7 @@ void output_data(void* context, long count) {
 }
 
 void
-MyPublisher_on_publication_matched(
+My_Publisher_on_publication_matched(
         void *listener_data,
         DDS_DataWriter * writer,
         const struct DDS_PublicationMatchedStatus *status) {
@@ -52,7 +52,7 @@ publisher_main_w_args(long sleep_time, long count) {
     My_Type_Chat_ObjDataWriter *Chat_Obj_writer = NULL;
 
     struct DDS_DataWriterListener dw_listener = DDS_DataWriterListener_INITIALIZER;
-    dw_listener.on_publication_matched        = MyPublisher_on_publication_matched;
+    dw_listener.on_publication_matched        = My_Publisher_on_publication_matched;
 
 
     assert((databus = Databus_create(My_If_PUB))
@@ -81,7 +81,7 @@ publisher_main_w_args(long sleep_time, long count) {
 
 
     struct OutputContext output_context = {Chat_Obj_sample, Chat_Obj_writer};
-    App_loop(sleep_time, count, output_data, &output_context);
+    App_loop(sleep_time, count, My_Topic_Chat_output, &output_context);
 
 done:
     Databus_delete(databus);

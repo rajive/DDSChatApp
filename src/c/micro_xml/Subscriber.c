@@ -12,7 +12,7 @@
 
 
 void
-MySubscriber_on_data_available(
+My_Topic_Chat_input(
         void *listener_data,
         DDS_DataReader * reader) {
 
@@ -53,7 +53,7 @@ done:
 }
 
 void
-MySubscriber_on_subscription_matched(
+My_Subscriber_on_subscription_matched(
         void *listener_data,
         DDS_DataReader * reader,
         const struct DDS_SubscriptionMatchedStatus *status) {
@@ -72,8 +72,8 @@ subscriber_main_w_args(long sleep_time, long count) {
     DDS_ReturnCode_t retcode = DDS_RETCODE_OK;
 
     struct DDS_DataReaderListener dr_listener   = DDS_DataReaderListener_INITIALIZER;
-    dr_listener.on_subscription_matched         = MySubscriber_on_subscription_matched;
-    dr_listener.on_data_available               = MySubscriber_on_data_available;
+    dr_listener.on_subscription_matched         = My_Subscriber_on_subscription_matched;
+    dr_listener.on_data_available               = My_Topic_Chat_input;
 #ifdef USE_SAMPLE_FILTER /* choose one callback to enable */
 #ifdef FILTER_ON_DESERIALIZE
     dr_listener.on_before_sample_deserialize    = My_Type_Chat_Obj_on_before_sample_deserialize;
