@@ -46,9 +46,8 @@ module My {
     };
 
     module If {
-        const string PUB       = "MyServiceIfLib::Pub";
-        const string SUB       = "MyServiceIfLib::Sub";
-
-        const string PUBSUB    = "MyServiceIfLib::PubSub";
+        const string PUB            = "MyServiceIfLib::Pub";
+        const string SUB            = "MyServiceIfLib::Sub";
+        const string PUBSUB         = "MyServiceIfLib::PubSub";
     };
 };
