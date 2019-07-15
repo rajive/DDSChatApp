@@ -9,7 +9,7 @@
     </types>
 
     <!-- Domain Library -->
-    <domain_library name="ChatDomLib">
+    <domain_library name="ChatBusLib">
         <domain name="Chat">
             <register_type name="My::ChatObject" type_ref="My::ChatObject" />
             <topic name="Chat" register_type_ref="My::ChatObject" />
@@ -20,7 +20,7 @@
     <domain_participant_library name="ChatIfLib">         
             
         <!-- Pub -->
-        <domain_participant name="Chat_Pub" domain_ref="ChatDomLib::Chat">    
+        <domain_participant name="Chat_Pub" domain_ref="ChatBusLib::Chat">    
             <publisher name="_pub">
                 <data_writer name="Chat_writer" topic_ref="Chat">
                     <datawriter_qos base_name="ChatQosLib::Chat_Pub" />
@@ -31,7 +31,7 @@
         </domain_participant>
         
         <!-- Sub -->
-        <domain_participant name="Chat_Sub" domain_ref="ChatDomLib::Chat">
+        <domain_participant name="Chat_Sub" domain_ref="ChatBusLib::Chat">
             <subscriber name="_sub">
                 <data_reader name="Chat_reader" topic_ref="Chat">
                     <filter name="Chat" kind="builtin.sql">
