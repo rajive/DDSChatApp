@@ -1,3 +1,6 @@
+#ifndef CHAT_IDL_
+#define CHAT_IDL_
+
 // This is a single lineIDL comment
 /* This is a multi-line IDL comment */
 
@@ -30,3 +33,4 @@ module My {
         const string SUB            = "ChatIfLib::Chat_Sub";
     };
 };
+#endif /* CHAT_IDL_ */
