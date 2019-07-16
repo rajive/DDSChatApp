@@ -15,11 +15,11 @@
 	
 		<application name="ChatApp">
 			<domain_participant name="MyPublicationParticipant"
-				base_name=My::name::CHAT_PUB_IF>
+				base_name="ChatIfLib::Chat_Pub">
 			</domain_participant>
 
 			<domain_participant name="MySubscriptionParticipant"
-				base_name=My::name::CHAT_SUB_IF>
+				base_name="ChatIfLib::Chat_Sub">
 			</domain_participant>
 		</application>
 			

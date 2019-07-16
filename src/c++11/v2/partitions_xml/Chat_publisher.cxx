@@ -53,22 +53,22 @@ objs\<arch>\Chat_subscriber <domain_id>
 void publisher_main(int domain_id, int sample_count)
 {
 	// Register types
-	rti::domain::register_type<My::ChatObject>(My::name::CHAT_TYPE);
+	rti::domain::register_type<My::ChatObject>(My::Topic::Chat::TYPE);
 
     // Create a DomainParticipant from the named configuration
 	dds::domain::DomainParticipant participant =
 	        dds::core::QosProvider::Default()->create_participant_from_config(
-	        		My::name::CHAT_PUB_IF);
+	        		My::If::PUB);
 
     // Lookup DataWriter
     dds::pub::DataWriter<My::ChatObject> writer =
 			rti::pub::find_datawriter_by_name<
 				dds::pub::DataWriter<My::ChatObject> >(
-					participant, My::name::CHAT_WRITER);
+					participant, My::Topic::Chat::WRITER);
 
     // Lookup Publisher
-    dds::pub::Publisher publisher = rti::pub::find_publisher(participant,
-    										My::name::CHAT_PUBLISHER);
+    dds::pub::Publisher publisher = writer.publisher();
+            /*rti::pub::find_publisher(participant, My::Pub::Default);*/
 
     // Set the PARTITION QosPolicy on the publisher
     std::vector< std::string > partitions = { "starwars", "startrek", "funny" };

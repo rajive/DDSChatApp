@@ -57,7 +57,7 @@ int subscriber_main(int domain_id, int sample_count)
     dds::domain::DomainParticipant participant(domain_id);
 
     // Create a Topic -- and automatically register the type
-    dds::topic::Topic<My::ChatObject> topic(participant, My::name::CHAT_TOPIC, My::name::CHAT_TYPE);
+    dds::topic::Topic<My::ChatObject> topic(participant, My::Topic::Chat::TOPIC, My::Topic::Chat::TYPE);
 
     // Create a Content Filtered Topic
     std::vector< std::string > params = {"'Rajive'", "'Sander'"};

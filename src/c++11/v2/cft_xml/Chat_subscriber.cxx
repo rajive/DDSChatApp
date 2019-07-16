@@ -54,18 +54,18 @@ objs\<arch>\Chat_subscriber <domain_id>
 int subscriber_main(int domain_id, int sample_count)
 {
 	// Register types
-	rti::domain::register_type<My::ChatObject>(My::name::CHAT_TYPE);
+	rti::domain::register_type<My::ChatObject>(My::Topic::Chat::TYPE);
 
     // Create a DomainParticipant from the named configuration
 	dds::domain::DomainParticipant participant =
 	        dds::core::QosProvider::Default()->create_participant_from_config(
-	        		My::name::CHAT_SUB_IF.c_str());
+	        		My::If::SUB);
 
     // Lookup Reader
     dds::sub::DataReader<My::ChatObject> reader =
 			rti::sub::find_datareader_by_name<
 			dds::sub::DataReader<My::ChatObject> >(
-				participant, My::name::CHAT_READER.c_str());
+				participant, My::Topic::Chat::READER);
 
 
     // Create a ReadCondition for any data on this reader and associate a handler

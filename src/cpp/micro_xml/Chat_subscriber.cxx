@@ -88,17 +88,17 @@ subscriber_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
         goto done;
     }
 
-    retcode = application->initialize(My::name::CHAT_SUB_IF, sleep_time, count);
+    retcode = application->initialize(My::If::SUB, sleep_time, count);
     if (retcode != DDS_RETCODE_OK)
     {
         printf("failed Application initialize\n");
         goto done;
     }
 
-    datareader = application->participant->lookup_datareader_by_name(My::name::CHAT_READER);
+    datareader = application->participant->lookup_datareader_by_name(My::Topic::Chat::READER);
     if (datareader == NULL)
     {
-        printf("datareader not found %s\n", My::name::CHAT_READER);
+        printf("datareader not found %s\n", My::Topic::Chat::READER);
         goto done;
     }
 

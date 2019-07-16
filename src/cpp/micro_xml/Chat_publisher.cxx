@@ -50,17 +50,17 @@ publisher_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
         goto done;
     }
 
-    retcode = application->initialize(My::name::CHAT_PUB_IF, sleep_time, count);
+    retcode = application->initialize(My::If::PUB, sleep_time, count);
     if (retcode != DDS_RETCODE_OK)
     {
         printf("failed Application initialize\n");
         goto done;
     }
 
-    datawriter = application->participant->lookup_datawriter_by_name(My::name::CHAT_WRITER);
+    datawriter = application->participant->lookup_datawriter_by_name(My::Topic::Chat::WRITER);
     if (datawriter == NULL)
     {
-        printf("datawriter not found: %s\n", My::name::CHAT_WRITER);
+        printf("datawriter not found: %s\n", My::Topic::Chat::WRITER);
         goto done;
     }
 

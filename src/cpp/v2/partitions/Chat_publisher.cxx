@@ -130,7 +130,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     }
 
     /* Register type before creating topic */
-    type_name = My::name::CHAT_TYPE.c_str();
+    type_name = My::Topic::Chat::TYPE.c_str();
     retcode = My::ChatObjectTypeSupport::register_type(
         participant, type_name);
     if (retcode != RETCODE_OK) {
@@ -142,7 +142,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     /* To customize topic QoS, use 
     the configuration file USER_QOS_PROFILES.xml */
     topic = participant->create_topic(
-        My::name::CHAT_TOPIC.c_str(), /*>>><<<*/
+        My::Topic::Chat::TOPIC.c_str(), /*>>><<<*/
         type_name, TOPIC_QOS_DEFAULT, NULL /* listener */,
         STATUS_MASK_NONE);
     if (topic == NULL) {
