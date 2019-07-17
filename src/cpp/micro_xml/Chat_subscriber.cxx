@@ -6,9 +6,9 @@
 #include "wh_sm/wh_sm_history.h"
 #include "rh_sm/rh_sm_history.h"
 
-#include "Chat.h"
-#include "ChatSupport.h"
-#include "ChatPlugin.h"
+#include "MyService.h"
+#include "MyServiceSupport.h"
+#include "MyServicePlugin.h"
 #include "ChatApplication.h"
 
 class ChatObjectDataReaderListener : public DDSDataReaderListener
@@ -40,8 +40,8 @@ ChatObjectDataReaderListener::on_subscription_matched(DDSDataReader *reader,
 void
 ChatObjectDataReaderListener::on_data_available(DataReader * reader)
 {
-    My::ChatObjectDataReader *ChatObject_reader = My::ChatObjectDataReader::narrow(reader);
-    My::ChatObjectSeq sample_seq;
+    My::Type::Chat::ObjDataReader *ChatObject_reader = My::Type::Chat::ObjDataReader::narrow(reader);
+    My::Type::Chat::ObjSeq sample_seq;
     SampleInfoSeq info_seq;
     ReturnCode_t retcode;
 

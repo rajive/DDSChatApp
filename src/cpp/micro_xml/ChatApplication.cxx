@@ -5,14 +5,14 @@
 #include "rti_me_cpp.hxx"
 
 #include "ChatApplication.h"
-#include "ChatPlugin.h"
+#include "MyServicePlugin.h"
 
 #include "app_gen/app_gen.h"
 #include "app_gen/app_gen_plugin.h"
 #include "dds_c/dds_c_profile.h"
 #include "dds_c/dds_c_profile_plugin.h"
 
-#include "ChatAppgen.h"
+#include "MyServiceAppgen.h"
 
 void
 Application::help(const char *appname)

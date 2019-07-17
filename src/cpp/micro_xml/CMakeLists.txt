@@ -23,15 +23,15 @@ set(QOS_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../res/qos)
 
 # IDL
 SET(IDL_SOURCE_C 
-    ${IDL_ROOT_DIR}/v2/Chat.idl)
+    ${IDL_ROOT_DIR}/MyService.idl)
 
 # XML App Config
-set(APP_CFG_TYPES Chat.idl)
+set(APP_CFG_TYPES MyService.idl)
 set(APP_CFG_IF
-    ${IF_ROOT_DIR}/Chat.xml) 
+    ${IF_ROOT_DIR}/MyService.xml) 
 set(APP_CFG_REF 
     ${QOS_ROOT_DIR}/builtin/BuiltinProfiles.xml
-    ${QOS_ROOT_DIR}/Chat_qos.xml)
+    ${QOS_ROOT_DIR}/MyService_qos.xml)
 
 #------------------------------------------------------------------------------
 

@@ -6,8 +6,8 @@
 #include "wh_sm/wh_sm_history.h"
 #include "rh_sm/rh_sm_history.h"
 
-#include "Chat.h"
-#include "ChatSupport.h"
+#include "MyService.h"
+#include "MyServiceSupport.h"
 #include "ChatApplication.h"
 
 class ChatObjectDataWriterListener : public DDSDataWriterListener
@@ -36,9 +36,9 @@ publisher_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
     Application *application = NULL;
 
     DDSDataWriter *datawriter = NULL;
-    My::ChatObjectDataWriter *ChatObject_writer = NULL;
+    My::Type::Chat::ObjDataWriter *ChatObject_writer = NULL;
     DDS_ReturnCode_t retcode;
-    My::ChatObject *sample = NULL;
+    My::Type::Chat::Obj *sample = NULL;
     DDS_Long i;
     DDSDataWriterListener *dw_listener = new ChatObjectDataWriterListener();
 
@@ -78,27 +78,27 @@ publisher_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
         goto done;
     }
 
-    ChatObject_writer = My::ChatObjectDataWriter::narrow(datawriter);
+    ChatObject_writer = My::Type::Chat::ObjDataWriter::narrow(datawriter);
     if (ChatObject_writer == NULL)
     {
         printf("failed datawriter narrow\n");
         goto done;
     }
 
-    sample = My::ChatObjectTypeSupport::create_data();
+    sample = My::Type::Chat::ObjTypeSupport::create_data();
     if (sample == NULL)
     {
-        printf("failed My::ChatObject_create\n");
+        printf("failed My::Type::Chat::Obj_create\n");
         return -1;
     }
 
-	snprintf(sample->id, My::MAX_SIZE, "Rajive (xml micro C++)");
+	snprintf(sample->id, My::Type::Chat::ID_STR_SIZE, "Rajive (xml micro C++)");
     for (i = 0;
         (application->count > 0 && i < application->count) ||
         (application->count == 0);
         ++i)
     {
-    	snprintf(sample->content, My::MAX_SIZE, "XML Micro C++ Hello World %d", i);
+    	snprintf(sample->content, My::Type::Chat::CONTENT_STR_SIZE, "XML Micro C++ Hello World %d", i);
         printf("%s %s\n", sample->id, sample->content);
 
         retcode = ChatObject_writer->write(*sample, DDS_HANDLE_NIL);
@@ -124,7 +124,7 @@ publisher_main_w_args(DDS_Long domain_id, char *udp_intf, char *peer,
 
     if (sample != NULL)
     {
-        My::ChatObjectTypeSupport::delete_data(sample);
+        My::Type::Chat::ObjTypeSupport::delete_data(sample);
     } 
     return 0;
 }
