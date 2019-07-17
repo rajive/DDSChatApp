@@ -88,7 +88,7 @@ subscriber_main_w_args(long sleep_time, long count) {
     );
     assert((datareader = DDS_DomainParticipant_lookup_datareader_by_name(
             databus->participant,
-            My_Topic_chat_READER))
+            My_Topic_Chat_READER))
             != NULL
     );
     assert(DDS_DataReader_set_listener(datareader, &dr_listener,

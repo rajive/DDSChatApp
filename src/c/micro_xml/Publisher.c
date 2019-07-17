@@ -19,7 +19,9 @@ void My_Topic_Chat_output(void* context, long count) {
     struct OutputContext *output_context = (struct OutputContext*)context;
     DDS_ReturnCode_t retcode = DDS_RETCODE_OK;
 
-    snprintf(output_context->Chat_Obj_sample->content, My_Type_Chat_MAX_SIZE, "XML Micro C Hello World %ld", count);
+    snprintf(output_context->Chat_Obj_sample->content,
+                        My_Type_Chat_CONTENT_STR_SIZE,
+                        "XML Micro C Hello World %ld", count);
     printf("%s %s\n", output_context->Chat_Obj_sample->id, output_context->Chat_Obj_sample->content);
 
     retcode = My_Type_Chat_ObjDataWriter_write(output_context->Chat_Obj_writer,
@@ -60,7 +62,7 @@ publisher_main_w_args(long sleep_time, long count) {
     );
     assert((datawriter = DDS_DomainParticipant_lookup_datawriter_by_name(
             databus->participant,
-            My_Topic_chat_WRITER))
+            My_Topic_Chat_WRITER))
             != NULL
     );
     assert((Chat_Obj_writer = My_Type_Chat_ObjDataWriter_narrow(datawriter))
@@ -77,7 +79,7 @@ publisher_main_w_args(long sleep_time, long count) {
     assert((Chat_Obj_sample = My_Type_Chat_Obj_create())
             != NULL
     );
-    strncpy(Chat_Obj_sample->id, "Rajive (xml micro C)", My_Type_Chat_MAX_SIZE);
+    strncpy(Chat_Obj_sample->id, "Rajive (xml micro C)", My_Type_Chat_ID_STR_SIZE);
 
 
     struct OutputContext output_context = {Chat_Obj_sample, Chat_Obj_writer};
