@@ -10,9 +10,7 @@
 //@copy-java   // This gets copied verbatim in Java only
 
 module My {
-    
     module Type {
-
         module Chat {
             const long ID_STR_SIZE      = 32;
             const long CONTENT_STR_SIZE = 128;
@@ -25,7 +23,7 @@ module My {
     };
 };
 
-// Names defined the DDS-XML file
+// Names defined the DDS-XML file: if/Chat.xml 
 module My {
     module Topic {
         module Chat {

@@ -26,9 +26,7 @@
 //@copy-java   // This gets copied verbatim in Java only
 
 module My {
-
     module Type {
-
         module Chat {
             const long ID_STR_SIZE      = 32;
             const long CONTENT_STR_SIZE = 128;
