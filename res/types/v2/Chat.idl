@@ -11,12 +11,18 @@
 
 module My {
     
-    const long MAX_SIZE=4096;
+    module Type {
 
-    struct ChatObject {
-        @key string<MAX_SIZE> id; // identity of the chat object 
-        string<MAX_SIZE> content; // content of the chat object        
-    }; 
+        module Chat {
+            const long ID_STR_SIZE      = 32;
+            const long CONTENT_STR_SIZE = 128;
+
+            struct Obj {
+                @key string<ID_STR_SIZE> id;      // identity of the chat object
+                string<CONTENT_STR_SIZE> content; // content of the chat object
+            };
+        };
+    };
 };
 
 // Names defined the DDS-XML file
@@ -24,7 +30,7 @@ module My {
     module Topic {
         module Chat {
             const string TOPIC      = "Chat";
-            const string TYPE       = "My::ChatObject";
+            const string TYPE       = "My::Type::Chat::Obj";
             const string WRITER     = "_pub::Chat_writer";
             const string READER     = "_sub::Chat_reader";
         };

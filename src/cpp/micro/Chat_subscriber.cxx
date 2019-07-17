@@ -58,8 +58,8 @@ void take_and_print(typename T::DataReader* reader)
 void
 ChatObjectReaderListener::on_data_available(DataReader * reader)
 {
-    My::ChatObjectDataReader *hw_reader = My::ChatObjectDataReader::narrow(reader);
-    take_and_print<My::ChatObject>(hw_reader);
+    My::Type::Chat::ObjDataReader *hw_reader = My::Type::Chat::ObjDataReader::narrow(reader);
+    take_and_print<My::Type::Chat::Obj>(hw_reader);
 }
 int
 subscriber_main_w_args(Long domain_id, char *udp_intf, char *peer,

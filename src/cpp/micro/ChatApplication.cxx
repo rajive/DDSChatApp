@@ -210,10 +210,10 @@ Long count)
         goto done;
     }
 
-    strcpy(this->type_name,"My::ChatObject");
+    strcpy(this->type_name,"My::Type::Chat::Obj");
 
     retcode = this->participant->register_type(this->type_name, 
-    My::ChatObjectTypePlugin_get());
+    My::Type::Chat::ObjTypePlugin_get());
     if (retcode != RETCODE_OK)
     {
         printf("failed to register type: %s\n", "test_type");

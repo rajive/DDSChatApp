@@ -12,7 +12,7 @@
 #include "ChatApplication.h"
 
 void
-My_ChatObjectPublisher_on_publication_matched(void *listener_data,
+My_Type_Chat_ObjPublisher_on_publication_matched(void *listener_data,
 DDS_DataWriter * writer,
 const struct
 DDS_PublicationMatchedStatus *status)
@@ -33,19 +33,19 @@ DDS_Long sleep_time, DDS_Long count)
 {
     DDS_Publisher *publisher;
     DDS_DataWriter *datawriter;
-    My_ChatObjectDataWriter *hw_datawriter;
+    My_Type_Chat_ObjDataWriter *hw_datawriter;
     struct DDS_DataWriterQos dw_qos = DDS_DataWriterQos_INITIALIZER;
     DDS_ReturnCode_t retcode;
-    My_ChatObject *sample = NULL;
+    My_Type_Chat_Obj *sample = NULL;
     struct Application *application = NULL;
     DDS_Long i;
     struct DDS_DataWriterListener dw_listener =
     DDS_DataWriterListener_INITIALIZER;
 
-    sample = My_ChatObject_create();
+    sample = My_Type_Chat_Obj_create();
     if (sample == NULL)
     {
-        printf("failed My_ChatObject_create\n");
+        printf("failed My_Type_Chat_Obj_create\n");
         return 0;
     }
 
@@ -94,7 +94,7 @@ DDS_Long sleep_time, DDS_Long count)
     */
 
     dw_listener.on_publication_matched =
-    My_ChatObjectPublisher_on_publication_matched;
+    My_Type_Chat_ObjPublisher_on_publication_matched;
     datawriter =
     DDS_Publisher_create_datawriter(publisher, application->topic, &dw_qos,
     &dw_listener,
@@ -113,16 +113,16 @@ DDS_Long sleep_time, DDS_Long count)
         goto done;
     }
 
-    hw_datawriter = My_ChatObjectDataWriter_narrow(datawriter);
+    hw_datawriter = My_Type_Chat_ObjDataWriter_narrow(datawriter);
 
-    strncpy(sample->id, "Rajive (micro C)", My_MAX_SIZE);
+    strncpy(sample->id, "Rajive (micro C)", My_Type_Chat_ID_STR_SIZE);
     for (i = 0; (application->count > 0 && i < application->count) ||
     (application->count == 0); ++i)
     {
         /* TODO set sample attributes here */
-    	snprintf(sample->content, My_MAX_SIZE, "Micro C Hello World %d", i);
+    	snprintf(sample->content, My_Type_Chat_CONTENT_STR_SIZE, "Micro C Hello World %d", i);
 
-        retcode = My_ChatObjectDataWriter_write(hw_datawriter, sample, &DDS_HANDLE_NIL);
+        retcode = My_Type_Chat_ObjDataWriter_write(hw_datawriter, sample, &DDS_HANDLE_NIL);
         if (retcode != DDS_RETCODE_OK)
         {
             printf("Failed to write sample\n");
@@ -144,7 +144,7 @@ DDS_Long sleep_time, DDS_Long count)
 
     if (sample != NULL)
     {
-        My_ChatObject_delete(sample);
+        My_Type_Chat_Obj_delete(sample);
     }
 
     return 0;

@@ -223,17 +223,17 @@ DDS_Long sleep_time, DDS_Long count)
         goto done;
     }
 
-    sprintf(application->type_name, "My::ChatObject");
+    sprintf(application->type_name, My_Topic_Chat_TYPE);
     retcode = DDS_DomainParticipant_register_type(application->participant,
     application->type_name,
-    My_ChatObjectTypePlugin_get());
+    My_Type_Chat_ObjTypePlugin_get());
     if (retcode != DDS_RETCODE_OK)
     {
         printf("failed to register type: %s\n", "test_type");
         goto done;
     }
 
-    sprintf(application->topic_name, My_name_CHAT_TOPIC);
+    sprintf(application->topic_name, My_Topic_Chat_TOPIC);
     application->topic =
     DDS_DomainParticipant_create_topic(application->participant,
     application->topic_name,

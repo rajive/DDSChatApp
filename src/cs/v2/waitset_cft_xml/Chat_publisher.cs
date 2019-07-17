@@ -80,7 +80,7 @@ namespace My{
             DDS.DomainParticipantFactory.get_instance().
                     register_type_support(
                     ChatObjectTypeSupport.get_instance(),
-                    "My::ChatObject");
+                    "My::Type::Chat::Obj");
 
             // --- Create participant --- //
 

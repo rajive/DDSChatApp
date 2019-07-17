@@ -11,8 +11,8 @@
     <!-- Domain Library -->
     <domain_library name="ChatBusLib">
         <domain name="Chat">
-            <register_type name="My::ChatObject" type_ref="My::ChatObject" />
-            <topic name="Chat" register_type_ref="My::ChatObject" />
+            <register_type name="My::Type::Chat::Obj" type_ref="My::Type::Chat::Obj" />
+            <topic name="Chat" register_type_ref="My::Type::Chat::Obj" />
         </domain>
     </domain_library>
     

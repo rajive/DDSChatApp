@@ -28,10 +28,10 @@ Long sleep_time, Long count)
 
     Publisher *publisher = NULL;
     DataWriter *datawriter = NULL;
-    My::ChatObjectDataWriter *hw_writer = NULL;
+    My::Type::Chat::ObjDataWriter *hw_writer = NULL;
     DataWriterQos dw_qos;
     ReturnCode_t retcode;
-    My::ChatObject *sample = NULL;
+    My::Type::Chat::Obj *sample = NULL;
     Long i;
     DataWriterListener *dw_listener = NULL;
 
@@ -96,17 +96,17 @@ Long sleep_time, Long count)
         goto done;
     }
 
-    hw_writer = My::ChatObjectDataWriter::narrow(datawriter);
+    hw_writer = My::Type::Chat::ObjDataWriter::narrow(datawriter);
     if (hw_writer == NULL)
     {
         printf("failed datawriter narrow\n");
         goto done;
     }
 
-    sample = My::ChatObjectTypeSupport::create_data();
+    sample = My::Type::Chat::ObjTypeSupport::create_data();
     if (sample == NULL)
     {
-        printf("failed My::ChatObject_create\n");
+        printf("failed My::Type::Chat::Obj_create\n");
         return -1;
     }
 
@@ -141,7 +141,7 @@ Long sleep_time, Long count)
     }
     if (sample != NULL)
     {
-        My::ChatObjectTypeSupport::delete_data(sample);
+        My::Type::Chat::ObjTypeSupport::delete_data(sample);
     } 
     return 0;
 }

@@ -20,23 +20,23 @@
 #define UNSIGNED_LONG_SIZE  4
 
 void
-My_ChatObjectSubscriber_on_data_available(void *listener_data,
+My_Type_Chat_ObjSubscriber_on_data_available(void *listener_data,
 DDS_DataReader * reader)
 {
-    My_ChatObjectDataReader *hw_reader = My_ChatObjectDataReader_narrow(reader);
+    My_Type_Chat_ObjDataReader *hw_reader = My_Type_Chat_ObjDataReader_narrow(reader);
     DDS_ReturnCode_t retcode;
     struct DDS_SampleInfo *sample_info = NULL;
-    My_ChatObject *sample = NULL;
+    My_Type_Chat_Obj *sample = NULL;
 
     struct DDS_SampleInfoSeq info_seq = 
     DDS_SEQUENCE_INITIALIZER;
-    struct My_ChatObjectSeq sample_seq = 
+    struct My_Type_Chat_ObjSeq sample_seq =
     DDS_SEQUENCE_INITIALIZER;
 
     const DDS_Long TAKE_MAX_SAMPLES = 32;
     DDS_Long i;
 
-    retcode = My_ChatObjectDataReader_take(hw_reader, 
+    retcode = My_Type_Chat_ObjDataReader_take(hw_reader,
     &sample_seq, &info_seq, TAKE_MAX_SAMPLES, 
     DDS_ANY_SAMPLE_STATE, DDS_ANY_VIEW_STATE, DDS_ANY_INSTANCE_STATE);
 
@@ -47,17 +47,17 @@ DDS_DataReader * reader)
     }
 
     /* Print each valid sample taken */
-    for (i = 0; i < My_ChatObjectSeq_get_length(&sample_seq); ++i)
+    for (i = 0; i < My_Type_Chat_ObjSeq_get_length(&sample_seq); ++i)
     {
         sample_info = DDS_SampleInfoSeq_get_reference(&info_seq, i);
 
         if (sample_info->valid_data)
         {
-            sample = My_ChatObjectSeq_get_reference(&sample_seq, i);
+            sample = My_Type_Chat_ObjSeq_get_reference(&sample_seq, i);
 
             printf("\nValid sample received\n");
             /* TODO read sample attributes here */ 
-            sample = My_ChatObjectSeq_get_reference(&sample_seq, i);
+            sample = My_Type_Chat_ObjSeq_get_reference(&sample_seq, i);
             printf("id = %s,   content=%s\n", sample->id, sample->content);
         }
         else
@@ -66,15 +66,15 @@ DDS_DataReader * reader)
         }
     }
 
-    My_ChatObjectDataReader_return_loan(hw_reader, &sample_seq, &info_seq);
+    My_Type_Chat_ObjDataReader_return_loan(hw_reader, &sample_seq, &info_seq);
 
     done:
-    My_ChatObjectSeq_finalize(&sample_seq);
+    My_Type_Chat_ObjSeq_finalize(&sample_seq);
     DDS_SampleInfoSeq_finalize(&info_seq);
 }
 
 void
-My_ChatObjectSubscriber_on_subscription_matched(void *listener_data,
+My_Type_Chat_ObjSubscriber_on_subscription_matched(void *listener_data,
 DDS_DataReader * reader,
 const struct
 DDS_SubscriptionMatchedStatus
@@ -91,14 +91,14 @@ DDS_SubscriptionMatchedStatus
 }
 
 /*i
-* \brief Helper function to filter an My_ChatObject sample
+* \brief Helper function to filter an My_Type_Chat_Obj sample
 *
-* \param[in]  sample       A My_ChatObject data sample to filter
+* \param[in]  sample       A My_Type_Chat_Obj data sample to filter
 * \param[out] drop_sample  Out parameter determining whether the sample
 *                          should be filtered out or not.
 */
 void 
-My_ChatObjectSubscriber_filter_sample(My_ChatObject *sample,
+My_Type_Chat_ObjSubscriber_filter_sample(My_Type_Chat_Obj *sample,
 DDS_Boolean *drop_sample)
 {
     /* Example filter: drop samples with even-numbered count in id */
@@ -115,7 +115,7 @@ DDS_Boolean *drop_sample)
 * \param[out] instance        Deserialized unsigned long
 */
 void
-My_ChatObjectSubscriber_deserialize_unsigned_long(char **src_buffer,
+My_Type_Chat_ObjSubscriber_deserialize_unsigned_long(char **src_buffer,
 RTI_BOOL need_byte_swap,
 DDS_UnsignedLong *instance)
 {
@@ -138,7 +138,7 @@ DDS_UnsignedLong *instance)
 * \brief Implementation of \ref DDS_DataReaderListener::on_before_sample_deserialize
 */
 DDS_Boolean
-My_ChatObjectSubscriber_on_before_sample_deserialize(
+My_Type_Chat_ObjSubscriber_on_before_sample_deserialize(
     void *listener_data,
     DDS_DataReader *reader,
     struct NDDS_Type_Plugin *plugin,
@@ -167,7 +167,7 @@ My_ChatObjectSubscriber_on_before_sample_deserialize(
     * As the sample 'id' is the first data in the stream it is already aligned.
     * Position 0 (beginning of the stream) is aligned to 4 (size of long).
     */
-    My_ChatObjectSubscriber_deserialize_unsigned_long(&src_buffer,
+    My_Type_Chat_ObjSubscriber_deserialize_unsigned_long(&src_buffer,
     need_byte_swap,
     (DDS_UnsignedLong*)&id);
 
@@ -189,16 +189,16 @@ My_ChatObjectSubscriber_on_before_sample_deserialize(
 * \brief Implementation of \ref DDS_DataReaderListener::on_before_sample_commit
 */
 DDS_Boolean
-My_ChatObjectSubscriber_on_before_sample_commit(
+My_Type_Chat_ObjSubscriber_on_before_sample_commit(
     void *listener_data,
     DDS_DataReader *reader,
     const void *const sample,
     const struct DDS_SampleInfo *const sample_info,
     DDS_Boolean *dropped)
 {
-    My_ChatObject *hw_sample = (My_ChatObject *)sample; 
+    My_Type_Chat_Obj *hw_sample = (My_Type_Chat_Obj *)sample;
 
-    My_ChatObjectSubscriber_filter_sample(hw_sample, dropped);
+    My_Type_Chat_ObjSubscriber_filter_sample(hw_sample, dropped);
 
     if (*dropped)
     {
@@ -242,10 +242,10 @@ DDS_Long sleep_time, DDS_Long count)
     /* choose one callback to enable */
     #ifdef FILTER_ON_DESERIALIZE
     dr_listener.on_before_sample_deserialize =
-    My_ChatObjectSubscriber_on_before_sample_deserialize;
+    My_Type_Chat_ObjSubscriber_on_before_sample_deserialize;
     #else
     dr_listener.on_before_sample_commit = 
-    My_ChatObjectSubscriber_on_before_sample_commit;
+    My_Type_Chat_ObjSubscriber_on_before_sample_commit;
     #endif
 
     #endif
@@ -261,9 +261,9 @@ DDS_Long sleep_time, DDS_Long count)
     Requested-Offered (RxO) semantics to be compatible.
     */
 
-    dr_listener.on_data_available = My_ChatObjectSubscriber_on_data_available;
+    dr_listener.on_data_available = My_Type_Chat_ObjSubscriber_on_data_available;
     dr_listener.on_subscription_matched =
-    My_ChatObjectSubscriber_on_subscription_matched;
+    My_Type_Chat_ObjSubscriber_on_subscription_matched;
 
     /* Publisher sends samples with id = 0 or id = 1, so 2 instances maximum.
     * But in case filtering is done, all samples with 'id = 0' are
