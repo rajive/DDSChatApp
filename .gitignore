@@ -30,6 +30,7 @@
 # Generated
 objs/
 gen/
+res/types/*.xml
 *_idl.xml
 Chat.xml
 Chat.h*
@@ -57,3 +58,7 @@ Release-*
 .DS_Store
 
 /Default/
+
+todo
+todate
+TO_TRASH
