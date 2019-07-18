@@ -1,14 +1,6 @@
 #ifndef CHAT_IDL_
 #define CHAT_IDL_
 
-// This is a single lineIDL comment
-/* This is a multi-line IDL comment */
-
-//@copy        // This gets copied verbatim in all languages    
-//@copy-c      // This gets copied verbatim in C and C++ only
-//@copy-cppcli // This gets copied verbatim in .NET C++/CLI
-//@copy-java   // This gets copied verbatim in Java only
-
 module My {
     module Type {
         module Chat {
