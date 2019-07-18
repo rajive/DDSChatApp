@@ -21,19 +21,17 @@
 
     <!-- types -->
     <types>
-        <include file="res/types/MyService.xml" />
+        <include file="res/types/v2/Chat.xml" />
     </types>
 
     <!-- Domain Library -->
     <domain_library name="MyServiceBusLib">
         <domain name="Domain">
-
             <register_type name="My::Type::Chat::Obj" type_ref="My::Type::Chat::Obj" />
             <topic name="Chat" register_type_ref="My::Type::Chat::Obj" />
-
-        </domain>    
+        </domain>
     </domain_library>
-
+    
     <!-- Participant library -->
     <domain_participant_library name="MyServiceIfLib">
             
@@ -47,11 +45,22 @@
             </publisher>
             <participant_qos base_name="MyServiceQosLib::MyService_Pub" />
         </domain_participant>
-
+        
         <!-- Sub -->
         <domain_participant name="Sub" domain_ref="MyServiceBusLib::Domain">
             <subscriber name="_sub">
                 <data_reader name="Chat_reader" topic_ref="Chat">
+                    <filter name="Chat" kind="builtin.sql">
+                        <!-- Not supported in Connext Micro: Ignored -->
+                        <expression>
+                          id = %0 OR id = %1 OR id = %2
+                        </expression>
+                        <parameter_list>
+                            <param>'Rajive'</param>
+                            <param>'ABC'</param>
+                            <param>'XYZ'</param>
+                        </parameter_list>
+                    </filter>
                     <datareader_qos base_name="MyServiceQosLib::MyService_Sub" />
                 </data_reader>
                 <subscriber_qos base_name="MyServiceQosLib::MyService_Sub"/>
@@ -61,26 +70,20 @@
 
         <!-- PubSub Interface -->
         <domain_participant name="PubSub" domain_ref="MyServiceBusLib::Domain">
-
             <subscriber name="_sub">
-
                 <data_reader name="Chat_reader" topic_ref="Chat">
-                    <datareader_qos base_name="MyServiceQosLib::MyService_Sub" />
+                    <datareader_qos base_name="MyServiceQosLib::MyService_PubSub" />
                 </data_reader>
-                <subscriber_qos base_name="MyServiceQosLib::MyService_Sub"/>
-
+                <subscriber_qos base_name="MyServiceQosLib::MyService_PubSub"/>
             </subscriber>
-
             <publisher name="_pub">
-
                 <data_writer name="Chat_writer" topic_ref="Chat">
-                    <datawriter_qos base_name="MyServiceQosLib::MyService_Pub" />
+                    <datawriter_qos base_name="MyServiceQosLib::MyService_PubSub" />
                 </data_writer>
-                <publisher_qos base_name="MyServiceQosLib::MyService_Pub" />
-
+                <publisher_qos base_name="MyServiceQosLib::MyService_PubSub" />
             </publisher>
-
-            <participant_qos base_name="MyServiceQosLib::MyService_Sub"/>
+            <participant_qos base_name="MyServiceQosLib::MyService_PubSub"/>
         </domain_participant>
+        
     </domain_participant_library>
 </dds>
