@@ -40,8 +40,8 @@
                                        
         
         <!-- Chat Service QoS policies -->     
-		<qos_profile name="Chat_Root">
-	
+		<qos_profile name="Chat_Root" is_default_qos="true">
+
 			<datawriter_qos topic_filter="Chat*" 
 			                base_name="BuiltinQosLibExp::Pattern.Status">
 				<base_name>

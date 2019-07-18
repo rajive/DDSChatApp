@@ -22,7 +22,7 @@
     <qos_library name="MyServiceQosLib">
 
         <!-- System QoS policies --> 
-        <qos_profile name="MyService_Root">
+        <qos_profile name="MyService_Root" is_default_qos="true">
 
             <datawriter_qos topic_filter="Chat*" 
                             base_name="BuiltinQosLibExp::Pattern.Status">
