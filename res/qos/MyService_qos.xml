@@ -90,7 +90,7 @@
     <!-- MyService QoS -->
     <qos_library name="MyServiceQosLib">
  
-		<qos_profile name="MyService_Root" is_default_qos="true">
+		<qos_profile name="Root" is_default_qos="true">
 			<base_name>
 				<element>SnippetQosLib::Unbounded4096</element>
 			</base_name>
@@ -124,7 +124,7 @@
 
 
         <!-- Pub Interface QoS policies -->
-        <qos_profile name="MyService_Pub" base_name="MyService_Root">
+        <qos_profile name="Pub" base_name="Root">
             <publisher_qos>
                 <partition><!-- Not supported in Connext Micro: Ignored -->
                     <name>
@@ -140,11 +140,11 @@
 
 
         <!-- Sub Interface QoS policies -->
-        <qos_profile name="MyService_Sub" base_name="MyService_Root" />
+        <qos_profile name="Sub" base_name="Root" />
         
         
         <!-- Pub.Exclusive Interface QoS policies -->
-		<qos_profile name="MyService_Pub.Exclusive" base_name="MyService_Pub">
+		<qos_profile name="Pub.Exclusive" base_name="Pub">
 			<datawriter_qos topic_filter="Chat*">
                 <base_name>
                     <element>SnippetQosLib::Exclusive</element>
@@ -155,7 +155,7 @@
 
 
          <!-- Sub.Exclusive Interface QoS policies -->
-        <qos_profile name="MyService_Sub.Exclusive" base_name="MyService_Sub">        
+        <qos_profile name="Sub.Exclusive" base_name="Sub">        
             <datareader_qos topic_filter="Chat*">
                 <base_name>
                     <element>SnippetQosLib::Exclusive</element>
@@ -165,7 +165,7 @@
 
 
          <!-- PubSub Interface QoS policies -->
-        <qos_profile name="MyService_PubSub" base_name="MyService_Root" />
+        <qos_profile name="PubSub" base_name="Root" />
 
     </qos_library>
 </dds>
