@@ -1,13 +1,13 @@
 -- Get the reader
-local ChatObject_reader = CONTAINER.READER['_sub::Chat_reader']
+local Chat_reader = CONTAINER.READER['_sub::Chat_reader']
 
-ChatObject_reader:take()
+Chat_reader:take()
 
-for  i, chat_object in ipairs(ChatObject_reader.samples) do
+for  i, sample in ipairs(Chat_reader.samples) do
 
-  if (ChatObject_reader.infos[i].valid_data) then
+  if (Chat_reader.infos[i].valid_data) then
 
-    print(chat_object['id'], chat_object['content'])
+    print(sample['id'], sample['content'])
 
   end
 
