@@ -212,7 +212,20 @@ Replace `Debug-VS2010` with your target
 
         rtiddsprototyper -cfgName MyServiceIfLib::Pub -luaFile src/lua/Chat_publisher.lua
 
-        
+
+
+### Running the Python components
+
+- Run Subscriber Example:
+
+        python src/python/Chat_reader.py
+ 
+- Run Publisher Example:
+
+        python src/python/Chat_writer.py 
+
+
+  
 ### Running the Web Integration Service components
 
 - [svc/web/README.md](./svc/web/README.md)
