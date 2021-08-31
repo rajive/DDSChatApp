@@ -40,6 +40,8 @@ ChatPlugin.c*
 ChatSupport.h*
 ChatSupport.c*
 makefile_Chat_*
+README_*.txt
+tags
 
 # cmake
 build/
